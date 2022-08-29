@@ -29,22 +29,22 @@ class DetailController extends Controller
         $textTypes = Detail::where('type', 3)
             ->join('users', 'users.id', '=', 'details.userId')
             ->select('details.id', "details.name{$this->lang} as name", 'details.isActive', 'details.created_at', 'users.name as username')
-            ->select('details.id', "details.name{$this->lang} as name", 'details.isActive', 'details.created_at')->paginate($perPage = '10', $pageName = 'textTypes');
+            ->paginate($perPage = '10', $pageName = 'textTypes');
 
         $docFormats = Detail::where('type', 4)
             ->join('users', 'users.id', '=', 'details.userId')
             ->select('details.id', "details.name{$this->lang} as name", 'details.isActive', 'details.created_at', 'users.name as username')
-            ->select('details.id', "details.name{$this->lang} as name", 'details.isActive', 'details.created_at')->paginate($perPage = '10', $pageName = 'docFormats');
+            ->paginate($perPage = '10', $pageName = 'docFormats');
 
         $fileTypes = Detail::where('type', 5)
             ->join('users', 'users.id', '=', 'details.userId')
             ->select('details.id', "details.name{$this->lang} as name", 'details.isActive', 'details.created_at', 'users.name as username')
-            ->select('details.id', "details.name{$this->lang} as name", 'details.isActive', 'details.created_at')->paginate($perPage = '10', $pageName = 'fileTypes');
+            ->paginate($perPage = '10', $pageName = 'fileTypes');
 
         $directs = Detail::where('type', 6)
             ->join('users', 'users.id', '=', 'details.userId')
             ->select('details.id', "details.name{$this->lang} as name", 'details.isActive', 'details.created_at', 'users.name as username')
-            ->select('details.id', "details.name{$this->lang} as name", 'details.isActive', 'details.created_at')->paginate($perPage = '10', $pageName = 'directs');
+            ->paginate($perPage = '10', $pageName = 'directs');
 
         return view('interfaces.admin.detail', compact('docTypes', 'docLangs', 'textTypes', 'docFormats', 'fileTypes', 'directs'));
     }
