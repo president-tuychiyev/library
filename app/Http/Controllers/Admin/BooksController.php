@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Book;
+use App\Models\Detail;
 use Illuminate\Http\Request;
 
 class BooksController extends Controller
@@ -24,6 +25,7 @@ class BooksController extends Controller
 
     public function add ()
     {
-        return view('interfaces.admin.books-create-update');
+        $details = Detail::select('details.id', 'details.type', "details.name{$this->lang} as name")->get();
+        return view('interfaces.admin.books-create-update', compact('details'));
     }
 }
