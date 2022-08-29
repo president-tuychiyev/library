@@ -47,7 +47,7 @@ Route::prefix(Config::get('language', 'uz'))->group(function () {
 
             Route::get('books', 'Admin\\BooksController@index')->name('admin.books');
             Route::get('books/add', 'Admin\\BooksController@add')->name('admin.books.add');
-            Route::get('books', 'Admin\\BooksController@index')->name('admin.books');
+            Route::post('books/insert', 'Admin\\BooksController@insert')->name('admin.books.insert');
 
         });
 

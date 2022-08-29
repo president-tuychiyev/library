@@ -4,8 +4,9 @@
 
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
-        <div class="row">
-            <div class="col-xxl">
+        <form action="{{ route('admin.books.insert') }}" method="post" enctype="multipart/form-data" class="row">
+            @csrf
+            <div class="col-xl-6">
                 <div class="card mb-4">
                     <div class="card-body">
                         <div class="row mb-3">
@@ -13,17 +14,16 @@
                                 muallifi</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
-                                    <span id="doc-type" class="input-group-text"><i
-                                            class="bx bx-file"></i></span>
-                                    <select class="form-select" id="doc-type" name="docTypeId" required>
+                                    <span id="doc-type" class="input-group-text"><i class="bx bx-file"></i></span>
+                                    <select class="form-select" id="doc-type" name="authorId" required>
                                         @foreach ($details->where('type', 1) as $d)
                                             <option value="{{ $d->id }}">{{ $d->name }}</option>
                                         @endforeach
                                         <option value="0">Boshqa</option>
                                     </select>
                                 </div>
-                                <div class="form-text">kitob muallifini tanlang <i
-                                    class="text-red-500">(majburiy bo'lim)</i></div>
+                                <div class="form-text">kitob muallifini tanlang <i class="text-red-500">(majburiy
+                                        bo'lim)</i></div>
                             </div>
                         </div>
 
@@ -40,14 +40,14 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="publication-book">Nashriyot</label>
+                            <label class="col-sm-2 col-form-label" for="publisher-book">Nashriyot</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <span class="input-group-text"><i class="bx bx-label"></i></span>
-                                    <input type="text" name="publisher" id="publication-book" class="form-control">
+                                    <input type="text" name="publisher" id="publisher-book" class="form-control">
                                 </div>
-                                <div class="form-text">kitob nashriyot nomini kiriting <i
-                                        class="text-yellow-400">(majburiy emas)</i></div>
+                                <div class="form-text">kitob nashriyot nomini kiriting <i class="text-yellow-400">(majburiy
+                                        emas)</i></div>
                             </div>
                         </div>
 
@@ -56,9 +56,11 @@
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <span class="input-group-text"><i class="bx bx-calendar"></i></span>
-                                    <input class="form-control" type="date" value="{{ now()->format('d.m.Y') }}" id="date-publish-book">
+                                    <input class="form-control" type="date" name="datePublication"
+                                        value="{{ now()->format('d.m.Y') }}" id="date-publish-book" required>
                                 </div>
-                                <div class="form-text">kitob nashr qilingan sanani kiriting <i class="text-red-500">(majburiy bo'lim)</i></div>
+                                <div class="form-text">kitob nashr qilingan sanani kiriting <i
+                                        class="text-red-500">(majburiy bo'lim)</i></div>
                             </div>
                         </div>
 
@@ -67,7 +69,7 @@
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <span class="input-group-text"><i class="bx bx-calculator"></i></span>
-                                    <input type="number" id="page-count-book" class="form-control">
+                                    <input type="number" name="numPage" id="page-count-book" class="form-control" required>
                                 </div>
                                 <div class="form-text"><i class="text-red-500">(majburiy bo'lim)</i></div>
                             </div>
@@ -78,7 +80,7 @@
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <span class="input-group-text"><i class="bx bx-wallet-alt"></i></span>
-                                    <input type="number" id="page-count-book" class="form-control">
+                                    <input type="number" name="price" id="page-count-book" class="form-control" required>
                                 </div>
                                 <div class="form-text"><i class="text-red-500">(majburiy bo'lim)</i></div>
                             </div>
@@ -101,7 +103,7 @@
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <span class="input-group-text"><i class="bx bx-label"></i></span>
-                                    <input type="text" id="isbn-book" class="form-control">
+                                    <input type="text" name="isbn" id="isbn-book" class="form-control">
                                 </div>
                                 <div class="form-text">kitob isbn kodini kiriting <i class="text-yellow-400">(majburiy
                                         emas)</i></div>
@@ -115,12 +117,13 @@
                                 <div class="input-group input-group-merge">
                                     <span id="select-document-type" class="input-group-text"><i
                                             class="bx bx-file"></i></span>
-                                    <select class="form-select" id="select-document-type">
+                                    <select class="form-select" name="docTypeId" id="select-document-type" required>
                                         @foreach ($details->where('type', 1) as $d)
                                             <option value="{{ $d->id }}">{{ $d->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
+                                <div class="form-text"><i class="text-red-500">(majburiy bo'lim)</i></div>
                             </div>
                         </div>
 
@@ -131,12 +134,13 @@
                                 <div class="input-group input-group-merge">
                                     <span id="select-document-type" class="input-group-text"><i
                                             class="bx bx-rocket"></i></span>
-                                    <select class="form-select" id="select-document-type">
+                                    <select class="form-select" name="docLangId" id="select-document-type" required>
                                         @foreach ($details->where('type', 2) as $d)
                                             <option value="{{ $d->id }}">{{ $d->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
+                                <div class="form-text"> <i class="text-red-500">(majburiy bo'lim)</i></div>
                             </div>
                         </div>
 
@@ -147,12 +151,13 @@
                                 <div class="input-group input-group-merge">
                                     <span id="select-document-type" class="input-group-text"><i
                                             class="bx bx-message-square-edit"></i></span>
-                                    <select class="form-select" id="select-document-type">
+                                    <select class="form-select" name="textTypeId" id="select-document-type" required>
                                         @foreach ($details->where('type', 3) as $d)
                                             <option value="{{ $d->id }}">{{ $d->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
+                                <div class="form-text"><i class="text-red-500">(majburiy bo'lim)</i></div>
                             </div>
                         </div>
 
@@ -162,12 +167,13 @@
                                 <div class="input-group input-group-merge">
                                     <span id="select-document-type" class="input-group-text"><i
                                             class="bx bx-edit"></i></span>
-                                    <select class="form-select" id="select-document-type">
+                                    <select class="form-select" name="docFormatId" id="select-document-type" required>
                                         @foreach ($details->where('type', 4) as $d)
                                             <option value="{{ $d->id }}">{{ $d->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
+                                <div class="form-text"><i class="text-red-500">(majburiy bo'lim)</i></div>
                             </div>
                         </div>
 
@@ -177,12 +183,13 @@
                                 <div class="input-group input-group-merge">
                                     <span id="select-document-type" class="input-group-text"><i
                                             class="bx bx-file-blank"></i></span>
-                                    <select class="form-select" id="select-document-type">
+                                    <select class="form-select" name="fileTypeId" id="select-document-type" required>
                                         @foreach ($details->where('type', 5) as $d)
                                             <option value="{{ $d->id }}">{{ $d->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
+                                <div class="form-text"><i class="text-red-500">(majburiy bo'lim)</i></div>
                             </div>
                         </div>
 
@@ -193,12 +200,13 @@
                                 <div class="input-group input-group-merge">
                                     <span id="select-document-type" class="input-group-text"><i
                                             class="bx bx-link-external"></i></span>
-                                    <select class="form-select" id="select-document-type">
+                                    <select class="form-select" name="directId" id="select-document-type" required>
                                         @foreach ($details->where('type', 5) as $d)
                                             <option value="{{ $d->id }}">{{ $d->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
+                                <div class="form-text"><i class="text-red-500">(majburiy bo'lim)</i></div>
                             </div>
                         </div>
 
@@ -206,13 +214,13 @@
                             <label class="col-sm-2 col-form-label" for="come-from-book">Qayerdan kelgan</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
-                                    <span id="come-from-book" class="input-group-text"><i
-                                            class="bx bx-globe"></i></span>
-                                    <select class="form-select" id="come-from-book" required>
+                                    <span id="come-from-book" class="input-group-text"><i class="bx bx-globe"></i></span>
+                                    <select class="form-select" name="comeFrom" id="come-from-book" required>
                                         <option value="1">MDX davlatidan</option>
                                         <option value="3">Horij mamlakatidan</option>
                                     </select>
                                 </div>
+                                <div class="form-text"><i class="text-red-500">(majburiy bo'lim)</i></div>
                             </div>
                         </div>
 
@@ -222,16 +230,14 @@
                                 <div class="input-group input-group-merge">
                                     <span id="come-from-book" class="input-group-text"><i
                                             class="bx bx-street-view"></i></span>
-                                    <select class="form-select" id="come-from-book" required>
-                                        <option value="1">MDX davlatidan</option>
-                                        <option value="3">Horij mamlakatidan</option>
+                                    <select class="form-select" name="forWhom" id="come-from-book" required>
+                                        <option value="1">Magistr</option>
+                                        <option value="2">Bakalavr</option>
+                                        <option value="3">O'quvchi</option>
+                                        <option value="4">Boshqa</option>
                                     </select>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row justify-content-end">
-                            <div class="col-sm-10">
-                                <button type="submit" class="btn btn-primary bg-indigo-500">Qo'shish</button>
+                                <div class="form-text"><i class="text-red-500">(majburiy bo'lim)</i></div>
                             </div>
                         </div>
                     </div>
@@ -279,8 +285,9 @@
                                                 class="bx bx-label"></i></span>
                                         <textarea id="annontatsion-book" name="annouz" rows="5" class="form-control"></textarea>
                                     </div>
-                                    <div class="form-text">qisqacha annontatsiya kiriting <i class="text-yellow-400">(majburiy
-                                        emas)</i></div>
+                                    <div class="form-text">qisqacha annontatsiya kiriting <i
+                                            class="text-yellow-400">(majburiy
+                                            emas)</i></div>
                                 </div>
                             </div>
                         </div>
@@ -293,7 +300,8 @@
                                         <span class="input-group-text"><i class="bx bx-label"></i></span>
                                         <textarea name="nameru" rows="3" id="title-book" class="form-control" required></textarea>
                                     </div>
-                                    <div class="form-text">введите название книги <i class="text-red-400">(обязательный раздел)</i></div>
+                                    <div class="form-text">введите название книги <i class="text-red-400">(обязательный
+                                            раздел)</i></div>
                                 </div>
                             </div>
 
@@ -305,7 +313,8 @@
                                                 class="bx bx-label"></i></span>
                                         <textarea id="annontatsion-book" name="annouz" rows="5" class="form-control"></textarea>
                                     </div>
-                                    <div class="form-text">введите краткую аннотацию <i class="text-yellow-400">(не обязательно)</i></div>
+                                    <div class="form-text">введите краткую аннотацию <i class="text-yellow-400">(не
+                                            обязательно)</i></div>
                                 </div>
                             </div>
                         </div>
@@ -318,7 +327,8 @@
                                         <span class="input-group-text"><i class="bx bx-label"></i></span>
                                         <textarea name="nameen" id="title-book" rows="3" class="form-control" required></textarea>
                                     </div>
-                                    <div class="form-text">enter the title of the book <i class="text-red-400">(mandatory section)</i></div>
+                                    <div class="form-text">enter the title of the book <i class="text-red-400">(mandatory
+                                            section)</i></div>
                                 </div>
                             </div>
 
@@ -330,13 +340,41 @@
                                                 class="bx bx-label"></i></span>
                                         <textarea id="annontatsion-book" name="annoen" rows="5" class="form-control"></textarea>
                                     </div>
-                                    <div class="form-text">enter a brief annotation <i class="text-yellow-400">(not mandatory)</i></div>
+                                    <div class="form-text">enter a brief annotation <i class="text-yellow-400">(not
+                                            mandatory)</i></div>
                                 </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row mb-3">
+                            <label class="col-sm-2 form-label" for="cover-media-book">Muqova tasviri</label>
+                            <div class="col-sm-10">
+                                <div class="input-group input-group-merge">
+                                    <input class="form-control" name="coverMedia" type="file" id="cover-media-book">
+                                </div>
+                                <div class="form-text"><i class="text-yellow-400">(majburiy emas)</i></div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label class="col-sm-2 form-label" for="doc-media-book">To‘liq matn fayli</label>
+                            <div class="col-sm-10">
+                                <div class="input-group input-group-merge">
+                                    <input class="form-control" name="docMediaId" type="file" id="doc-media-book">
+                                </div>
+                                <div class="form-text"> <i class="text-yellow-400">(majburiy emas)</i></div>
+                            </div>
+                        </div>
+
+                        <div class="row justify-content-end">
+                            <div class="col-sm-10">
+                                <button type="submit" class="btn btn-primary bg-indigo-500">Qo'shish</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 @stop

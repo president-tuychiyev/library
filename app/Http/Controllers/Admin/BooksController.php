@@ -28,4 +28,9 @@ class BooksController extends Controller
         $details = Detail::select('details.id', 'details.type', "details.name{$this->lang} as name")->get();
         return view('interfaces.admin.books-create-update', compact('details'));
     }
+
+    public function insert ()
+    {
+        dd(request());
+    }
 }

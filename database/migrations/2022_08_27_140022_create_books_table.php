@@ -20,7 +20,10 @@ return new class extends Migration
             $table->foreignIdFor(Detail::class, 'docLangId');
             $table->foreignIdFor(Detail::class, 'textTypeId');
             $table->foreignIdFor(Detail::class, 'docFormatId');
+            $table->foreignIdFor(Detail::class, 'fileTypeId');
             $table->foreignIdFor(Detail::class, 'directId');
+            $table->integer('comeFrom')->nullable();
+            $table->integer('forWhom')->nullable()->comment('1 - magistr | 2 - bakalavr | 3 - Oʻquvchi | 4 - boshqa');
             $table->string('nameuz')->nullable();
             $table->string('nameru')->nullable();
             $table->string('nameen')->nullable();
