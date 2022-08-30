@@ -174,6 +174,6 @@ class BooksController extends Controller
         $books = Book::where('isDeleted', false)->join('users', 'users.id', '=', 'books.userId')
             ->select('books.id', 'books.isActive', 'books.created_at', "books.name{$this->lang} as name", 'users.name as username')->paginate(20);
         $qr = "Hi!";
-        return view('interfaces.admin.books', compact('books', 'qr'));
+        return view('interfaces.admin.books-qr', compact('books', 'qr'));
     }
 }

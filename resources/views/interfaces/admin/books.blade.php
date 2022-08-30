@@ -22,9 +22,7 @@
                             <th>id</th>
                             <th>nomi</th>
                             <th>holati</th>
-                            @isset($qr)
-                                <th>QRCODE</th>
-                            @endisset
+                            <th>QRCODE</th>
                             <th>yaratuvchi</th>
                             <th>yaratilgan sana</th>
                             <th>harakatlar</th>
@@ -42,9 +40,7 @@
                                         <small class="badge bg-label-danger me-1"><i class="bx bx-shield-alt-2"></i></small>
                                     @endif
                                 </td>
-                                @isset($qr)
-                                    <td>{!! DNS2D::getBarcodeSVG((string)$b->id, 'QRCODE') !!}</td>
-                                @endisset
+                                <td>{!! DNS2D::getBarcodeSVG((string)$b->id, 'QRCODE') !!}</td>
                                 <td>{{ $b->username }}</td>
                                 <td>{{ $b->created_at->format('d.m.Y') }}</td>
                                 <td>
