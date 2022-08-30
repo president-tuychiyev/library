@@ -37,6 +37,26 @@
         <div class="modal-backdrop fade hidden"></div>
     @endempty
 
+
+    @if (session()->has('msg'))
+        <!-- begin::messages -->
+        <script>
+            Swal.fire({
+                toast: true,
+                position: 'bottom-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                },
+                title: "{{ session()->get('msg')['title'] }}",
+                icon: "{{ session()->get('msg')['icon'] }}"
+            })
+        </script>
+        <!-- end::messages -->
+    @endif
 </body>
 
 </html>

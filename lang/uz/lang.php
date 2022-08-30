@@ -18,4 +18,23 @@ return [
             ]
         ]
     ],
+    'adding' => [
+        'success' => [
+            'icon' => "success",
+            'title' => "Muvaffaqiyatli qo'shildi!"
+        ]
+    ],
+    'update' => [
+        'success' => [
+            'icon' => "success",
+            'title' => "Muvaffaqiyatli yangilandi!"
+        ]
+    ],
+    'delete' => [
+        'success' => [
+            'icon' => "warning",
+            'title' => "Muvaffaqiyatli o'chirildi!"
+        ]
+    ]
+
 ];

@@ -42,9 +42,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function details(){
-        return $this->hasMany(Detail::class,'userId','id');
-    }
+    // public function details(){
+    //     return $this->hasMany(Detail::class,'userId','id');
+    // }
 
     // user_id emasi userId qilingan tableda
 

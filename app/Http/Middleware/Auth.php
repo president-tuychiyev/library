@@ -16,11 +16,12 @@ class Auth
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!session()->has('user') && ($request->path() != '/' . app()->getLocale() . '/auth/sign-in' && $request->path() != '/' . app()->getLocale() . '/auth/sign-up')):
+        if (!session()->has('user') && ($request->path() != '/' . app()->getLocale() . '/auth/sign-in' or $request->path() != '/' . app()->getLocale() . '/auth/sign-up')):
             return redirect()->route('auth.signIn');
         endif;
 
-        if (session()->has('user') && ($request->path() == '/' . app()->getLocale() . '/auth/sign-in' && $request->path() == '/' . app()->getLocale() . '/auth/sign-up')):
+        if (session()->has('user') && ($request->path() == '/' . app()->getLocale() . '/auth/sign-in' or $request->path() == '/' . app()->getLocale() . '/auth/sign-up')):
+            dd("sdfs");
             return redirect()->back();
         endif;
 
