@@ -9,7 +9,8 @@
                 <div class="card">
                     <div class="card-body text-center flex">
                         @foreach ($books as $b)
-                            <div class="px-2" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ $b->name }}">
+                            <div class="px-2" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" data-bs-placement="top"
+                                title="{{ Str::substr($b->name, 0, 20) }}...">
                                 <a href="#">{!! DNS2D::getBarcodeSVG((string) $b->id, 'QRCODE') !!}</a>
                                 <small>{{ $b->created_at->format('d.m.Y') }}</small>
                             </div>

@@ -62,6 +62,6 @@ class DetailController extends Controller
 
         Detail::create(request()->all());
 
-        return redirect()->back()->with('msg', "Qo'shildi");
+        return redirect()->back()->with('msg', __('lang.adding.success'));
     }
 }

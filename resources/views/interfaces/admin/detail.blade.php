@@ -12,11 +12,10 @@
                         <div class="card-title mb-0">
                             <strong class="m-0 me-2">Turi</strong>
                         </div>
-                        <div class="dropdown">
-                            <button class="btn p-0 text-violet-800" type="button">
-                                <i class="bx bx-message-square-add"></i>
-                            </button>
-                        </div>
+                        <button class="btn p-0 text-violet-800" type="button" data-bs-toggle="modal"
+                            data-bs-target="#staticBackdrop">
+                            <i class="bx bx-message-square-add"></i>
+                        </button>
                     </div>
                     <hr class="mt-3">
                     <div class="card-body">
@@ -242,11 +241,9 @@
                         <div class="card-title mb-0">
                             <strong class="m-0 me-2">Fayl turi</strong>
                         </div>
-                        <div class="dropdown">
-                            <button class="btn p-0 text-violet-800" type="button">
-                                <i class="bx bx-message-square-add"></i>
-                            </button>
-                        </div>
+                        <button class="btn p-0 text-violet-800" type="button">
+                            <i class="bx bx-message-square-add"></i>
+                        </button>
                     </div>
                     <hr class="mt-3">
                     <div class="card-body">
@@ -352,46 +349,92 @@
 
 
         <!-- Modal for add data -->
-        <div class="modal fade" id="enableOTP" tabindex="-1" style="display: none;" aria-modal="true"
-            role="dialog">
-            <div class="modal-dialog modal-simple modal-enable-otp modal-dialog-centered">
-                <div class="modal-content p-3">
-                    <div class="modal-body">
-                        <form class="row g-3 fv-plugins-framework" action="{{ route('admin.datail.book.add') }}" method="POST">
-                            @csrf
-                            <input type="number" min="1" max="12" maxlength="2" name="type" value="1" hidden>
+        {{-- <div class="modal-dialog modal-dialog-centered" id="staticBackdrop">
+            <form class="row g-3 fv-plugins-framework" action="{{ route('admin.datail.book.add') }}" method="POST">
+                @csrf
+                <input type="number" min="1" max="12" maxlength="2" name="type" value="1"
+                    hidden>
+                <div class="col-12 fv-plugins-icon-container">
+                    <label class="form-label">Phone Number</label>
+                    <div class="input-group input-group-merge has-validation mb-2">
+                        <input type="text" class="form-control" name="nameuz" placeholder="name uz">
+                    </div>
+                    <div class="input-group input-group-merge has-validation mb-2">
+                        <input type="text" class="form-control" name="nameru" placeholder="name ru">
+                    </div>
+                    <div class="input-group input-group-merge has-validation mb-2">
+                        <input type="text" class="form-control" name="nameen" placeholder="name en">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label custom-option-content" for="isActive">
+                            <span class="custom-option-body">
+                                <span class="custom-option-title"> Faolmi ? </span>
+                            </span>
+                            <input class="form-check-input" type="checkbox" name="isActiveCheck" id="isActive">
+                        </label>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary me-sm-3 me-1 bg-violet-600">Qo'shish</button>
+                    <button type="button" class="btn btn-danger bg-red-600">Bekor qilish</button>
+                </div>
+            </form>
+        </div> --}}
+
+        <!-- Button trigger modal -->
+
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <form action="{{ route('admin.datail.book.add') }}" method="post">
+                        @csrf
+                        <input type="number" min="1" max="12" maxlength="2" name="type"
+                            value="1" hidden>
+                        <div class="modal-header">
+                            <label class="modal-title form-label">Phone Number</label>
+                        </div>
+                        <div class="modal-body">
                             <div class="col-12 fv-plugins-icon-container">
-                                <label class="form-label">Phone Number</label>
                                 <div class="input-group input-group-merge has-validation mb-2">
-                                    <input type="text" class="form-control" name="nameuz" placeholder="name uz">
+                                    <input type="text" class="form-control" name="nameuz" placeholder="name uz"
+                                        required data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"
+                                        data-bs-placement="top" title="majburiy bo'lim">
                                 </div>
                                 <div class="input-group input-group-merge has-validation mb-2">
-                                    <input type="text" class="form-control" name="nameru" placeholder="name ru">
+                                    <input type="text" class="form-control" name="nameru" placeholder="name ru"
+                                        required data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"
+                                        data-bs-placement="top" title="majburiy bo'lim">
                                 </div>
                                 <div class="input-group input-group-merge has-validation mb-2">
-                                    <input type="text" class="form-control" name="nameen" placeholder="name en">
+                                    <input type="text" class="form-control" name="nameen" placeholder="name en"
+                                        required data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"
+                                        data-bs-placement="top" title="majburiy bo'lim">
                                 </div>
                                 <div class="form-check">
                                     <label class="form-check-label custom-option-content" for="isActive">
                                         <span class="custom-option-body">
                                             <span class="custom-option-title"> Faolmi ? </span>
                                         </span>
-                                        <input class="form-check-input" type="checkbox" name="isActiveCheck" id="isActive">
+                                        <input class="form-check-input" type="checkbox" name="isActiveCheck"
+                                            id="isActive" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"
+                                            data-bs-placement="top" title="majburiy emas">
                                     </label>
                                 </div>
                             </div>
-                            <div class="col-12">
-                                <button type="submit"
-                                    class="btn btn-primary me-sm-3 me-1 bg-violet-600">Qo'shish</button>
-                                <button type="button" class="btn btn-danger bg-red-600">Bekor qilish</button>
-                            </div>
-                        </form>
-                    </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger bg-red-600" data-bs-dismiss="modal">Bekor
+                                qilish</button>
+                            <button type="submit" class="btn btn-primary bg-blue-800">Qo'shish</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
         <!--/ Modal for add data -->
-    
-    
+
+
     </div>
 @stop
