@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('nameru')->nullable();
             $table->string('nameen')->nullable();
             $table->boolean('isActive')->default(false);
+            $table->boolean('isDeleted')->default(false);
             $table->timestamps();
         });
     }

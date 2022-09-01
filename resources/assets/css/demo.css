@@ -23,6 +23,14 @@
   background: #3c3ff0; 
 }
 
+.custom-tooltip{
+  font-size: 12px !important;
+}
+
+.tooltip-inner{
+  background-color: #3c3ff0;
+}
+
 .menu .app-brand.demo {
   height: 64px;
   margin-top: 12px;
