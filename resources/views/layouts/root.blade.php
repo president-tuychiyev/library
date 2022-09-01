@@ -15,6 +15,7 @@
 </head>
 
 <body>
+    
     @empty(session()->has('user'))
         @yield('content')
     @else

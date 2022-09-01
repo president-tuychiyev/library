@@ -10,6 +10,7 @@ class Detail extends Model
     use HasFactory;
 
     protected $fillable = ['userId', 'type', 'nameuz', 'nameru', 'nameen', 'isActive'];
+    protected $guarded = [ '_token' ];
 
     public function user ()
     {

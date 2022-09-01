@@ -214,7 +214,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Fan
                                 yo'nalishi</label>
@@ -224,7 +223,7 @@
                                             class="bx bx-link-external"></i></span>
                                     <select class="form-select" name="directId" id="select-document-type" required
                                         data-bs-toggle="tooltip" data-bs-placement="top" title="majburiy bo'lim">
-                                        @foreach ($details->where('type', 5) as $d)
+                                        @foreach ($details->where('type', 6) as $d)
                                             <option @if (isset($book) && $a->id == $book->directId) selected="true" @endif
                                                 value="{{ $d->id }}">{{ $d->name }}</option>
                                         @endforeach

@@ -20,15 +20,15 @@ class BooksController extends Controller
 
     public function index()
     {
-        $books = Book::where('isDeleted', false)->join('users', 'users.id', '=', 'books.userId')
-            ->select('books.id', 'books.isActive', 'books.created_at', "books.name{$this->lang} as name", 'users.name as username')->paginate(20);
+        $books = Book::where('isDeleted', false)
+            ->with('user')->paginate(20);
 
         return view('interfaces.admin.books', compact('books'));
     }
 
     public function add()
     {
-        $details = Detail::select('details.id', 'details.type', "details.name{$this->lang} as name")->get();
+        $details = Detail::where('isDeleted', false)->select('details.id', 'details.type', "details.name{$this->lang} as name")->get();
         $authors = Author::where('book', true)->get();
         return view('interfaces.admin.books-create-update', compact('details', 'authors'));
     }
@@ -36,29 +36,29 @@ class BooksController extends Controller
     public function insert()
     {
         $validate = request()->validate([
-            'docTypeId' => 'required|numeric',
-            'docLangId' => 'required|numeric',
-            'textTypeId' => 'required|numeric',
-            'docFormatId' => 'required|numeric',
-            'fileTypeId' => 'required|numeric',
-            'directId' => 'required|numeric',
+            'docTypeId' => 'required|numeric|max:11',
+            'docLangId' => 'required|numeric|max:11',
+            'textTypeId' => 'required|numeric|max:11',
+            'docFormatId' => 'required|numeric|max:11',
+            'fileTypeId' => 'required|numeric|max:11',
+            'directId' => 'required|numeric|max:11',
             'nameuz' => 'required|string|max:255',
             'nameru' => 'required|string|max:255',
             'nameen' => 'required|string|max:255',
-            'authorId' => 'required|numeric',
+            'authorId' => 'required|numeric|max:11',
             'cityPublication' => 'sometimes|string|max:255',
             'publisher' => 'sometimes|string|max:255',
-            'isbn' => 'sometimes|string|max:11',
-            'udk' => 'sometimes|string|max:11',
+            'isbn' => 'sometimes|string|max:255',
+            'udk' => 'sometimes|string|max:255',
             'annouz' => 'sometimes|string',
             'annoru' => 'sometimes|string',
             'annoen' => 'sometimes|string',
             'datePublication' => 'required',
-            'numPage' => 'required|numeric',
-            'price' => 'required|numeric',
+            'numPage' => 'required|numeric|max:11',
+            'price' => 'required|numeric|max:11|max:11',
             'isActive' => 'sometimes',
-            'comeFrom' => 'required|numeric',
-            'forWhom' => 'required|numeric',
+            'comeFrom' => 'required|numeric|max:11',
+            'forWhom' => 'required|numeric|max:11',
         ]);
 
         if (request()->hasFile('coverMedia')) :
@@ -109,26 +109,26 @@ class BooksController extends Controller
     public function update()
     {
         $validate = request()->validate([
-            'docTypeId' => 'required|numeric',
-            'docLangId' => 'required|numeric',
-            'textTypeId' => 'required|numeric',
-            'docFormatId' => 'required|numeric',
-            'fileTypeId' => 'required|numeric',
-            'directId' => 'required|numeric',
+            'docTypeId' => 'required|numeric|max:11',
+            'docLangId' => 'required|numeric|max:11',
+            'textTypeId' => 'required|numeric|max:11',
+            'docFormatId' => 'required|numeric|max:11',
+            'fileTypeId' => 'required|numeric|max:11',
+            'directId' => 'required|numeric|max:11',
             'nameuz' => 'required|string|max:255',
             'nameru' => 'required|string|max:255',
             'nameen' => 'required|string|max:255',
-            'authorId' => 'required|numeric',
+            'authorId' => 'required|numeric|max:11',
             'cityPublication' => 'sometimes|string|max:255',
             'publisher' => 'sometimes|string|max:255',
-            'isbn' => 'sometimes|string',
-            'udk' => 'sometimes|string',
+            'isbn' => 'sometimes|string|max:255',
+            'udk' => 'sometimes|string|max:255',
             'datePublication' => 'required',
-            'numPage' => 'required|numeric',
-            'price' => 'required|numeric',
+            'numPage' => 'required|numeric|max:11',
+            'price' => 'required|numeric|max:11',
             'isActive' => 'sometimes',
-            'comeFrom' => 'required|numeric',
-            'forWhom' => 'required|numeric',
+            'comeFrom' => 'required|numeric|max:11',
+            'forWhom' => 'required|numeric|max:11',
         ]);
 
         if (request()->hasFile('coverMedia')) :
@@ -171,8 +171,7 @@ class BooksController extends Controller
 
     public function qrcode()
     {
-        $books = Book::where('isDeleted', false)->join('users', 'users.id', '=', 'books.userId')
-            ->select('books.id', 'books.isActive', 'books.created_at', "books.name{$this->lang} as name", 'users.name as username')->paginate(20);
+        $books = Book::where('isDeleted', false)->paginate(20);
         $qr = "Hi!";
         return view('interfaces.admin.books-qr', compact('books', 'qr'));
     }

@@ -58,8 +58,8 @@
 
             <!-- Darl/Light theme -->
             <li class="nav-item me-2 me-xl-0">
-                <a class="nav-link style-switcher-toggle hide-arrow" href="javascript:void(0);"
-                    data-bs-original-title="" title="">
+                <a class="nav-link style-switcher-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="tooltip"
+                    data-bs-placement="bottom" data-bs-original-title="Qorong'i rejim">
                     <i class="bx bx-sm bx-moon"></i>
                 </a>
             </li>

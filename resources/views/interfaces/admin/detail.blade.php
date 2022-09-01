@@ -16,9 +16,10 @@
                             <strong class="m-0 me-2">Turi</strong>
                         </div>
                         <button class="btn p-0 text-violet-800" type="button" onclick="addDetail(this)"
-                            data-title="Kitob turini qo'shish" data-type="1" data-bs-toggle="modal"
+                            data-title="Kitob turini qoʻshish" data-type="1" data-bs-toggle="modal"
                             data-bs-target="#detailModal">
-                            <i class="bx bx-message-square-add"></i>
+                            <i class="bx bx-message-square-add text-xl" data-bs-toggle="tooltip" data-bs-placement="top"
+                                data-bs-original-title="Kitob turini qoʻshish"></i>
                         </button>
                     </div>
                     <hr class="mt-3">
@@ -55,11 +56,15 @@
                                                     data-id="{{ $dt->id }}" data-bs-toggle="modal"
                                                     data-bs-target="#detailModal"
                                                     data-langs="{{ $dt->nameuz . '@' . $dt->nameru . '@' . $dt->nameen }}"><i
-                                                        class="bx bx-edit-alt"></i></button>
+                                                        class="bx bx-edit-alt" data-bs-toggle="tooltip"
+                                                        data-bs-placement="top"
+                                                        data-bs-original-title="Kitob turini yangilash"></i></button>
                                                 <button type="button"
                                                     data-href="{{ route('admin.datail.book.delete', $dt->id) }}"
                                                     data-bs-toggle="modal" data-bs-target="#confirmModal"
-                                                    onclick="deleteConfirmModal(this)"><i class="bx bx-trash"></i></button>
+                                                    onclick="deleteConfirmModal(this)"><i class="bx bx-trash"
+                                                        data-bs-toggle="tooltip" data-bs-placement="top"
+                                                        data-bs-original-title="Kitob turini oʻchirish"></i></button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -83,9 +88,10 @@
                         </div>
                         <div class="dropdown">
                             <button class="btn p-0 text-violet-800" type="button" onclick="addDetail(this)"
-                                data-title="Kitob tilini qo'shish" data-type="2" data-bs-toggle="modal"
+                                data-title="Kitob tilini qoʻshish" data-type="2" data-bs-toggle="modal"
                                 data-bs-target="#detailModal">
-                                <i class="bx bx-message-square-add"></i>
+                                <i class="bx bx-message-square-add text-xl" data-bs-toggle="tooltip" data-bs-placement="top"
+                                    data-bs-original-title="Kitob tilini qoʻshish"></i>
                             </button>
                         </div>
                     </div>
@@ -123,11 +129,15 @@
                                                     data-id="{{ $dl->id }}" data-bs-toggle="modal"
                                                     data-bs-target="#detailModal"
                                                     data-langs="{{ $dl->nameuz . '@' . $dl->nameru . '@' . $dl->nameen }}"><i
-                                                        class="bx bx-edit-alt"></i></button>
+                                                        class="bx bx-edit-alt" data-bs-toggle="tooltip"
+                                                        data-bs-placement="top"
+                                                        data-bs-original-title="Kitob tilini yangilash"></i></button>
                                                 <button type="button"
                                                     data-href="{{ route('admin.datail.book.delete', $dl->id) }}"
                                                     data-bs-toggle="modal" data-bs-target="#confirmModal"
-                                                    onclick="deleteConfirmModal(this)"><i class="bx bx-trash"></i></button>
+                                                    onclick="deleteConfirmModal(this)"><i class="bx bx-trash"
+                                                        data-bs-toggle="tooltip" data-bs-placement="top"
+                                                        data-bs-original-title="Kitob tilini oʻchirish"></i></button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -152,9 +162,10 @@
                         </div>
                         <div class="dropdown">
                             <button class="btn p-0 text-violet-800" type="button" onclick="addDetail(this)"
-                                data-title="Kitob yozuvini qo'shish" data-type="3" data-bs-toggle="modal"
+                                data-title="Kitob yozuvini qoʻshish" data-type="3" data-bs-toggle="modal"
                                 data-bs-target="#detailModal">
-                                <i class="bx bx-message-square-add"></i>
+                                <i class="bx bx-message-square-add text-xl" data-bs-toggle="tooltip"
+                                    data-bs-placement="top" data-bs-original-title="Kitob yozuvini qoʻshish"></i>
                             </button>
                         </div>
                     </div>
@@ -188,16 +199,19 @@
                                             <td>{{ $tt->user->name }}</td>
                                             <td>
                                                 <button type="button" class="px-2" onclick="updateDetail(this)"
-                                                    data-type="1" data-title="Kitob tilini yangilash"
+                                                    data-type="1" data-title="Kitob yozuvini yangilash"
                                                     data-id="{{ $tt->id }}" data-bs-toggle="modal"
                                                     data-bs-target="#detailModal"
                                                     data-langs="{{ $tt->nameuz . '@' . $tt->nameru . '@' . $tt->nameen }}"><i
-                                                        class="bx bx-edit-alt"></i></button>
+                                                        class="bx bx-edit-alt" data-bs-toggle="tooltip"
+                                                        data-bs-placement="top"
+                                                        data-bs-original-title="Kitob yozuvini yangilash"></i></button>
                                                 <button type="button"
                                                     data-href="{{ route('admin.datail.book.delete', $tt->id) }}"
                                                     data-bs-toggle="modal" data-bs-target="#confirmModal"
-                                                    onclick="deleteConfirmModal(this)"><i
-                                                        class="bx bx-trash"></i></button>
+                                                    onclick="deleteConfirmModal(this)"><i class="bx bx-trash"
+                                                        data-bs-toggle="tooltip" data-bs-placement="top"
+                                                        data-bs-original-title="Kitob yozuvini oʻchirish"></i></button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -222,9 +236,10 @@
                         </div>
                         <div class="dropdown">
                             <button class="btn p-0 text-violet-800" type="button" onclick="addDetail(this)"
-                                data-title="Matn turini qo'shish" data-type="4" data-bs-toggle="modal"
+                                data-title="Matn turini qoʻshish" data-type="4" data-bs-toggle="modal"
                                 data-bs-target="#detailModal">
-                                <i class="bx bx-message-square-add"></i>
+                                <i class="bx bx-message-square-add text-xl" data-bs-toggle="tooltip"
+                                    data-bs-placement="top" data-bs-original-title="Matn turini qoʻshish"></i>
                             </button>
                         </div>
                     </div>
@@ -258,16 +273,19 @@
                                             <td>{{ $df->user->name }}</td>
                                             <td>
                                                 <button type="button" class="px-2" onclick="updateDetail(this)"
-                                                    data-type="1" data-title="Kitob tilini yangilash"
+                                                    data-type="1" data-title="Matn turini yangilash"
                                                     data-id="{{ $df->id }}" data-bs-toggle="modal"
                                                     data-bs-target="#detailModal"
                                                     data-langs="{{ $df->nameuz . '@' . $df->nameru . '@' . $df->nameen }}"><i
-                                                        class="bx bx-edit-alt"></i></button>
+                                                        class="bx bx-edit-alt" data-bs-toggle="tooltip"
+                                                        data-bs-placement="top"
+                                                        data-bs-original-title="Matn turini yangilash"></i></button>
                                                 <button type="button"
                                                     data-href="{{ route('admin.datail.book.delete', $df->id) }}"
                                                     data-bs-toggle="modal" data-bs-target="#confirmModal"
-                                                    onclick="deleteConfirmModal(this)"><i
-                                                        class="bx bx-trash"></i></button>
+                                                    onclick="deleteConfirmModal(this)"><i class="bx bx-trash"
+                                                        data-bs-toggle="tooltip" data-bs-placement="top"
+                                                        data-bs-original-title="Matn turini oʻchirish"></i></button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -291,9 +309,10 @@
                             <strong class="m-0 me-2">Fayl turi</strong>
                         </div>
                         <button class="btn p-0 text-violet-800" type="button" onclick="addDetail(this)"
-                            data-title="Fayl turini qo'shish" data-type="5" data-bs-toggle="modal"
+                            data-title="Fayl turini qoʻshish" data-type="5" data-bs-toggle="modal"
                             data-bs-target="#detailModal">
-                            <i class="bx bx-message-square-add"></i>
+                            <i class="bx bx-message-square-add text-xl" data-bs-toggle="tooltip" data-bs-placement="top"
+                                data-bs-original-title="Fayl turini qoʻshish"></i>
                         </button>
                     </div>
                     <hr class="mt-3">
@@ -326,16 +345,19 @@
                                             <td>{{ $ft->user->name }}</td>
                                             <td>
                                                 <button type="button" class="px-2" onclick="updateDetail(this)"
-                                                    data-type="1" data-title="Kitob tilini yangilash"
+                                                    data-type="1" data-title="Fayl turini yangilash"
                                                     data-id="{{ $ft->id }}" data-bs-toggle="modal"
                                                     data-bs-target="#detailModal"
                                                     data-langs="{{ $ft->nameuz . '@' . $ft->nameru . '@' . $ft->nameen }}"><i
-                                                        class="bx bx-edit-alt"></i></button>
+                                                        class="bx bx-edit-alt" data-bs-toggle="tooltip"
+                                                        data-bs-placement="top"
+                                                        data-bs-original-title="Fayl turini qoʻshish"></i></button>
                                                 <button type="button"
                                                     data-href="{{ route('admin.datail.book.delete', $ft->id) }}"
                                                     data-bs-toggle="modal" data-bs-target="#confirmModal"
-                                                    onclick="deleteConfirmModal(this)"><i
-                                                        class="bx bx-trash"></i></button>
+                                                    onclick="deleteConfirmModal(this)"><i class="bx bx-trash"
+                                                        data-bs-toggle="tooltip" data-bs-placement="top"
+                                                        data-bs-original-title="Fayl turini oʻchirish"></i></button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -356,13 +378,14 @@
                 <div class="card h-100">
                     <div class="card-header d-flex align-items-center justify-content-between pb-0">
                         <div class="card-title mb-0">
-                            <strong class="m-0 me-2">Fan yo'nalish</strong>
+                            <strong class="m-0 me-2">Fan yoʻnalish</strong>
                         </div>
                         <div class="dropdown">
                             <button class="btn p-0 text-violet-800" type="button" onclick="addDetail(this)"
-                                data-title="Fan yo'nalishini qo'shish" data-type="6" data-bs-toggle="modal"
+                                data-title="Fan yoʻnalishini qoʻshish" data-type="6" data-bs-toggle="modal"
                                 data-bs-target="#detailModal">
-                                <i class="bx bx-message-square-add"></i>
+                                <i class="bx bx-message-square-add text-xl" data-bs-toggle="tooltip"
+                                    data-bs-placement="top" data-bs-original-title="Fan yoʻnalishini qoʻshish"></i>
                             </button>
                         </div>
                     </div>
@@ -396,16 +419,19 @@
                                             <td>{{ $d->user->name }}</td>
                                             <td>
                                                 <button type="button" class="px-2" onclick="updateDetail(this)"
-                                                    data-type="1" data-title="Kitob tilini yangilash"
+                                                    data-type="1" data-title="Fan yoʻnalishini yangilash"
                                                     data-id="{{ $d->id }}" data-bs-toggle="modal"
                                                     data-bs-target="#detailModal"
                                                     data-langs="{{ $d->nameuz . '@' . $d->nameru . '@' . $d->nameen }}"><i
-                                                        class="bx bx-edit-alt"></i></button>
+                                                        class="bx bx-edit-alt" data-bs-toggle="tooltip"
+                                                        data-bs-placement="top"
+                                                        data-bs-original-title="Fan yoʻnalishini yangilash"></i></button>
                                                 <button type="button"
                                                     data-href="{{ route('admin.datail.book.delete', $d->id) }}"
                                                     data-bs-toggle="modal" data-bs-target="#confirmModal"
-                                                    onclick="deleteConfirmModal(this)"><i
-                                                        class="bx bx-trash"></i></button>
+                                                    onclick="deleteConfirmModal(this)"><i class="bx bx-trash"
+                                                        data-bs-toggle="tooltip" data-bs-placement="top"
+                                                        data-bs-original-title="Fan yoʻnalishini oʻchirish"></i></button>
                                             </td>
                                         </tr>
                                     @endforeach

@@ -16,9 +16,10 @@
 
     <ul class="menu-inner py-1 ps">
         @foreach ($menus as $m)
-            <li class="menu-item">
+            <li class="menu-item {{ Route::is($m->route) ? 'active' : '' }}" @empty($m->route) data-select="menu-item-{{ $m->id }}" @endempty>
                 <a href="@empty($m->route) #! @else {{ route($m->route) }} @endempty"
-                    @class(['menu-link', 'menu-toggle' => empty($m->route)])>
+                    @class(['menu-link', 'menu-toggle' => empty($m->route)])
+                    onclick="selectMenu({{ $m->id }})">
                     <i class="menu-icon tf-icons bx {{ $m->icon }}"></i>
                     <div data-i18n="Layouts">{{ $m->name }}</div>
                 </a>
@@ -26,7 +27,7 @@
                     <ul class="menu-sub">
                         @foreach ($submenus as $s)
                             @if ($m->id == $s->parentId)
-                                <li class="menu-item">
+                                <li class="menu-item {{ Route::is($s->route) ? 'active' : '' }}">
                                     <a href="{{ route($s->route) }}" class="menu-link">
                                         <div data-i18n="Without menu">{{ $s->name }}</div>
                                     </a>

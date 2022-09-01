@@ -11,24 +11,21 @@
 
 ::-webkit-scrollbar-track {
   box-shadow: inset 0 0 5px rgb(223, 223, 255); 
-  border-radius: 5px;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #696CFF; 
-  border-radius: 5px;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: #3c3ff0; 
 }
 
-.custom-tooltip{
+.custom-toolti, .tooltip-inner{
   font-size: 12px !important;
-}
-
-.tooltip-inner{
-  background-color: #3c3ff0;
+  font-weight: 600;
 }
 
 .menu .app-brand.demo {
