@@ -3,6 +3,9 @@
 @section('title', 'Bosh sahifa')
 
 @section('content')
+
+    @php($name = 'name' . app()->getLocale())
+
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">
             <!-- Types -->
@@ -35,7 +38,7 @@
                                     @foreach ($docTypes as $dt)
                                         <tr>
                                             <td class="font-medium">{{ $dt->id }}</td>
-                                            <td>{{ $dt->name }}</td>
+                                            <td>{{ $dt->$name }}</td>
                                             <td>
                                                 @if ($dt->isActive)
                                                     <small class="badge bg-label-primary me-1"> <i
@@ -45,7 +48,7 @@
                                                             class="bx bx-shield-alt-2"></i></small>
                                                 @endif
                                             </td>
-                                            <td>{{ $dt->username }}</td>
+                                            <td>{{ $dt->user->name }}</td>
                                             <td>
                                                 <button type="button" class="px-2" onclick="updateDetail(this)"
                                                     data-type="1" data-title="Kitob turini yangilash"
@@ -60,12 +63,12 @@
                                             </td>
                                         </tr>
                                     @endforeach
-
                                 </tbody>
                             </table>
-
-                            {{ $docTypes->links() }}
                         </div>
+                    </div>
+                    <div class="card-footer">
+                        {{ $docTypes->links('pagination::bootstrap-5') }}
                     </div>
                 </div>
             </div>
@@ -103,7 +106,7 @@
                                     @foreach ($docLangs as $dl)
                                         <tr>
                                             <td class="font-medium">{{ $dl->id }}</td>
-                                            <td>{{ $dl->name }}</td>
+                                            <td>{{ $dl->$name }}</td>
                                             <td>
                                                 @if ($dl->isActive)
                                                     <small class="badge bg-label-primary me-1"> <i
@@ -113,7 +116,7 @@
                                                             class="bx bx-shield-alt-2"></i></small>
                                                 @endif
                                             </td>
-                                            <td>{{ $dl->username }}</td>
+                                            <td>{{ $dl->user->name }}</td>
                                             <td>
                                                 <button type="button" class="px-2" onclick="updateDetail(this)"
                                                     data-type="1" data-title="Kitob tilini yangilash"
@@ -132,6 +135,9 @@
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+                    <div class="card-footer">
+                        {{ $docLangs->links('pagination::bootstrap-5') }}
                     </div>
                 </div>
             </div>
@@ -169,7 +175,7 @@
                                     @foreach ($textTypes as $tt)
                                         <tr>
                                             <td class="font-medium">{{ $tt->id }}</td>
-                                            <td>{{ $tt->name }}</td>
+                                            <td>{{ $tt->$name }}</td>
                                             <td>
                                                 @if ($tt->isActive)
                                                     <small class="badge bg-label-primary me-1"> <i
@@ -179,7 +185,7 @@
                                                             class="bx bx-shield-alt-2"></i></small>
                                                 @endif
                                             </td>
-                                            <td>{{ $tt->username }}</td>
+                                            <td>{{ $tt->user->name }}</td>
                                             <td>
                                                 <button type="button" class="px-2" onclick="updateDetail(this)"
                                                     data-type="1" data-title="Kitob tilini yangilash"
@@ -199,6 +205,9 @@
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+                    <div class="card-footer">
+                        {{ $textTypes->links('pagination::bootstrap-5') }}
                     </div>
                 </div>
             </div>
@@ -236,7 +245,7 @@
                                     @foreach ($docFormats as $df)
                                         <tr>
                                             <td class="font-medium">{{ $df->id }}</td>
-                                            <td>{{ $df->name }}</td>
+                                            <td>{{ $df->$name }}</td>
                                             <td>
                                                 @if ($df->isActive)
                                                     <small class="badge bg-label-primary me-1"> <i
@@ -246,7 +255,7 @@
                                                             class="bx bx-shield-alt-2"></i></small>
                                                 @endif
                                             </td>
-                                            <td>{{ $df->username }}</td>
+                                            <td>{{ $df->user->name }}</td>
                                             <td>
                                                 <button type="button" class="px-2" onclick="updateDetail(this)"
                                                     data-type="1" data-title="Kitob tilini yangilash"
@@ -266,6 +275,9 @@
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+                    <div class="card-footer">
+                        {{ $docFormats->links('pagination::bootstrap-5') }}
                     </div>
                 </div>
             </div>
@@ -301,7 +313,7 @@
                                     @foreach ($fileTypes as $ft)
                                         <tr>
                                             <td class="font-medium">{{ $ft->id }}</td>
-                                            <td>{{ $ft->name }}</td>
+                                            <td>{{ $ft->$name }}</td>
                                             <td>
                                                 @if ($ft->isActive)
                                                     <small class="badge bg-label-primary me-1"> <i
@@ -311,7 +323,7 @@
                                                             class="bx bx-shield-alt-2"></i></small>
                                                 @endif
                                             </td>
-                                            <td>{{ $ft->username }}</td>
+                                            <td>{{ $ft->user->name }}</td>
                                             <td>
                                                 <button type="button" class="px-2" onclick="updateDetail(this)"
                                                     data-type="1" data-title="Kitob tilini yangilash"
@@ -331,6 +343,9 @@
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+                    <div class="card-footer">
+                        {{ $fileTypes->links('pagination::bootstrap-5') }}
                     </div>
                 </div>
             </div>
@@ -368,7 +383,7 @@
                                     @foreach ($directs as $d)
                                         <tr>
                                             <td class="font-medium">{{ $d->id }}</td>
-                                            <td>{{ $d->name }}</td>
+                                            <td>{{ $d->$name }}</td>
                                             <td>
                                                 @if ($d->isActive)
                                                     <small class="badge bg-label-primary me-1"> <i
@@ -378,7 +393,7 @@
                                                             class="bx bx-shield-alt-2"></i></small>
                                                 @endif
                                             </td>
-                                            <td>{{ $d->username }}</td>
+                                            <td>{{ $d->user->name }}</td>
                                             <td>
                                                 <button type="button" class="px-2" onclick="updateDetail(this)"
                                                     data-type="1" data-title="Kitob tilini yangilash"
@@ -394,10 +409,12 @@
                                             </td>
                                         </tr>
                                     @endforeach
-
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+                    <div class="card-footer">
+                        {{ $directs->links('pagination::bootstrap-5') }}
                     </div>
                 </div>
             </div>

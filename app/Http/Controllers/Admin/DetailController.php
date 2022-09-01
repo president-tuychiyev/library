@@ -16,41 +16,12 @@ class DetailController extends Controller
 
     public function detailBook()
     {
-        $docTypes = Detail::where('type', 1)
-            ->where('isDeleted', false)
-            ->join('users', 'users.id', '=', 'details.userId')
-            ->select('details.id', "details.name{$this->lang} as name", 'details.nameuz', 'details.nameru', 'details.nameen', 'details.isActive', 'details.created_at', 'users.name as username')
-            ->paginate($perPage = '2', $pageName = 'docTypes');
-
-        $docLangs = Detail::where('type', 2)
-            ->where('isDeleted', false)
-            ->join('users', 'users.id', '=', 'details.userId')
-            ->select('details.id', "details.name{$this->lang} as name", 'details.nameuz', 'details.nameru', 'details.nameen', 'details.isActive', 'details.created_at', 'users.name as username')
-            ->paginate($perPage = '10', $pageName = 'docLangs');
-
-        $textTypes = Detail::where('type', 3)
-            ->where('isDeleted', false)
-            ->join('users', 'users.id', '=', 'details.userId')
-            ->select('details.id', "details.name{$this->lang} as name", 'details.nameuz', 'details.nameru', 'details.nameen', 'details.isActive', 'details.created_at', 'users.name as username')
-            ->paginate($perPage = '10', $pageName = 'textTypes');
-
-        $docFormats = Detail::where('type', 4)
-            ->where('isDeleted', false)
-            ->join('users', 'users.id', '=', 'details.userId')
-            ->select('details.id', "details.name{$this->lang} as name", 'details.nameuz', 'details.nameru', 'details.nameen', 'details.isActive', 'details.created_at', 'users.name as username')
-            ->paginate($perPage = '10', $pageName = 'docFormats');
-
-        $fileTypes = Detail::where('type', 5)
-            ->where('isDeleted', false)
-            ->join('users', 'users.id', '=', 'details.userId')
-            ->select('details.id', "details.name{$this->lang} as name", 'details.nameuz', 'details.nameru', 'details.nameen', 'details.isActive', 'details.created_at', 'users.name as username')
-            ->paginate($perPage = '10', $pageName = 'fileTypes');
-
-        $directs = Detail::where('type', 6)
-            ->where('isDeleted', false)
-            ->join('users', 'users.id', '=', 'details.userId')
-            ->select('details.id', "details.name{$this->lang} as name", 'details.nameuz', 'details.nameru', 'details.nameen', 'details.isActive', 'details.created_at', 'users.name as username')
-            ->paginate($perPage = '10', $pageName = 'directs');
+        $docTypes = Detail::where('type', 1)->where('isDeleted', false)->with('user')->paginate(10,['*'],'docTypes');
+        $docLangs = Detail::where('type', 2)->where('isDeleted', false)->with('user')->paginate(10,['*'],'docLangs');
+        $textTypes = Detail::where('type', 3)->where('isDeleted', false)->with('user')->paginate(10,['*'],'textTypes');
+        $docFormats = Detail::where('type', 4)->where('isDeleted', false)->with('user')->paginate(10,['*'],'docFormats');
+        $fileTypes = Detail::where('type', 5)->where('isDeleted', false)->with('user')->paginate(10,['*'],'fileTypes');
+        $directs = Detail::where('type', 6)->where('isDeleted', false)->with('user')->paginate(10,['*'],'directs');
 
         return view('interfaces.admin.detail', compact('docTypes', 'docLangs', 'textTypes', 'docFormats', 'fileTypes', 'directs'));
     }
