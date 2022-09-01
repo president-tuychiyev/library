@@ -12,8 +12,9 @@
                         <div class="card-title mb-0">
                             <strong class="m-0 me-2">Turi</strong>
                         </div>
-                        <button class="btn p-0 text-violet-800" type="button" data-bs-toggle="modal"
-                            data-bs-target="#staticBackdrop">
+                        <button class="btn p-0 text-violet-800" type="button" onclick="addDetail(this)"
+                            data-title="Kitob turini qo'shish" data-type="1" data-bs-toggle="modal"
+                            data-bs-target="#detailModal">
                             <i class="bx bx-message-square-add"></i>
                         </button>
                     </div>
@@ -46,9 +47,16 @@
                                             </td>
                                             <td>{{ $dt->username }}</td>
                                             <td>
-                                                <a class="px-2" href="javascript:void(0);"><i
-                                                        class="bx bx-edit-alt"></i></a>
-                                                <a href="javascript:void(0);"><i class="bx bx-trash"></i></a>
+                                                <button type="button" class="px-2" onclick="updateDetail(this)"
+                                                    data-type="1" data-title="Kitob turini yangilash"
+                                                    data-id="{{ $dt->id }}" data-bs-toggle="modal"
+                                                    data-bs-target="#detailModal"
+                                                    data-langs="{{ $dt->nameuz . '@' . $dt->nameru . '@' . $dt->nameen }}"><i
+                                                        class="bx bx-edit-alt"></i></button>
+                                                <button type="button"
+                                                    data-href="{{ route('admin.datail.book.delete', $dt->id) }}"
+                                                    data-bs-toggle="modal" data-bs-target="#confirmModal"
+                                                    onclick="deleteConfirmModal(this)"><i class="bx bx-trash"></i></button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -71,7 +79,9 @@
                             <strong class="m-0 me-2">Tili</strong>
                         </div>
                         <div class="dropdown">
-                            <button class="btn p-0 text-violet-800" type="button">
+                            <button class="btn p-0 text-violet-800" type="button" onclick="addDetail(this)"
+                                data-title="Kitob tilini qo'shish" data-type="2" data-bs-toggle="modal"
+                                data-bs-target="#detailModal">
                                 <i class="bx bx-message-square-add"></i>
                             </button>
                         </div>
@@ -92,10 +102,10 @@
                                 <tbody class="table-border-bottom-0">
                                     @foreach ($docLangs as $dl)
                                         <tr>
-                                            <td class="font-medium">{{ $dt->id }}</td>
-                                            <td>{{ $dt->name }}</td>
+                                            <td class="font-medium">{{ $dl->id }}</td>
+                                            <td>{{ $dl->name }}</td>
                                             <td>
-                                                @if ($dt->isActive)
+                                                @if ($dl->isActive)
                                                     <small class="badge bg-label-primary me-1"> <i
                                                             class="bx bx-check-shield"></i></small>
                                                 @else
@@ -103,11 +113,18 @@
                                                             class="bx bx-shield-alt-2"></i></small>
                                                 @endif
                                             </td>
-                                            <td>{{ $dt->username }}</td>
+                                            <td>{{ $dl->username }}</td>
                                             <td>
-                                                <a class="px-2" href="javascript:void(0);"><i
-                                                        class="bx bx-edit-alt"></i></a>
-                                                <a href="javascript:void(0);"><i class="bx bx-trash"></i></a>
+                                                <button type="button" class="px-2" onclick="updateDetail(this)"
+                                                    data-type="1" data-title="Kitob tilini yangilash"
+                                                    data-id="{{ $dl->id }}" data-bs-toggle="modal"
+                                                    data-bs-target="#detailModal"
+                                                    data-langs="{{ $dl->nameuz . '@' . $dl->nameru . '@' . $dl->nameen }}"><i
+                                                        class="bx bx-edit-alt"></i></button>
+                                                <button type="button"
+                                                    data-href="{{ route('admin.datail.book.delete', $dl->id) }}"
+                                                    data-bs-toggle="modal" data-bs-target="#confirmModal"
+                                                    onclick="deleteConfirmModal(this)"><i class="bx bx-trash"></i></button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -128,7 +145,9 @@
                             <strong class="m-0 me-2">Kitob yozuvi</strong>
                         </div>
                         <div class="dropdown">
-                            <button class="btn p-0 text-violet-800" type="button">
+                            <button class="btn p-0 text-violet-800" type="button" onclick="addDetail(this)"
+                                data-title="Kitob yozuvini qo'shish" data-type="3" data-bs-toggle="modal"
+                                data-bs-target="#detailModal">
                                 <i class="bx bx-message-square-add"></i>
                             </button>
                         </div>
@@ -152,7 +171,7 @@
                                             <td class="font-medium">{{ $tt->id }}</td>
                                             <td>{{ $tt->name }}</td>
                                             <td>
-                                                @if ($dt->isActive)
+                                                @if ($tt->isActive)
                                                     <small class="badge bg-label-primary me-1"> <i
                                                             class="bx bx-check-shield"></i></small>
                                                 @else
@@ -162,9 +181,17 @@
                                             </td>
                                             <td>{{ $tt->username }}</td>
                                             <td>
-                                                <a class="px-2" href="javascript:void(0);"><i
-                                                        class="bx bx-edit-alt"></i></a>
-                                                <a href="javascript:void(0);"><i class="bx bx-trash"></i></a>
+                                                <button type="button" class="px-2" onclick="updateDetail(this)"
+                                                    data-type="1" data-title="Kitob tilini yangilash"
+                                                    data-id="{{ $tt->id }}" data-bs-toggle="modal"
+                                                    data-bs-target="#detailModal"
+                                                    data-langs="{{ $tt->nameuz . '@' . $tt->nameru . '@' . $tt->nameen }}"><i
+                                                        class="bx bx-edit-alt"></i></button>
+                                                <button type="button"
+                                                    data-href="{{ route('admin.datail.book.delete', $tt->id) }}"
+                                                    data-bs-toggle="modal" data-bs-target="#confirmModal"
+                                                    onclick="deleteConfirmModal(this)"><i
+                                                        class="bx bx-trash"></i></button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -185,7 +212,9 @@
                             <strong class="m-0 me-2">Matn turi</strong>
                         </div>
                         <div class="dropdown">
-                            <button class="btn p-0 text-violet-800" type="button">
+                            <button class="btn p-0 text-violet-800" type="button" onclick="addDetail(this)"
+                                data-title="Matn turini qo'shish" data-type="4" data-bs-toggle="modal"
+                                data-bs-target="#detailModal">
                                 <i class="bx bx-message-square-add"></i>
                             </button>
                         </div>
@@ -219,9 +248,17 @@
                                             </td>
                                             <td>{{ $df->username }}</td>
                                             <td>
-                                                <a class="px-2" href="javascript:void(0);"><i
-                                                        class="bx bx-edit-alt"></i></a>
-                                                <a href="javascript:void(0);"><i class="bx bx-trash"></i></a>
+                                                <button type="button" class="px-2" onclick="updateDetail(this)"
+                                                    data-type="1" data-title="Kitob tilini yangilash"
+                                                    data-id="{{ $df->id }}" data-bs-toggle="modal"
+                                                    data-bs-target="#detailModal"
+                                                    data-langs="{{ $df->nameuz . '@' . $df->nameru . '@' . $df->nameen }}"><i
+                                                        class="bx bx-edit-alt"></i></button>
+                                                <button type="button"
+                                                    data-href="{{ route('admin.datail.book.delete', $df->id) }}"
+                                                    data-bs-toggle="modal" data-bs-target="#confirmModal"
+                                                    onclick="deleteConfirmModal(this)"><i
+                                                        class="bx bx-trash"></i></button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -241,7 +278,9 @@
                         <div class="card-title mb-0">
                             <strong class="m-0 me-2">Fayl turi</strong>
                         </div>
-                        <button class="btn p-0 text-violet-800" type="button">
+                        <button class="btn p-0 text-violet-800" type="button" onclick="addDetail(this)"
+                            data-title="Fayl turini qo'shish" data-type="5" data-bs-toggle="modal"
+                            data-bs-target="#detailModal">
                             <i class="bx bx-message-square-add"></i>
                         </button>
                     </div>
@@ -264,7 +303,7 @@
                                             <td class="font-medium">{{ $ft->id }}</td>
                                             <td>{{ $ft->name }}</td>
                                             <td>
-                                                @if ($df->isActive)
+                                                @if ($ft->isActive)
                                                     <small class="badge bg-label-primary me-1"> <i
                                                             class="bx bx-check-shield"></i></small>
                                                 @else
@@ -274,9 +313,17 @@
                                             </td>
                                             <td>{{ $ft->username }}</td>
                                             <td>
-                                                <a class="px-2" href="javascript:void(0);"><i
-                                                        class="bx bx-edit-alt"></i></a>
-                                                <a href="javascript:void(0);"><i class="bx bx-trash"></i></a>
+                                                <button type="button" class="px-2" onclick="updateDetail(this)"
+                                                    data-type="1" data-title="Kitob tilini yangilash"
+                                                    data-id="{{ $ft->id }}" data-bs-toggle="modal"
+                                                    data-bs-target="#detailModal"
+                                                    data-langs="{{ $ft->nameuz . '@' . $ft->nameru . '@' . $ft->nameen }}"><i
+                                                        class="bx bx-edit-alt"></i></button>
+                                                <button type="button"
+                                                    data-href="{{ route('admin.datail.book.delete', $ft->id) }}"
+                                                    data-bs-toggle="modal" data-bs-target="#confirmModal"
+                                                    onclick="deleteConfirmModal(this)"><i
+                                                        class="bx bx-trash"></i></button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -297,7 +344,9 @@
                             <strong class="m-0 me-2">Fan yo'nalish</strong>
                         </div>
                         <div class="dropdown">
-                            <button class="btn p-0 text-violet-800" type="button">
+                            <button class="btn p-0 text-violet-800" type="button" onclick="addDetail(this)"
+                                data-title="Fan yo'nalishini qo'shish" data-type="6" data-bs-toggle="modal"
+                                data-bs-target="#detailModal">
                                 <i class="bx bx-message-square-add"></i>
                             </button>
                         </div>
@@ -331,9 +380,17 @@
                                             </td>
                                             <td>{{ $d->username }}</td>
                                             <td>
-                                                <a class="px-2" href="javascript:void(0);"><i
-                                                        class="bx bx-edit-alt"></i></a>
-                                                <a href="javascript:void(0);"><i class="bx bx-trash"></i></a>
+                                                <button type="button" class="px-2" onclick="updateDetail(this)"
+                                                    data-type="1" data-title="Kitob tilini yangilash"
+                                                    data-id="{{ $d->id }}" data-bs-toggle="modal"
+                                                    data-bs-target="#detailModal"
+                                                    data-langs="{{ $d->nameuz . '@' . $d->nameru . '@' . $d->nameen }}"><i
+                                                        class="bx bx-edit-alt"></i></button>
+                                                <button type="button"
+                                                    data-href="{{ route('admin.datail.book.delete', $d->id) }}"
+                                                    data-bs-toggle="modal" data-bs-target="#confirmModal"
+                                                    onclick="deleteConfirmModal(this)"><i
+                                                        class="bx bx-trash"></i></button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -347,53 +404,19 @@
             <!--/  Directs -->
         </div>
 
-
-        <!-- Modal for add data -->
-        {{-- <div class="modal-dialog modal-dialog-centered" id="staticBackdrop">
-            <form class="row g-3 fv-plugins-framework" action="{{ route('admin.datail.book.add') }}" method="POST">
-                @csrf
-                <input type="number" min="1" max="12" maxlength="2" name="type" value="1"
-                    hidden>
-                <div class="col-12 fv-plugins-icon-container">
-                    <label class="form-label">Phone Number</label>
-                    <div class="input-group input-group-merge has-validation mb-2">
-                        <input type="text" class="form-control" name="nameuz" placeholder="name uz">
-                    </div>
-                    <div class="input-group input-group-merge has-validation mb-2">
-                        <input type="text" class="form-control" name="nameru" placeholder="name ru">
-                    </div>
-                    <div class="input-group input-group-merge has-validation mb-2">
-                        <input type="text" class="form-control" name="nameen" placeholder="name en">
-                    </div>
-                    <div class="form-check">
-                        <label class="form-check-label custom-option-content" for="isActive">
-                            <span class="custom-option-body">
-                                <span class="custom-option-title"> Faolmi ? </span>
-                            </span>
-                            <input class="form-check-input" type="checkbox" name="isActiveCheck" id="isActive">
-                        </label>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <button type="submit" class="btn btn-primary me-sm-3 me-1 bg-violet-600">Qo'shish</button>
-                    <button type="button" class="btn btn-danger bg-red-600">Bekor qilish</button>
-                </div>
-            </form>
-        </div> --}}
-
-        <!-- Button trigger modal -->
-
         <!-- Modal -->
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="detailModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="detailModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
-                    <form action="{{ route('admin.datail.book.add') }}" method="post">
+                    <form action="{{ route('admin.datail.book.add') }}" method="post" id="modalForm"
+                        data-add="{{ route('admin.datail.book.add') }}"
+                        data-update="{{ route('admin.datail.book.update') }}">
                         @csrf
-                        <input type="number" min="1" max="12" maxlength="2" name="type"
-                            value="1" hidden>
+                        <input type="number" name="type" hidden>
+                        <input type="number" name="id" hidden>
                         <div class="modal-header">
-                            <label class="modal-title form-label">Phone Number</label>
+                            <label class="modal-title form-label" id="titleDetail"></label>
                         </div>
                         <div class="modal-body">
                             <div class="col-12 fv-plugins-icon-container">
@@ -418,23 +441,21 @@
                                             <span class="custom-option-title"> Faolmi ? </span>
                                         </span>
                                         <input class="form-check-input" type="checkbox" name="isActiveCheck"
-                                            id="isActive" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"
-                                            data-bs-placement="top" title="majburiy emas">
+                                            id="isActive">
                                     </label>
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger bg-red-600" data-bs-dismiss="modal">Bekor
+                            <button type="reset" class="btn btn-danger bg-red-600" data-bs-dismiss="modal">Bekor
                                 qilish</button>
-                            <button type="submit" class="btn btn-primary bg-blue-800">Qo'shish</button>
+                            <button type="submit" class="btn btn-primary bg-blue-800">Saqlash</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
         <!--/ Modal for add data -->
-
-
     </div>
+
 @stop

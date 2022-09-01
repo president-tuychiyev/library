@@ -33,9 +33,24 @@
 
             </div>
         </div>
-
-        <div class="modal-backdrop fade hidden"></div>
     @endempty
+
+    <!-- begin::confirm model -->
+    <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content items-center justify-center">
+                <div class="modal-body">
+                    <strong>Rostdan ham chopmoqchimisiz ?</strong>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger bg-red-600" data-bs-dismiss="modal">Orqaga</button>
+                    <a id="deleteBookBtn" class="btn btn-primary bg-blue-500">Chopish</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end::confirm model -->
+
 
 
     @if (session()->has('msg'))

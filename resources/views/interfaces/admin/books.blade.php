@@ -5,16 +5,16 @@
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="card">
-          <div class="card-header d-flex align-items-center justify-content-between pb-0">
-            <div class="card-title mb-0">
-              <strong class="m-0 me-2">Turi</strong>
-          </div>
-          <div class="dropdown">
-              <a href="{{ route('admin.books.add') }}" class="btn p-0 text-violet-800">
-                  <i class="bx bx-message-square-add"></i>
-              </a>
-          </div>
-          </div>  
+            <div class="card-header d-flex align-items-center justify-content-between pb-0">
+                <div class="card-title mb-0">
+                    <strong class="m-0 me-2">Turi</strong>
+                </div>
+                <div class="dropdown">
+                    <a href="{{ route('admin.books.add') }}" class="btn p-0 text-violet-800">
+                        <i class="bx bx-message-square-add"></i>
+                    </a>
+                </div>
+            </div>
             <div class="table-responsive text-nowrap">
                 <table class="table table-hover">
                     <thead>
@@ -35,18 +35,19 @@
                                 <td>{{ $b->name }}</td>
                                 <td>
                                     @if ($b->isActive)
-                                        <small class="badge bg-label-primary me-1"> <i class="bx bx-check-shield"></i></small>
+                                        <small class="badge bg-label-primary me-1"> <i
+                                                class="bx bx-check-shield"></i></small>
                                     @else
                                         <small class="badge bg-label-danger me-1"><i class="bx bx-shield-alt-2"></i></small>
                                     @endif
                                 </td>
-                                <td>{!! DNS2D::getBarcodeSVG((string)$b->id, 'QRCODE') !!}</td>
+                                <td>{!! DNS2D::getBarcodeSVG((string) $b->id, 'QRCODE') !!}</td>
                                 <td>{{ $b->username }}</td>
                                 <td>{{ $b->created_at->format('d.m.Y') }}</td>
                                 <td>
                                     <a href="javascript:void(0);"><i class="bx bx-show me-1"></i></a>
                                     <a href="{{ route('admin.books.select', $b->id) }}"><i class="bx bx-edit me-1"></i></a>
-                                    <a href="{{ route('admin.books.delete', $b->id) }}"><i class="bx bx-trash me-1"></i></a>
+                                    <button type="button" data-href="{{ route('admin.books.delete', $b->id) }}" data-bs-toggle="modal" data-bs-target="#confirmModal" onclick="deleteConfirmModal(this)"><i class="bx bx-trash me-1"></i></button>
                                 </td>
                             </tr>
                         @endforeach
@@ -55,5 +56,6 @@
                 </table>
             </div>
         </div>
-    </div>`
+
+    </div>
 @stop

@@ -37,6 +37,10 @@ Route::prefix(Config::get('language', 'uz'))->group(function () {
             Route::get('home', 'Admin\\HomeController@index')->name('admin.home');
             Route::get('detal/book', 'Admin\\DetailController@detailBook')->name('admin.datail.book');
             Route::post('detal/book/add', 'Admin\\DetailController@detailBookAdd')->name('admin.datail.book.add');
+            Route::post('detal/book/update', 'Admin\\DetailController@detailBookUpdate')->name('admin.datail.book.update');
+            Route::get('detal/book/delete/{id}', 'Admin\\DetailController@detailBookDelete')->name('admin.datail.book.delete');
+
+
             Route::get('books', 'Admin\\BooksController@index')->name('admin.books');
             Route::get('books/add', 'Admin\\BooksController@add')->name('admin.books.add');
             Route::post('books/insert', 'Admin\\BooksController@insert')->name('admin.books.insert');
