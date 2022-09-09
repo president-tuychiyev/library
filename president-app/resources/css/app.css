@@ -1,0 +1,12 @@
+@import url(../assets/vendor/fonts/boxicons.css);
+@import url(../assets/vendor/css/core.css);
+@import url(../assets//vendor/css/theme-default.css);
+@import url(../assets/css/demo.css);
+@import url(../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css);
+@import url(../assets/vendor/css/pages/page-auth.css);
+/* @import url(https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/css/rtl/core-dark.css);
+@import url(https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/css/rtl/theme-default-dark.css); */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
