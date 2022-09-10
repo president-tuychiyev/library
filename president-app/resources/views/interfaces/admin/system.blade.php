@@ -203,12 +203,10 @@
                                             <td>{{ $g->user->name }}</td>
                                             <td class="text-center">
                                                 <button type="button" class="px-2" onclick="updateGroup(this)"
-                                                    data-title="Gruruhni yangilash"
-                                                    data-id="{{ $g->id }}" data-bs-toggle="modal"
-                                                    data-bs-target="#groupModal"
-                                                    data-name="{{ $g->group }}"><i
-                                                        class="bx bx-edit" data-bs-toggle="tooltip"
-                                                        data-bs-placement="top"
+                                                    data-title="Gruruhni yangilash" data-id="{{ $g->id }}"
+                                                    data-bs-toggle="modal" data-bs-target="#groupModal"
+                                                    data-name="{{ $g->group }}"><i class="bx bx-edit"
+                                                        data-bs-toggle="tooltip" data-bs-placement="top"
                                                         data-bs-original-title="Gruruhni yangilash"></i></button>
                                                 <button type="button"
                                                     data-href="{{ route('admin.system.delete', $g->id) }}"
@@ -298,24 +296,24 @@
                         <div class="modal-body">
                             <div class="col-12 fv-plugins-icon-container">
                                 <div class="input-group input-group-merge mb-2">
-                                    <select name="facultyId" class="form-select" required
-                                        data-bs-toggle="tooltip" data-bs-placement="top" title="majburiy boʻlim">
+                                    <select name="facultyId" class="form-select" required data-bs-toggle="tooltip"
+                                        data-bs-placement="top" title="majburiy boʻlim">
                                         @foreach ($facultys as $f)
                                             <option value="{{ $f->id }}">{{ $f->$name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="input-group input-group-merge mb-2">
-                                    <select name="depId" class="form-select" required
-                                        data-bs-toggle="tooltip" data-bs-placement="top" title="majburiy boʻlim">
+                                    <select name="depId" class="form-select" required data-bs-toggle="tooltip"
+                                        data-bs-placement="top" title="majburiy boʻlim">
                                         @foreach ($departaments as $d)
                                             <option value="{{ $d->id }}">{{ $d->$name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="input-group input-group-merge mb-2">
-                                    <input type="text" class="form-control" name="group" placeholder="Guruh nomi" required
-                                        data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"
+                                    <input type="text" class="form-control" name="group" placeholder="Guruh nomi"
+                                        required data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"
                                         data-bs-placement="top" title="majburiy bo'lim">
                                 </div>
                                 <div class="form-check">

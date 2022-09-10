@@ -73,7 +73,9 @@ Route::prefix(Config::get('language', 'uz'))->group(function () {
                 Route::get('/', 'Admin\\OrderController@index')->name('admin.orders');
             });
 
-            Route::prefix('user');
+            Route::prefix('users')->group( function () {
+                Route::get('/', 'Admin\\UserController@index')->name('admin.users');
+            });
 
         });
 

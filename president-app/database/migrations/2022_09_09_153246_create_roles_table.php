@@ -14,15 +14,20 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('permissions', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class, 'userId');
-            $table->integer('roleId');
+            $table->string('nameuz');
+            $table->string('nameru');
+            $table->string('nameen');
             $table->boolean('create')->default(false);
             $table->boolean('read')->default(false);
             $table->boolean('update')->default(false);
             $table->boolean('delete')->default(false);
-            $table->boolean('setRole')->default(false);
+            $table->boolean('addRole')->default(false);
+            $table->boolean('addUser')->default(false);
+            $table->boolean('isActive')->default(false);
+            $table->boolean('isDeleted')->default(false);
             $table->timestamps();
         });
     }
@@ -34,6 +39,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('permissions');
+        Schema::dropIfExists('roles');
     }
 };

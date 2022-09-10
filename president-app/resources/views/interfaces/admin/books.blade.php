@@ -38,11 +38,11 @@
                                         @if ($b->isActive)
                                             <small class="badge bg-label-primary me-1"> <i class="bx bx-check-shield"
                                                     data-bs-toggle="tooltip" data-bs-placement="top"
-                                                    data-bs-original-title="Kitob aktiv"></i></small>
+                                                    data-bs-original-title="Aktiv"></i></small>
                                         @else
                                             <small class="badge bg-label-danger me-1"><i class="bx bx-shield-alt-2"
                                                     data-bs-toggle="tooltip" data-bs-placement="top"
-                                                    data-bs-original-title="Kitob aktiv emas"></i></small>
+                                                    data-bs-original-title="Aktiv emas"></i></small>
                                         @endif
                                     </td>
                                     <td>{!! DNS2D::getBarcodeSVG((string) $b->id, 'QRCODE') !!}</td>

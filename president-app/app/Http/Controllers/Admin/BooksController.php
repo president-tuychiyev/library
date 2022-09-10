@@ -69,8 +69,6 @@ class BooksController extends Controller
                 'type' => $pathInfo['extension'],
             ]);
             request()->request->add(['coverMediaId' => $media->id]);
-        else:
-            request()->request->add(['coverMediaId' => 1]);
         endif;
 
         if (request()->hasFile('docMedia')):
@@ -82,8 +80,6 @@ class BooksController extends Controller
                 'type' => $pathInfo['extension'],
             ]);
             request()->request->add(['docMediaId' => $media->id]);
-        else:
-            request()->request->add(['docMediaId' => 1]);
         endif;
 
         request()->request->add(['userId' => session()->get('user')->id]);

@@ -42,28 +42,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // public function details(){
-    //     return $this->hasMany(Detail::class,'userId','id');
-    // }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'userId', 'id');
+    }
 
-    // user_id emasi userId qilingan tableda
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'roleId','id');
+    }
 
-    // public function detail()
-    // {
-    //     return $this->hasOneThrough(
-    //         Detail::class, 
-    //         Book::class,
-    //         Menu::class,
-    //         Author::class,
-    //         'userId',
-    //         'userId',
-    //         'userId',
-    //         'userId',
-    //         'id',
-    //         'id',
-    //         'id',
-    //         'id',
-    //     );
-    // }
+    public function media()
+    {
+        return $this->belongsTo(Media::class, 'mediaId', 'id');
+    }
 
 }
