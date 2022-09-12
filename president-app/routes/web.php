@@ -75,6 +75,16 @@ Route::prefix(Config::get('language', 'uz'))->group(function () {
 
             Route::prefix('users')->group( function () {
                 Route::get('/', 'Admin\\UserController@index')->name('admin.users');
+                Route::post('add', 'Admin\\UserController@add')->name('admin.users.add');
+                Route::post('update', 'Admin\\UserController@update')->name('admin.users.update');
+                Route::get('delete/{id}', 'Admin\\UserController@delete')->name('admin.users.delete');
+            });
+
+            Route::prefix('roles')->group( function () {
+                Route::get('/', 'Admin\\RoleController@index')->name('admin.roles');
+                Route::post('add', 'Admin\\RoleController@add')->name('admin.roles.add');
+                Route::post('update', 'Admin\\RoleController@update')->name('admin.roles.update');
+                Route::get('delete/{id}', 'Admin\\RoleController@delete')->name('admin.roles.delete');
             });
 
         });

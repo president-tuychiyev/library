@@ -16,12 +16,12 @@ class DetailController extends Controller
 
     public function detailBook()
     {
-        $docTypes = Detail::where('type', 1)->where('isDeleted', false)->with('user')->paginate(10,['*'],'docTypes');
-        $docLangs = Detail::where('type', 2)->where('isDeleted', false)->with('user')->paginate(10,['*'],'docLangs');
-        $textTypes = Detail::where('type', 3)->where('isDeleted', false)->with('user')->paginate(10,['*'],'textTypes');
-        $docFormats = Detail::where('type', 4)->where('isDeleted', false)->with('user')->paginate(10,['*'],'docFormats');
-        $fileTypes = Detail::where('type', 5)->where('isDeleted', false)->with('user')->paginate(10,['*'],'fileTypes');
-        $directs = Detail::where('type', 6)->where('isDeleted', false)->with('user')->paginate(10,['*'],'directs');
+        $docTypes = Detail::where('type', 1)->where('isDeleted', false)->with('user')->paginate(10, ['*'], 'docTypes');
+        $docLangs = Detail::where('type', 2)->where('isDeleted', false)->with('user')->paginate(10, ['*'], 'docLangs');
+        $textTypes = Detail::where('type', 3)->where('isDeleted', false)->with('user')->paginate(10, ['*'], 'textTypes');
+        $docFormats = Detail::where('type', 4)->where('isDeleted', false)->with('user')->paginate(10, ['*'], 'docFormats');
+        $fileTypes = Detail::where('type', 5)->where('isDeleted', false)->with('user')->paginate(10, ['*'], 'fileTypes');
+        $directs = Detail::where('type', 6)->where('isDeleted', false)->with('user')->paginate(10, ['*'], 'directs');
 
         return view('interfaces.admin.detail', compact('docTypes', 'docLangs', 'textTypes', 'docFormats', 'fileTypes', 'directs'));
     }
@@ -32,7 +32,7 @@ class DetailController extends Controller
             'type' => 'required|numeric|min:1|max:12',
             'nameuz' => 'required|string',
             'nameru' => 'required|string',
-            'nameen' => 'required|string'
+            'nameen' => 'required|string',
         ]);
         request()->request->remove('id');
         request()->isActiveCheck ? request()->request->add(['userId' => session()->get('user')->id, 'isActive' => true]) : request()->request->add(['userId' => session()->get('user')->id]);
@@ -49,7 +49,7 @@ class DetailController extends Controller
             'type' => 'required|numeric|min:1|max:12',
             'nameuz' => 'required|string',
             'nameru' => 'required|string',
-            'nameen' => 'required|string'
+            'nameen' => 'required|string',
         ]);
 
         request()->isActiveCheck ? request()->request->add(['isActive' => true]) : request()->request->add(['isActive' => false]);
@@ -66,7 +66,7 @@ class DetailController extends Controller
 
     public function detailBookDelete($id)
     {
-        Detail::where('id', $id)->update([ 'isDeleted' => true ]);
+        Detail::where('id', $id)->update(['isDeleted' => true]);
 
         return redirect()->back()->with('msg', __('lang.delete.success'));
     }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Menu;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -23,9 +24,10 @@ return new class extends Migration
             $table->string('nameru');
             $table->string('nameen');
             $table->string('icon')->nullable();
-            $table->integer('parentId')->nullable();
+            $table->foreignIdFor(Menu::class, 'parentId')->nullable();
             $table->string('route')->nullable();
             $table->integer('turn')->nullable();
+            $table->boolean('isActive')->default(false);
             $table->timestamps();
         });
     }

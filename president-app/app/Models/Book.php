@@ -53,12 +53,12 @@ class Book extends Model
 
     public function cover()
     {
-        return $this->hasOne(Media::class, 'coverMediaId', 'id');
+        return $this->hasOne(Media::class, 'id', 'coverMediaId');
     }
 
     public function doc()
     {
-        return $this->hasOne(Media::class, 'docMediaId', 'id');
+        return $this->hasOne(Media::class, 'id', 'docMediaId');
     }
 
 }

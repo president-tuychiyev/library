@@ -58,7 +58,7 @@
 
 
 
-    @if (session()->has('msg'))
+    @if (session()->has('msg') or $errors->any())
         <!-- begin::messages -->
         <script>
             Swal.fire({
@@ -71,8 +71,13 @@
                     toast.addEventListener('mouseenter', Swal.stopTimer)
                     toast.addEventListener('mouseleave', Swal.resumeTimer)
                 },
-                title: "{{ session()->get('msg')['title'] }}",
-                icon: "{{ session()->get('msg')['icon'] }}"
+                @if ($errors->any())
+                    title: "{!! implode('', $errors->all(':message')) !!}",
+                    icon: "error"
+                @else
+                    title: "{{ session()->get('msg')['title'] }}",
+                    icon: "{{ session()->get('msg')['icon'] }}"
+                @endif
             })
         </script>
         <!-- end::messages -->

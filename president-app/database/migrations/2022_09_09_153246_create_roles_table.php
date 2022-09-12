@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Menu;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -20,12 +21,6 @@ return new class extends Migration
             $table->string('nameuz');
             $table->string('nameru');
             $table->string('nameen');
-            $table->boolean('create')->default(false);
-            $table->boolean('read')->default(false);
-            $table->boolean('update')->default(false);
-            $table->boolean('delete')->default(false);
-            $table->boolean('addRole')->default(false);
-            $table->boolean('addUser')->default(false);
             $table->boolean('isActive')->default(false);
             $table->boolean('isDeleted')->default(false);
             $table->timestamps();

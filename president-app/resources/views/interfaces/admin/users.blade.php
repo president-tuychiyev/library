@@ -5,78 +5,82 @@
 @section('content')
     @php($name = 'name' . app()->getLocale())
     <div class="container-xxl flex-grow-1 container-p-y">
-        <div class="card">
-            <div class="card-header d-flex align-items-center justify-content-between pb-0">
-                <div class="card-title mb-0">
-                    <strong class="m-0 me-2">Foydalanuvchilar</strong>
-                </div>
-                <button class="btn p-0 text-violet-800" type="button" onclick="addUser(this)"
-                    data-title="Foydalanuvchi qoʻshish" data-bs-toggle="modal" data-bs-target="#userModal">
-                    <i class="bx bx-message-square-add text-xl" data-bs-toggle="tooltip" data-bs-placement="top"
-                        data-bs-original-title="Foydalanuvchi qoʻshish"></i>
-                </button>
+
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="nav nav-pills flex-column flex-sm-row mb-4">
+                    <li class="nav-item">
+                        <button class="nav-link active" type="button" onclick="addUser(this)"
+                            data-title="Foydalanuvchi qoʻshish" data-bs-toggle="modal" data-bs-target="#userModal">
+                            <i class="bx bx bx-user-plus"></i>
+                            Foydalanuvchi qoʻshish
+                        </button>
+                    </li>
+                </ul>
             </div>
-            <hr class="mt-3">
-            <div class="card-body">
-                <div class="table-responsive text-nowrap">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>id</th>
-                                <th class="text-center">Fotosurat</th>
-                                <th>F.I.O</th>
-                                <th class="text-center">holati</th>
-                                <th>jinsi</th>
-                                <th>Rol nomi</th>
-                                <th>yaratuvchi</th>
-                                <th>yaratilgan sana</th>
-                                <th class="text-center">harakatlar</th>
-                            </tr>
-                        </thead>
-                        <tbody class="table-border-bottom-0">
-                            @foreach ($users as $u)
-                                <tr>
-                                    <td><strong>{{ $u->id }}</strong></td>
-                                    <td class="text-center"><img class="w-20 rounded" src="{{ asset($u->media->fullPath) }}"
-                                            alt="Kokanduni.uz"></td>
-                                    <td>{{ $u->name }}</td>
-                                    <td class="text-center">
-                                        @if ($u->isActive)
-                                            <small class="badge bg-label-primary me-1"> <i class="bx bx-check-shield"
-                                                    data-bs-toggle="tooltip" data-bs-placement="top"
-                                                    data-bs-original-title="Aktiv"></i></small>
-                                        @else
-                                            <small class="badge bg-label-danger me-1"><i class="bx bx-shield-alt-2"
-                                                    data-bs-toggle="tooltip" data-bs-placement="top"
-                                                    data-bs-original-title="Aktiv emas"></i></small>
-                                        @endif
-                                    </td>
-                                    <td>{{ $u->gender }}</td>
-                                    <td>{{ $u->role->nameuz }}</td>
-                                    <td>{{ $u->user->name }}</td>
-                                    <td>{{ $u->created_at->format('d.m.Y') }}</td>
-                                    <td class="text-center">
-                                        <button type="button" class="px-2" onclick="updateUser(this)" data-type="1"
-                                            data-title="Yangilash" data-id="{{ $u->id }}" data-bs-toggle="modal"
-                                            data-bs-target="#userModal" data-langs="{{ $u->name }}"><i
-                                                class="bx bx-edit" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                data-bs-original-title="Yangilash"></i></button>
-                                        <button type="button" data-href="#" data-bs-toggle="modal"
-                                            data-bs-target="#confirmModal" onclick="deleteConfirmModal(this)"><i
-                                                class="bx bx-trash" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                data-bs-original-title="Oʻchirish"></i></button>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+        </div>
+
+        <div class="row g-4">
+            @foreach ($users as $u)
+                <div class="col-xl-4 col-lg-6 col-md-6">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <div class="dropdown btn-pinned">
+                                <button type="button" class="px-2" onclick="updateUser(this)" data-title="Yangilash"
+                                    data-id="{{ $u->id }}" data-bs-toggle="modal" data-bs-target="#userModal"
+                                    data-name="{{ $u->name }}" data-phone="{{ $u->phone }}"
+                                    data-email="{{ $u->email }}" data-active="{{ $u->isActive }}"
+                                    data-role="{{ $u->roleId }}"><i class="bx bx-edit" data-bs-toggle="tooltip"
+                                        data-bs-placement="top" data-bs-original-title="Yangilash"></i></button>
+                                <button type="button" data-href="{{ route('admin.users.delete', $u->id) }}"
+                                    data-bs-toggle="modal" data-bs-target="#confirmModal"
+                                    onclick="deleteConfirmModal(this)"><i class="bx bx-trash" data-bs-toggle="tooltip"
+                                        data-bs-placement="top" data-bs-original-title="Oʻchirish"></i></button>
+                            </div>
+                            <div class="mx-auto mb-3">
+                                <img src="{{ asset($u->media->fullPath) }}" alt="Avatar Image"
+                                    class="rounded-circle w-px-100 h-px-100 mx-auto d-block">
+                            </div>
+                            <h5 class="mb-1 card-title">{{ $u->name }}</h5>
+                            <strong class="">{{ $u->role->$name }}</strong>
+                            <div class="d-flex align-items-center justify-content-center my-3 gap-2">
+                                <span class="badge bg-label-secondary me-1">Holati</span>
+                                @if ($u->isActive)
+                                    <small class="badge bg-label-primary me-1" data-bs-toggle="tooltip"
+                                        data-bs-placement="top" data-bs-original-title="Aktiv"> <i
+                                            class="bx bx-check-shield"></i></small>
+                                @else
+                                    <small class="badge bg-label-danger me-1" data-bs-toggle="tooltip"
+                                        data-bs-placement="top" data-bs-original-title="Aktiv emas"><i
+                                            class="bx bx-shield-alt-2"></i></small>
+                                @endif
+                            </div>
+
+                            <div class="align-items-center justify-content-around my-4 py-2">
+                                <div>
+                                    <h4 class="mb-1">{{ $u->user->name }}</h4>
+                                    <span>Tomonidan, {{ $u->created_at->format('d.m.Y') }}da qo'shilgan</span>
+                                </div>
+                                <hr class="mb-2 mt-2">
+                            </div>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <a href="tel:+998{{ $u->phone }}" target="_blank"
+                                    class="btn btn-primary d-flex align-items-center me-3" data-bs-toggle="tooltip"
+                                    data-bs-placement="top" data-bs-original-title="+(998) {{ $u->phone }}"><i
+                                        class="bx bx-phone me-1"></i>Bog'lanish</a>
+                                <a href="mailto:{{ $u->email }}" target="_blank"
+                                    class="btn btn-label-secondary btn-icon" data-bs-toggle="tooltip"
+                                    data-bs-placement="top" data-bs-original-title="{{ $u->email }}"><i
+                                        class="bx bx-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            @endforeach
             <div class="card-footer">
                 {{ $users->links('pagination::bootstrap-5') }}
             </div>
         </div>
-
 
 
         <!-- Modal -->
@@ -84,9 +88,9 @@
             aria-labelledby="userModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
-                    <form action="#" method="post" id="modalForm" data-add="#" data-update="#">
+                    <form action="#" method="post" id="modalForm" data-add="{{ route('admin.users.add') }}"
+                        data-update="{{ route('admin.users.update') }}" enctype="multipart/form-data">
                         @csrf
-                        <input type="number" name="type" hidden>
                         <input type="number" name="id" hidden>
                         <div class="modal-header">
                             <label class="modal-title form-label" id="titleUser"></label>
@@ -94,29 +98,60 @@
                         <div class="modal-body">
                             <div class="col-12 fv-plugins-icon-container">
                                 <div class="input-group input-group-merge mb-2">
-                                    <input type="text" class="form-control" name="nameuz" placeholder="name uz" required
-                                        data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"
-                                        data-bs-placement="top" title="majburiy bo'lim">
-                                </div>
-                                <div class="input-group input-group-merge mb-2">
-                                    <input type="text" class="form-control" name="nameru" placeholder="name ru" required
-                                        data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"
-                                        data-bs-placement="top" title="majburiy bo'lim">
-                                </div>
-                                <div class="input-group input-group-merge mb-2">
-                                    <input type="text" class="form-control" name="nameen" placeholder="name en"
+                                    <input type="text" class="form-control" name="name" placeholder="F.I.O"
                                         required data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"
                                         data-bs-placement="top" title="majburiy bo'lim">
                                 </div>
-                                <div class="form-check">
-                                    <label class="form-check-label custom-option-content" for="isActive">
-                                        <span class="custom-option-body">
-                                            <span class="custom-option-title"> Faolmi ? </span>
-                                        </span>
-                                        <input class="form-check-input" type="checkbox" name="isActiveCheck"
-                                            id="isActive">
-                                    </label>
+                                <div class="input-group input-group-merge mb-2">
+                                    <span class="input-group-text select-none">+998</span>
+                                    <input type="number" maxlength="9" class="form-control" name="phone"
+                                        placeholder="9* *** ** **" required data-bs-toggle="tooltip"
+                                        data-bs-custom-class="custom-tooltip" data-bs-placement="top"
+                                        title="majburiy bo'lim">
                                 </div>
+                                <div class="input-group input-group-merge mb-2">
+                                    <input type="email" maxlength="30" class="form-control" name="email"
+                                        placeholder="Pochta manzili" required data-bs-toggle="tooltip"
+                                        data-bs-custom-class="custom-tooltip" data-bs-placement="top"
+                                        title="majburiy bo'lim">
+                                </div>
+                                <div class="mb-2 form-password-toggle fv-plugins-icon-container">
+                                    <div class="input-group input-group-merge">
+                                        <input class="form-control" type="password" name="pass"
+                                            placeholder="············" required data-bs-toggle="tooltip"
+                                            data-bs-custom-class="custom-tooltip" data-bs-placement="top"
+                                            title="majburiy bo'lim">
+                                        <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                                    </div>
+                                </div>
+                                <div class="input-group input-group-merge mb-2">
+                                    <select class="form-select" name="roleId" id="select-document-type" required
+                                        data-bs-toggle="tooltip" data-bs-placement="top"
+                                        data-bs-original-title="majburiy boʻlim">
+                                        @foreach ($roles as $r)
+                                            <option value="{{ $r->id }}">{{ $r->$name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="input-group input-group-merge mb-3">
+                                    <input class="form-control" name="avatar" type="file" id="cover-media-book"
+                                        data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="Foydalanuvchi rasmini tanlang | *majburiy emas" accept=".jpg,.jpeg,.png">
+                                    <span class="input-group-text text-red-300 select-none">*jpg,
+                                        *png</span>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" name="isActiveCheck" id="isActive" class="switch-input">
+                                    <span class="switch-toggle-slider">
+                                        <span class="switch-on">
+                                            <i class="bx bx-check"></i>
+                                        </span>
+                                        <span class="switch-off">
+                                            <i class="bx bx-x"></i>
+                                        </span>
+                                    </span>
+                                    <span class="switch-label">Aktivmi ?</span>
+                                </label>
                             </div>
                         </div>
                         <div class="modal-footer">

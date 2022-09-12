@@ -20,7 +20,6 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(User::class, 'userId');
             $table->string('name');
-            $table->string('gender');
             $table->integer('phone');
             $table->foreignIdFor(Media::class, 'mediaId')->default(1);
             $table->string('email')->unique();

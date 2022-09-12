@@ -3,14 +3,83 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Media;
+use App\Models\Role;
 use App\Models\User;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
     public function index()
     {
-        $users = User::where('id', session()->get('user')->id)->where('isDeleted', false)->with('media')->with('role')->with('user')->paginate(20);
-        return view('interfaces.admin.users', compact('users'));
+        $users = User::where('id', '!=', session()->get('user')->id)->where('isDeleted', false)->with('media')->with('role')->with('user')->paginate(10);
+        $roles = Role::where('isDeleted', false)->get();
+        return view('interfaces.admin.users', compact('users', 'roles'));
+    }
+
+    public function add()
+    {
+        request()->validate([
+            'email' => 'required|unique:users|max:30',
+            'pass' => 'required|max:9',
+        ],
+            [
+                'email.unique' => 'Bunday emailga ega foydalanuvchi mavjud!',
+            ]);
+
+        request()->isActiveCheck ? request()->request->add(['userId' => session()->get('user')->id, 'isActive' => true]) : request()->request->add(['userId' => session()->get('user')->id]);
+        request()->request->add(['password' => Hash::make(request()->pass)]);
+        if (request()->hasFile('avatar')):
+            $avatar = Storage::disk('upload')->put('upload/avatars', request()->file('avatar'));
+            $pathInfo = pathinfo($avatar);
+            $media = Media::create([
+                'baseName' => $pathInfo['basename'],
+                'fullPath' => $avatar,
+                'type' => $pathInfo['extension'],
+            ]);
+            request()->request->add(['mediaId' => $media->id]);
+        endif;
+
+        User::create(request()->except(['avatar', 'isActiveCheck', 'id', 'pass']));
+
+        return redirect()->back()->with('msg', __('lang.adding.success'));
+    }
+
+    public function update()
+    {
+        $user = User::where('users.id', request()->id)->with('media')->first();
+        request()->isActiveCheck ? request()->request->add(['isActive' => true]) : request()->request->add(['isActive' => false]);
+        is_null(request()->pss) ? '' : request()->request->add(['password' => Hash::make(request()->pass)]);
+        if (request()->hasFile('avatar')):
+            $avatar = Storage::disk('upload')->put('upload/avatars', request()->file('avatar'));
+            $pathInfo = pathinfo($avatar);
+            if ($user->mediaId != 1):
+                Storage::disk('upload')->delete($user->media->fullPath);
+                Media::where('id', $user->mediaId)->update([
+                    'baseName' => $pathInfo['basename'],
+                    'fullPath' => $avatar,
+                    'type' => $pathInfo['extension'],
+                ]);
+            else:
+                $media = Media::create([
+                    'baseName' => $pathInfo['basename'],
+                    'fullPath' => $avatar,
+                    'type' => $pathInfo['extension'],
+                ]);
+                request()->request->add(['mediaId' => $media->id]);
+            endif;
+        endif;
+
+        User::where('id', request()->id)->update(request()->except(['avatar', 'isActiveCheck', 'id', 'pass', '_token']));
+        
+        return redirect()->back()->with('msg', __('lang.update.success'));
+    }
+
+    public function delete($id)
+    {
+        User::where('id', $id)->update([ 'isDeleted' => true, 'email' => User::find($id)->email . "-{$id}" ]);
+
+        return redirect()->back()->with('msg', __('lang.delete.success'));
     }
 }

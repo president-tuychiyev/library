@@ -25,8 +25,8 @@ class Sidebar extends Component
     public function render()
     {
         $lang = app()->getLocale();
-        $menus = Menu::where('admin', true)->where('parentId', null)->select('menus.id', 'menus.parentId', "menus.name{$lang} as name", 'menus.icon', 'menus.route')->orderBy('turn', 'asc')->get();
-        $submenus = Menu::where('admin', true)->where('parentId', '!=', null)->select('menus.id', 'menus.parentId', "menus.name{$lang} as name", 'menus.icon', 'menus.route')->orderBy('turn', 'asc')->get();
+        $menus = Menu::where('isActive', true)->where('admin', true)->where('parentId', null)->select('menus.id', 'menus.parentId', "menus.name{$lang} as name", 'menus.icon', 'menus.route')->orderBy('turn', 'asc')->get();
+        $submenus = Menu::where('isActive', true)->where('admin', true)->where('parentId', '!=', null)->select('menus.id', 'menus.parentId', "menus.name{$lang} as name", 'menus.icon', 'menus.route')->orderBy('turn', 'asc')->get();
         return view('components.sidebar', compact('menus', 'submenus'));
     }
 }

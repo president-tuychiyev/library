@@ -127,7 +127,7 @@ class BooksController extends Controller
             $pathInfo = pathinfo($coverMedia);
             if ($book->coverMediaId != 1):
                 Storage::disk('upload')->delete($book->cover->fullPath);
-                Media::where('id', Book::where('id', request()->id)->first()->coverMediaId)->update([
+                Media::where('id', $book->coverMediaId)->update([
                     'baseName' => $pathInfo['basename'],
                     'fullPath' => $coverMedia,
                     'type' => $pathInfo['extension'],
@@ -148,7 +148,7 @@ class BooksController extends Controller
             $pathInfo = pathinfo($coverMedia);
             if ($book->dicMediaId != 1):
                 Storage::disk('upload')->delete($book->doc->fullPath);
-                Media::where('id', Book::where('id', request()->id)->first()->docMediaId)->update([
+                Media::where('id',$book->docMediaId)->update([
                     'baseName' => $pathInfo['basename'],
                     'fullPath' => $coverMedia,
                     'type' => $pathInfo['extension'],

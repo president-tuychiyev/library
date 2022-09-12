@@ -22,7 +22,7 @@ class AuthController extends Controller
             'password' => 'required|string|min:6|max:20'
         ]);
 
-        $user = User::where('email', $request->email)->first();
+        $user = User::where('isDeleted', false)->where('isActive', true)->where('email', $request->email)->first();
 
         if ($user):
             if (Hash::check($request->password, $user->password)):
