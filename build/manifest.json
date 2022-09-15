@@ -20,12 +20,12 @@
     "src": "resources/assets/vendor/fonts/boxicons/boxicons.svg"
   },
   "resources/js/app.js": {
-    "file": "assets/app.7e978ba1.js",
+    "file": "assets/app.512b88be.js",
     "src": "resources/js/app.js",
     "isEntry": true
   },
   "resources/css/app.css": {
-    "file": "assets/app.f7046645.css",
+    "file": "assets/app.5e3b6068.css",
     "src": "resources/css/app.css",
     "isEntry": true
   }
