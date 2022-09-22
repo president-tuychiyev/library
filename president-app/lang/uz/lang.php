@@ -22,18 +22,30 @@ return [
         'success' => [
             'icon' => "success",
             'title' => "Muvaffaqiyatli qo'shildi!"
+        ], 
+        'error' => [
+            'icon' => 'error',
+            'title' => "Ma'lumot qo'shish uchun sizda ruxsat mavjud emas!"
         ]
     ],
     'update' => [
         'success' => [
             'icon' => "success",
             'title' => "Muvaffaqiyatli yangilandi!"
+        ],
+        'error' => [
+            'icon' => 'error',
+            'title' => "Ma'lumot yangilash uchun sizda ruxsat mavjud emas!"
         ]
     ],
     'delete' => [
         'success' => [
             'icon' => "warning",
             'title' => "Muvaffaqiyatli o'chirildi!"
+        ], 
+        'error' => [
+            'icon' => 'error',
+            'title' => "Ma'lumot o'chirish uchun sizda ruxsat mavjud emas!"
         ]
     ]
 

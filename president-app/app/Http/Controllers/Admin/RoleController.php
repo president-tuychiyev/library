@@ -59,7 +59,7 @@ class RoleController extends Controller
     public function delete($id)
     {
         Role::where('id', $id)->update(['isDeleted' => true]);
-
+        
         return redirect()->back()->with('msg', __('lang.delete.success'));
     }
 }

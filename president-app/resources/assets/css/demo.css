@@ -136,3 +136,17 @@
     text-align: center;
     margin-top: 1rem;
 }
+
+.fi-uz.fis {
+    background-image: url(../img/icons/uz.svg);
+}
+.fi-ru.fis {
+    background-image: url(../img/icons/ru.svg);
+}
+.fi-en.fis {
+    background-image: url(../img/icons/en.svg);
+}
+
+.fi.fis {
+    width: 1em;
+}
