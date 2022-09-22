@@ -84,16 +84,16 @@ window.qr = function () {
   printwin.print();
 }
 
-window.addUser = function (e) {
+window.addWorkman = function (e) {
   document.getElementById("modalForm").action = document.getElementById("modalForm").getAttribute("data-add");
-  document.getElementById("titleUser").innerHTML = e.getAttribute('data-title');
+  document.getElementById("titleWorkman").innerHTML = e.getAttribute('data-title');
   document.querySelector('[name="email"]').disabled = false;
   document.querySelector('[name="pass"]').required = true;
 }
 
-window.updateUser = function (e) {
+window.updateWorkman = function (e) {
   document.getElementById("modalForm").action = document.getElementById("modalForm").getAttribute("data-update");
-  document.getElementById("titleUser").innerHTML = e.getAttribute('data-title');
+  document.getElementById("titleWorkman").innerHTML = e.getAttribute('data-title');
   document.querySelector('[name="id"]').value = e.getAttribute('data-id');
   document.querySelector('[name="name"]').value = e.getAttribute('data-name');
   document.querySelector('[name="phone"]').value = e.getAttribute('data-phone');

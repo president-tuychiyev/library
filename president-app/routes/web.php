@@ -73,11 +73,18 @@ Route::prefix(Config::get('language', 'uz'))->group(function () {
                 Route::get('/', 'Admin\\OrderController@index')->name('admin.orders');
             });
 
-            Route::prefix('users')->group(function () {
-                Route::get('/', 'Admin\\UserController@index')->name('admin.users');
-                Route::post('add', 'Admin\\UserController@add')->name('admin.users.add');
-                Route::post('update', 'Admin\\UserController@update')->name('admin.users.update');
-                Route::get('delete/{id}', 'Admin\\UserController@delete')->name('admin.users.delete');
+            Route::prefix('workmans')->group(function () {
+                Route::get('/', 'Admin\\UserController@workmansIndex')->name('admin.workmans');
+                Route::post('add', 'Admin\\UserController@workmansAdd')->name('admin.workmans.add');
+                Route::post('update', 'Admin\\UserController@workmansUpdate')->name('admin.workmans.update');
+                Route::get('delete/{id}', 'Admin\\UserController@workmansDelete')->name('admin.workmans.delete');
+            });
+
+            Route::prefix('teachers')->group(function () {
+                Route::get('/', 'Admin\\UserController@teachersIndex')->name('admin.teachers');
+                Route::post('add', 'Admin\\UserController@teachersAdd')->name('admin.teachers.add');
+                Route::post('update', 'Admin\\UserController@teachersUpdate')->name('admin.teachers.update');
+                Route::get('delete/{id}', 'Admin\\UserController@teachersDelete')->name('admin.teachers.delete');
             });
 
             Route::prefix('roles')->group(function () {

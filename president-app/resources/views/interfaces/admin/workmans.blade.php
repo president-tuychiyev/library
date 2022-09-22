@@ -1,6 +1,6 @@
 @extends('layouts.root')
 
-@section('title', 'Foydalanuvchilar')
+@section('title', 'Xodimlar')
 
 @section('content')
     @php($name = 'name' . app()->getLocale())
@@ -10,8 +10,8 @@
             <div class="col-md-12">
                 <ul class="nav nav-pills flex-column flex-sm-row mb-4">
                     <li class="nav-item">
-                        <button class="nav-link active" type="button" onclick="addUser(this)"
-                            data-title="Foydalanuvchi qoʻshish" data-bs-toggle="modal" data-bs-target="#userModal">
+                        <button class="nav-link active" type="button" onclick="addWorkman(this)"
+                            data-title="Foydalanuvchi qoʻshish" data-bs-toggle="modal" data-bs-target="#workmanModal">
                             <i class="bx bx bx-user-plus"></i>
                             Foydalanuvchi qoʻshish
                         </button>
@@ -21,31 +21,31 @@
         </div>
 
         <div class="row g-4">
-            @foreach ($users as $u)
+            @foreach ($workmans as $w)
                 <div class="col-xl-4 col-lg-6 col-md-6">
                     <div class="card">
                         <div class="card-body text-center">
                             <div class="dropdown btn-pinned">
-                                <button type="button" class="px-2" onclick="updateUser(this)" data-title="Yangilash"
-                                    data-id="{{ $u->id }}" data-bs-toggle="modal" data-bs-target="#userModal"
-                                    data-name="{{ $u->name }}" data-phone="{{ $u->phone }}"
-                                    data-email="{{ $u->email }}" data-active="{{ $u->isActive }}"
-                                    data-role="{{ $u->roleId }}"><i class="bx bx-edit" data-bs-toggle="tooltip"
+                                <button type="button" class="px-2" onclick="updateWorkman(this)" data-title="Yangilash"
+                                    data-id="{{ $w->id }}" data-bs-toggle="modal" data-bs-target="#workmanModal"
+                                    data-name="{{ $w->name }}" data-phone="{{ $w->phone }}"
+                                    data-email="{{ $w->email }}" data-active="{{ $w->isActive }}"
+                                    data-role="{{ $w->roleId }}"><i class="bx bx-edit" data-bs-toggle="tooltip"
                                         data-bs-placement="top" data-bs-original-title="Yangilash"></i></button>
-                                <button type="button" data-href="{{ route('admin.users.delete', $u->id) }}"
+                                <button type="button" data-href="{{ route('admin.workmans.delete', $w->id) }}"
                                     data-bs-toggle="modal" data-bs-target="#confirmModal"
                                     onclick="deleteConfirmModal(this)"><i class="bx bx-trash" data-bs-toggle="tooltip"
                                         data-bs-placement="top" data-bs-original-title="Oʻchirish"></i></button>
                             </div>
                             <div class="mx-auto mb-3">
-                                <img src="{{ asset($u->media->fullPath) }}" alt="Avatar Image"
+                                <img src="{{ asset($w->media->fullPath) }}" alt="Avatar Image"
                                     class="rounded-circle w-px-100 h-px-100 mx-auto d-block">
                             </div>
-                            <h5 class="mb-1 card-title">{{ $u->name }}</h5>
-                            <strong class="">{{ $u->role->$name }}</strong>
+                            <h5 class="mb-1 card-title">{{ $w->name }}</h5>
+                            <strong class="">{{ $w->role->$name }}</strong>
                             <div class="d-flex align-items-center justify-content-center my-3 gap-2">
                                 <span class="badge bg-label-secondary me-1">Holati</span>
-                                @if ($u->isActive)
+                                @if ($w->isActive)
                                     <small class="badge bg-label-primary me-1" data-bs-toggle="tooltip"
                                         data-bs-placement="top" data-bs-original-title="Aktiv"> <i
                                             class="bx bx-check-shield"></i></small>
@@ -58,19 +58,19 @@
 
                             <div class="align-items-center justify-content-around my-4 py-2">
                                 <div>
-                                    <h4 class="mb-1">{{ $u->user->name }}</h4>
-                                    <span>Tomonidan, {{ $u->created_at->format('d.m.Y') }}da qo'shilgan</span>
+                                    <h4 class="mb-1">{{ $w->user->name }}</h4>
+                                    <span>Tomonidan, {{ $w->created_at->format('d.m.Y') }}da qo'shilgan</span>
                                 </div>
                                 <hr class="mb-2 mt-2">
                             </div>
                             <div class="d-flex align-items-center justify-content-center">
-                                <a href="tel:+998{{ $u->phone }}" target="_blank"
+                                <a href="tel:+998{{ $w->phone }}" target="_blank"
                                     class="btn btn-primary d-flex align-items-center me-3" data-bs-toggle="tooltip"
-                                    data-bs-placement="top" data-bs-original-title="+(998) {{ $u->phone }}"><i
+                                    data-bs-placement="top" data-bs-original-title="+(998) {{ $w->phone }}"><i
                                         class="bx bx-phone me-1"></i>Bog'lanish</a>
-                                <a href="mailto:{{ $u->email }}" target="_blank"
+                                <a href="mailto:{{ $w->email }}" target="_blank"
                                     class="btn btn-label-secondary btn-icon" data-bs-toggle="tooltip"
-                                    data-bs-placement="top" data-bs-original-title="{{ $u->email }}"><i
+                                    data-bs-placement="top" data-bs-original-title="{{ $w->email }}"><i
                                         class="bx bx-envelope"></i></a>
                             </div>
                         </div>
@@ -78,22 +78,22 @@
                 </div>
             @endforeach
             <div class="card-footer">
-                {{ $users->links('pagination::bootstrap-5') }}
+                {{ $workmans->links('pagination::bootstrap-5') }}
             </div>
         </div>
 
 
         <!-- Modal -->
-        <div class="modal fade" id="userModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="userModalLabel" aria-hidden="true">
+        <div class="modal fade" id="workmanModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="workmanModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
-                    <form action="#" method="post" id="modalForm" data-add="{{ route('admin.users.add') }}"
-                        data-update="{{ route('admin.users.update') }}" enctype="multipart/form-data">
+                    <form action="#" method="post" id="modalForm" data-add="{{ route('admin.workmans.add') }}"
+                        data-update="{{ route('admin.workmans.update') }}" enctype="multipart/form-data">
                         @csrf
                         <input type="number" name="id" hidden>
                         <div class="modal-header">
-                            <label class="modal-title form-label" id="titleUser"></label>
+                            <label class="modal-title form-label" id="titleWorkman"></label>
                         </div>
                         <div class="modal-body">
                             <div class="col-12 fv-plugins-icon-container">

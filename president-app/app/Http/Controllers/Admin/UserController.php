@@ -11,14 +11,14 @@ use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
-    public function index()
+    public function workmansIndex()
     {
-        $users = User::where('id', '!=', session()->get('user')->id)->where('isDeleted', false)->with('media')->with('role')->with('user')->paginate(10);
+        $workmans = User::where('id', '!=', session()->get('user')->id)->where('isDeleted', false)->with('media')->with('role')->with('user')->paginate(10);
         $roles = Role::where('isDeleted', false)->get();
-        return view('interfaces.admin.users', compact('users', 'roles'));
+        return view('interfaces.admin.workmans', compact('workmans', 'roles'));
     }
 
-    public function add()
+    public function workmansAdd()
     {
         request()->validate([
             'email' => 'required|unique:users|max:30',
@@ -46,17 +46,17 @@ class UserController extends Controller
         return redirect()->back()->with('msg', __('lang.adding.success'));
     }
 
-    public function update()
+    public function workmansUpdate()
     {
-        $user = User::where('users.id', request()->id)->with('media')->first();
+        $workman = User::where('users.id', request()->id)->with('media')->first();
         request()->isActiveCheck ? request()->request->add(['isActive' => true]) : request()->request->add(['isActive' => false]);
         is_null(request()->pss) ? '' : request()->request->add(['password' => Hash::make(request()->pass)]);
         if (request()->hasFile('avatar')):
             $avatar = Storage::disk('upload')->put('upload/avatars', request()->file('avatar'));
             $pathInfo = pathinfo($avatar);
-            if ($user->mediaId != 1):
-                Storage::disk('upload')->delete($user->media->fullPath);
-                Media::where('id', $user->mediaId)->update([
+            if ($workman->mediaId != 1):
+                Storage::disk('upload')->delete($workman->media->fullPath);
+                Media::where('id', $workman->mediaId)->update([
                     'baseName' => $pathInfo['basename'],
                     'fullPath' => $avatar,
                     'type' => $pathInfo['extension'],
@@ -76,7 +76,7 @@ class UserController extends Controller
         return redirect()->back()->with('msg', __('lang.update.success'));
     }
 
-    public function delete($id)
+    public function workmansDelete($id)
     {
         User::where('id', $id)->update([ 'isDeleted' => true, 'email' => User::find($id)->email . "-{$id}" ]);
 
