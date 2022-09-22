@@ -61,6 +61,7 @@
 
     @if (session()->has('msg') or $errors->any())
         <!-- begin::messages -->
+        <audio id="error-audio" src="{{ asset('img/alert.mp3') }}" preload="auto"></audio>
         <script>
             Swal.fire({
                 toast: true,
@@ -74,12 +75,16 @@
                 },
                 @if ($errors->any())
                     title: "{!! implode('', $errors->all(':message')) !!}",
-                    icon: "error"
+                    icon: "error",
                 @else
                     title: "{{ session()->get('msg')['title'] }}",
                     icon: "{{ session()->get('msg')['icon'] }}"
                 @endif
             })
+
+            @if (session()->get('msg')['icon'] == 'error')
+                document.getElementById('error-audio').play();
+            @endif
         </script>
         <!-- end::messages -->
     @endif

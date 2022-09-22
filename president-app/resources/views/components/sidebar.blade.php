@@ -1,18 +1,16 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme" data-bg-class="bg-menu-theme">
-    <div class="app-brand demo">
+    <div class="app-brand demo border-b-1 border-b-slate-50 shadow-sm mb-1">
         <a href="#" class="app-brand-link">
             <span class="app-brand-logo demo">
                 <img class="w-10" src="{{ asset('img/icons/logo-black.png') }}">
             </span>
-            <span class="app-brand-text demo menu-text fw-bolder ms-2">Library</span>
+            <span class="app-brand-text demo menu-text ms-2 uppercase">E-LIB</span>
         </a>
 
         <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
             <i class="bx bx-chevron-left bx-sm align-middle"></i>
         </a>
     </div>
-
-    <div class="menu-inner-shadow"></div>
 
     <ul class="menu-inner py-1 ps">
         
