@@ -26,7 +26,7 @@ Route::prefix(Config::get('language', 'uz'))->group(function () {
         Route::post('check', 'Auth\\AuthController@check')->name('auth.check');
     });
 
-    Route::middleware(['auth'])->group(function () {
+    Route::middleware(['auth', 'permission'])->group(function () {
 
         Route::prefix('auth')->group(function () {
             Route::get('sign-in', 'Auth\\AuthController@index')->name('auth.signIn');
@@ -55,7 +55,7 @@ Route::prefix(Config::get('language', 'uz'))->group(function () {
                 Route::post('give', 'Admin\\BooksController@give')->name('admin.books.give');
             });
 
-            Route::prefix('systems')->group( function () {
+            Route::prefix('systems')->group(function () {
                 Route::get('/', 'Admin\\SystemController@index')->name('admin.system');
                 Route::post('add', 'Admin\\SystemController@add')->name('admin.system.add');
                 Route::post('update', 'Admin\\SystemController@update')->name('admin.system.update');
@@ -69,18 +69,18 @@ Route::prefix(Config::get('language', 'uz'))->group(function () {
                 Route::get('delete/{id}', 'Admin\\AuthorController@delete')->name('admin.authors.delete');
             });
 
-            Route::prefix('orders')->group( function () {
+            Route::prefix('orders')->group(function () {
                 Route::get('/', 'Admin\\OrderController@index')->name('admin.orders');
             });
 
-            Route::prefix('users')->group( function () {
+            Route::prefix('users')->group(function () {
                 Route::get('/', 'Admin\\UserController@index')->name('admin.users');
                 Route::post('add', 'Admin\\UserController@add')->name('admin.users.add');
                 Route::post('update', 'Admin\\UserController@update')->name('admin.users.update');
                 Route::get('delete/{id}', 'Admin\\UserController@delete')->name('admin.users.delete');
             });
 
-            Route::prefix('roles')->group( function () {
+            Route::prefix('roles')->group(function () {
                 Route::get('/', 'Admin\\RoleController@index')->name('admin.roles');
                 Route::post('add', 'Admin\\RoleController@add')->name('admin.roles.add');
                 Route::post('update', 'Admin\\RoleController@update')->name('admin.roles.update');

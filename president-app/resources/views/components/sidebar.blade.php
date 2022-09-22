@@ -15,44 +15,54 @@
     <div class="menu-inner-shadow"></div>
 
     <ul class="menu-inner py-1 ps">
+        
+        <!-- Main menus -->
         @foreach ($menus as $m)
-            <li class="menu-item {{ Route::is($m->route) ? 'active' : '' }}" @empty($m->route) data-select="menu-item-{{ $m->id }}" @endempty>
-                <a href="@empty($m->route) #! @else {{ route($m->route) }} @endempty"
-                    @class(['menu-link', 'menu-toggle' => empty($m->route)])
-                    onclick="selectMenu({{ $m->id }})">
+            <li class="menu-item {{ Route::is($m->route) ? 'active' : '' }}"
+                data-select="menu-item-{{ $m->id }}">
+                <a href="javascript:void(0)" @class(['menu-link', 'menu-toggle' => empty($m->route)]) onclick="selectMenu({{ $m->id }})">
                     <i class="menu-icon tf-icons bx {{ $m->icon }}"></i>
                     <div data-i18n="Layouts">{{ $m->name }}</div>
                 </a>
-                @if (empty($m->route))
-                    <ul class="menu-sub">
-                        @foreach ($submenus as $s)
-                            @if ($m->id == $s->parentId)
-                                <li class="menu-item {{ Route::is($s->route) ? 'active' : '' }}">
-                                    <a href="{{ route($s->route) }}" class="menu-link">
-                                        <div data-i18n="Without menu">{{ $s->name }}</div>
-                                    </a>
-                                </li>
-                            @endif
-                        @endforeach
-                    </ul>
-                @endif
+                <ul class="menu-sub">
+                    @foreach ($submenus as $s)
+                        @if ($m->id == $s->parentId)
+                            <li class="menu-item {{ Route::is($s->route) ? 'active' : '' }}">
+                                <a href="{{ route($s->route) }}" class="menu-link">
+                                    <div data-i18n="Without menu">{{ $s->name }}</div>
+                                </a>
+                            </li>
+                        @endif
+                    @endforeach
+                </ul>
             </li>
         @endforeach
-        
+
+        <!-- Open menus -->
+        <li class="menu-header small text-uppercase"><span class="menu-header-text">Ochiq menu</span></li>
+        @foreach ($openmenus as $o)
+        <li class="menu-item {{ Route::is($m->route) ? 'active' : '' }}">
+            <a href="{{ route($o->route) }}" class="menu-link" onclick="selectMenu({{ $o->id }})">
+                <i class="menu-icon tf-icons bx {{ $o->icon }}"></i>
+                <div data-i18n="Layouts">{{ $o->name }}</div>
+            </a>
+        </li>
+        @endforeach
+
         <!-- Misc -->
         <li class="menu-header small text-uppercase"><span class="menu-header-text">Vidjetlar</span></li>
         <li class="menu-item">
-            <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues" target="_blank"
+            <a href="https://t.me/KUlibrarybot" target="_blank"
                 class="menu-link">
                 <i class="menu-icon tf-icons bx bx-support"></i>
-                <div data-i18n="Support">Support</div>
+                <div data-i18n="Support">Qo'llab quvatlash</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
-                target="_blank" class="menu-link">
+            <a href="https://t.me/LIBRARY_KU" target="_blank"
+                class="menu-link">
                 <i class="menu-icon tf-icons bx bx-file"></i>
-                <div data-i18n="Documentation">Documentation</div>
+                <div data-i18n="Documentation">Elektron kitoblar</div>
             </a>
         </li>
         <div class="ps__rail-x" style="left: 0px; bottom: 0px;">

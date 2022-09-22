@@ -2,7 +2,6 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Menu;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,11 +25,6 @@ class Auth
         if (session()->has('user') && $request->path() == app()->getLocale() . '/auth/sign-in'):
             return back();
         endif;
-
-        $route = Route::getRoutes()->match($request);
-        $currentroute = $route->getName();
-        // $menu = Menu::find(session())
-
 
         return $next($request)->header('Cache-Control', 'no-cache, no-store, max-age=0, must-revalidate')
             ->header('Pragma', 'no-cache')
