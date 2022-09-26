@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-xl-12 mb-4 text-center">
                 <div class="card">
-                    <div class="card-body uppercase">
+                    <div class="card-body uppercase font-semibold">
                         {{ $book->name }}
                     </div>
                 </div>
@@ -18,9 +18,8 @@
             <div class="col-xl-6 mb-4 mb-xl-0">
                 <div class="card">
                     <div class="card-body">
-                        <img src="{{ asset($book->cover->fullPath) }}" alt="">
+                        <img src="{{ asset($book->cover->fullPath) }}" class="rounded mb-5" alt="">
                         <ul class="timeline">
-
                             <li class="timeline-item timeline-item-transparent">
                                 <span class="timeline-point timeline-point-primary"></span>
                                 <div class="timeline-event">

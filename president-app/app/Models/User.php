@@ -62,4 +62,9 @@ class User extends Authenticatable
         return $this->belongsTo(Media::class, 'mediaId', 'id');
     }
 
+    public function system()
+    {
+        return $this->hasOne(System::class, 'id', 'systemId');
+    }
+
 }

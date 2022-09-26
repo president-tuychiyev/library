@@ -42,8 +42,8 @@
                                 <tr class="text-center">
                                     <td><strong>{{ $i + 1 }}</strong></td>
                                     <td>{{ $u->name }}</td>
-                                    <td><img class="rounded-circle" style="width: 8ex" src="{{ asset($u->media->fullPath) }}"
-                                            alt="{{ $u->name }}"></td>
+                                    <td><img class="rounded-circle" style="width: 8ex"
+                                            src="{{ asset($u->media->fullPath) }}" alt="{{ $u->name }}"></td>
                                     <td>
                                         @if ($u->isActive)
                                             <small class="badge bg-label-primary me-1"> <i class="bx bx-check-shield"
@@ -58,12 +58,17 @@
                                     <td>{{ $u->user->name }}</td>
                                     <td>{{ $u->created_at->format('d.m.Y') }}</td>
                                     <td>
-                                        <button type="button" class="px-2" onclick="updateAuthor(this)"
-                                            data-title="Foydalanuvchini yangilash" data-id="{{ $u->id }}"
-                                            data-bs-toggle="modal" data-bs-target="#userModel"
-                                            data-name="{{ $u->name }}"><i class="bx bx-edit" data-bs-toggle="tooltip"
-                                                data-bs-placement="top"
-                                                data-bs-original-title="Foydalanuvchini yangilash"></i></button>
+                                        <button type="button"><i class='bx bx-show'></i></button>
+                                        <button type="button" class="px-2" data-bs-toggle="modal"
+                                            data-bs-target="#infoUserModal"><i class='bx bx-user'></i></button>
+                                        <button type="button" class="px-2" onclick="updateUser(this)"
+                                            data-title="Yangilash" data-id="{{ $u->id }}" data-bs-toggle="modal"
+                                            data-bs-target="#userModal" data-name="{{ $u->name }}"
+                                            data-phone="{{ $u->phone }}" data-email="{{ $u->email }}"
+                                            data-active="{{ $u->isActive }}"
+                                            data-system="{{ optional($u->system)->group }}">
+                                            <i class="bx bx-edit" data-bs-toggle="tooltip" data-bs-placement="top"
+                                                data-bs-original-title="Yangilash"></i></button>
                                         <button type="button" data-href="{{ route('admin.users.delete', $u->id) }}"
                                             data-bs-toggle="modal" data-bs-target="#confirmModal"
                                             onclick="deleteConfirmModal(this)"><i class="bx bx-trash"
@@ -123,6 +128,17 @@
                                         <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                                     </div>
                                 </div>
+                                @if (isset($groups))
+                                    <div class="input-group input-group-merge mb-2">
+                                        <select class="form-select" name="systemId" id="select-document-type" required
+                                            data-bs-toggle="tooltip" data-bs-placement="top"
+                                            data-bs-original-title="majburiy boʻlim">
+                                            @foreach ($groups as $g)
+                                                <option value="{{ $g->id }}">{{ $g->group }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                @endif
                                 <div class="input-group input-group-merge mb-3">
                                     <input class="form-control" name="avatar" type="file" id="cover-media-book"
                                         data-bs-toggle="tooltip" data-bs-placement="top"
@@ -154,5 +170,28 @@
             </div>
         </div>
         <!--/ Modal for add data -->
+
+
+        <!--/ Modal info user -->
+        <div class="modal fade" id="infoUserModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="infoUserModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="usersModal">Guvohnoma</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="d-flex">
+                            <div id="qrcode" class="w-10"></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="reset" class="btn btn-danger bg-red-600" data-bs-dismiss="modal">Bekor
+                            qilish</button>
+                        <button type="submit" class="btn btn-primary bg-blue-800">Pechat</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @stop

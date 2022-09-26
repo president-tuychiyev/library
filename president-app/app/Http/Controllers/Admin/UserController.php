@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Media;
 use App\Models\Role;
+use App\Models\System;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -91,17 +92,14 @@ class UserController extends Controller
 
     public function students()
     {
-        $users = User::where('id', '!=', session()->get('user')->id)->where('isDeleted', false)->where('roleId', 3)->with('media')->with('user')->paginate(30);
+        $users = User::where('id', '!=', session()->get('user')->id)->where('isDeleted', false)->where('roleId', 3)->with('media')->with('user')->with('system')->paginate(30);
+        $groups = System::where('isDeleted', false)->where('isActive', true)->get();
         $role = 3;
-        return view('interfaces.admin.users-others', compact('users', 'role'));
+        return view('interfaces.admin.users-others', compact('users', 'role', 'groups'));
     }
 
     public function usersAdd()
     {
-        // dd(Storage::disk('upload'));
-        // $avatar = Storage::disk('upload')->put('upload/avatars', request()->file('avatar'));
-
-        // die;
         request()->validate([
             'email' => 'required|unique:users|max:30',
             'pass' => 'required',

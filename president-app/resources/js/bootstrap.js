@@ -139,14 +139,18 @@ window.addUser = function (e) {
 
 window.updateUser = function (e) {
   document.getElementById("modalForm").action = document.getElementById("modalForm").getAttribute("data-update");
-  document.getElementById("titleWorkman").innerHTML = e.getAttribute('data-title');
+  document.getElementById("titleUsers").innerHTML = e.getAttribute('data-title');
   document.querySelector('[name="id"]').value = e.getAttribute('data-id');
   document.querySelector('[name="name"]').value = e.getAttribute('data-name');
   document.querySelector('[name="phone"]').value = e.getAttribute('data-phone');
   document.querySelector('[name="email"]').value = e.getAttribute('data-email');
   document.querySelector('[name="email"]').disabled = true;
   document.querySelector('[name="pass"]').required = false;
-  document.querySelector('[value="' + e.getAttribute('data-role') + '"]').selected = true;
+  new QRCode(document.getElementById("qrcode"), e.getAttribute('data-id'));
+  if (document.querySelector('[value="' + e.getAttribute('data-system') + '"]'))
+  {
+    document.querySelector('[value="' + e.getAttribute('data-system') + '"]').selected = true;
+  }
   if (e.getAttribute('data-active') == 1)
   {
     document.querySelector('[name="isActiveCheck"]').checked = true;
