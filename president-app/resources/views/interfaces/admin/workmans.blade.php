@@ -42,7 +42,7 @@
                                     class="rounded-circle w-px-100 h-px-100 mx-auto d-block">
                             </div>
                             <h5 class="mb-1 card-title">{{ $w->name }}</h5>
-                            <strong class="">{{ $w->role->$name }}</strong>
+                            <strong class="">{{ $w->role->nameuz }}</strong>
                             <div class="d-flex align-items-center justify-content-center my-3 gap-2">
                                 <span class="badge bg-label-secondary me-1">Holati</span>
                                 @if ($w->isActive)

@@ -404,7 +404,7 @@
                             <table class="table">
                                 <thead>
                                     <tr class="uppercase">
-                                        <th>id</th>
+                                        <th>№</th>
                                         <th>nomi</th>
                                         <th class="text-center">holati</th>
                                         <th>yaratuvchi</th>
@@ -412,9 +412,9 @@
                                     </tr>
                                 </thead>
                                 <tbody class="table-border-bottom-0">
-                                    @foreach ($directs as $d)
+                                    @foreach ($directs as $i => $d)
                                         <tr>
-                                            <td class="font-medium">{{ $d->id }}</td>
+                                            <td class="font-medium">{{ $i+1 }}</td>
                                             <td>{{ $d->$name }}</td>
                                             <td class="text-center">
                                                 @if ($d->isActive)

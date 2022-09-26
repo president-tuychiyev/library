@@ -53,20 +53,22 @@
                                         <small class="text-success">({{ $users->where('roleId', $r->id)->count() }})</small>
                                     </div>
                                 </div>
-                                <span class="rounded p-2">
-                                    <button type="button" class="badge bg-label-primary" onclick="updateRole(this)"
-                                        data-type="1" data-title="Fan yoʻnalishini yangilash" data-id="{{ $r->id }}"
-                                        data-bs-toggle="modal" data-bs-target="#roleModal"
-                                        data-langs="{{ $r->nameuz . '@' . $r->nameru . '@' . $r->nameen }}"
-                                        data-permissions="{{ $perForUpdate }}"><i class="bx bx-edit"
-                                            data-bs-toggle="tooltip" data-bs-placement="top"
-                                            data-bs-original-title="Yangilash"></i></button>
-                                    <button type="button" class="badge bg-label-danger"
-                                        data-href="{{ route('admin.roles.delete', $r->id) }}" data-bs-toggle="modal"
-                                        data-bs-target="#confirmModal" onclick="deleteConfirmModal(this)"><i
-                                            class="bx bx-trash" data-bs-toggle="tooltip" data-bs-placement="top"
-                                            data-bs-original-title="Oʻchirish"></i></button>
-                                </span>
+                                @if ($r->id != 1 && $r->id != 2 && $r->id != 3)
+                                    <span class="rounded p-2">
+                                        <button type="button" class="badge bg-label-primary" onclick="updateRole(this)"
+                                            data-type="1" data-title="Fan yoʻnalishini yangilash"
+                                            data-id="{{ $r->id }}" data-bs-toggle="modal" data-bs-target="#roleModal"
+                                            data-langs="{{ $r->nameuz . '@' . $r->nameru . '@' . $r->nameen }}"
+                                            data-permissions="{{ $perForUpdate }}"><i class="bx bx-edit"
+                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                data-bs-original-title="Yangilash"></i></button>
+                                        <button type="button" class="badge bg-label-danger"
+                                            data-href="{{ route('admin.roles.delete', $r->id) }}" data-bs-toggle="modal"
+                                            data-bs-target="#confirmModal" onclick="deleteConfirmModal(this)"><i
+                                                class="bx bx-trash" data-bs-toggle="tooltip" data-bs-placement="top"
+                                                data-bs-original-title="Oʻchirish"></i></button>
+                                    </span>
+                                @endif
                             </div>
                             <hr class="mb-2 mt-2">
                             <div class="table-responsive text-nowrap">

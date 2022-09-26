@@ -20,7 +20,7 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th>id</th>
+                                <th>№</th>
                                 <th>nomi</th>
                                 <th class="text-center">holati</th>
                                 <th>QRCODE</th>
@@ -30,9 +30,9 @@
                             </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">
-                            @foreach ($books as $b)
+                            @foreach ($books as $i => $b)
                                 <tr>
-                                    <td><strong>{{ $b->id }}</strong></td>
+                                    <td><strong>{{ $i+1 }}</strong></td>
                                     <td>{{ $b->name }}</td>
                                     <td class="text-center">
                                         @if ($b->isActive)

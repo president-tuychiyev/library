@@ -16,7 +16,7 @@
         
         <!-- Main menus -->
         @foreach ($menus as $m)
-            <li class="menu-item {{ Route::is($m->route) ? 'active' : '' }}"
+            <li class="menu-item"
                 data-select="menu-item-{{ $m->id }}">
                 <a href="javascript:void(0)" @class(['menu-link', 'menu-toggle' => empty($m->route)]) onclick="selectMenu({{ $m->id }})">
                     <i class="menu-icon tf-icons bx {{ $m->icon }}"></i>
@@ -39,7 +39,7 @@
         <!-- Open menus -->
         <li class="menu-header small text-uppercase"><span class="menu-header-text">Ochiq menu</span></li>
         @foreach ($openmenus as $o)
-        <li class="menu-item {{ Route::is($m->route) ? 'active' : '' }}">
+        <li class="menu-item {{ Route::is($o->route) ? 'active' : '' }}">
             <a href="{{ route($o->route) }}" class="menu-link" onclick="selectMenu({{ $o->id }})">
                 <i class="menu-icon tf-icons bx {{ $o->icon }}"></i>
                 <div data-i18n="Layouts">{{ $o->name }}</div>

@@ -28,7 +28,7 @@
                             <table class="table">
                                 <thead>
                                     <tr class="uppercase">
-                                        <th>id</th>
+                                        <th>№</th>
                                         <th>nomi</th>
                                         <th class="text-center">holati</th>
                                         <th>yaratuvchi</th>
@@ -36,9 +36,9 @@
                                     </tr>
                                 </thead>
                                 <tbody class="table-border-bottom-0">
-                                    @foreach ($facultys as $f)
+                                    @foreach ($facultys as $i => $f)
                                         <tr>
-                                            <td class="font-medium">{{ $f->id }}</td>
+                                            <td class="font-medium">{{ $i+1 }}</td>
                                             <td>{{ $f->$name }}</td>
                                             <td class="text-center">
                                                 @if ($f->isActive)
@@ -102,7 +102,7 @@
                             <table class="table">
                                 <thead>
                                     <tr class="uppercase">
-                                        <th>id</th>
+                                        <th>№</th>
                                         <th>nomi</th>
                                         <th class="text-center">holati</th>
                                         <th>yaratuvchi</th>
@@ -110,9 +110,9 @@
                                     </tr>
                                 </thead>
                                 <tbody class="table-border-bottom-0">
-                                    @foreach ($departaments as $d)
+                                    @foreach ($departaments as $i => $d)
                                         <tr>
-                                            <td class="font-medium">{{ $d->id }}</td>
+                                            <td class="font-medium">{{ $i+1 }}</td>
                                             <td>{{ $d->$name }}</td>
                                             <td class="text-center">
                                                 @if ($d->isActive)
@@ -177,7 +177,7 @@
                             <table class="table">
                                 <thead>
                                     <tr class="uppercase">
-                                        <th>id</th>
+                                        <th>№</th>
                                         <th>nomi</th>
                                         <th class="text-center">holati</th>
                                         <th>yaratuvchi</th>
@@ -185,9 +185,9 @@
                                     </tr>
                                 </thead>
                                 <tbody class="table-border-bottom-0">
-                                    @foreach ($groups as $g)
+                                    @foreach ($groups as $i => $g)
                                         <tr>
-                                            <td class="font-medium">{{ $g->id }}</td>
+                                            <td class="font-medium">{{ $i+1 }}</td>
                                             <td>{{ $g->group }}</td>
                                             <td class="text-center">
                                                 @if ($g->isActive)

@@ -38,27 +38,27 @@ class BooksController extends Controller
 
     public function insert()
     {
-        $validate = request()->validate([
-            'docTypeId' => 'required|numeric|max:11',
-            'docLangId' => 'required|numeric|max:11',
-            'textTypeId' => 'required|numeric|max:11',
-            'docFormatId' => 'required|numeric|max:11',
-            'fileTypeId' => 'required|numeric|max:11',
-            'directId' => 'required|numeric|max:11',
-            'name' => 'required|string|max:255',
-            'authorId' => 'required|numeric|max:11',
-            'cityPublication' => 'sometimes|string|max:255',
-            'publisher' => 'sometimes|string|max:255',
-            'isbn' => 'sometimes|string|max:255',
-            'udk' => 'sometimes|string|max:255',
-            'annontation' => 'sometimes|max:1000',
-            'datePublication' => 'required',
-            'numPage' => 'required|max:11',
-            'price' => 'required|max:11',
-            'isActive' => 'sometimes',
-            'comeFrom' => 'required|numeric|max:11',
-            'forWhom' => 'required|numeric|max:11',
-        ]);
+        // $validate = request()->validate([
+        //     'docTypeId' => 'required|numeric|max:11',
+        //     'docLangId' => 'required|numeric|max:11',
+        //     'textTypeId' => 'required|numeric|max:11',
+        //     'docFormatId' => 'required|numeric|max:11',
+        //     'fileTypeId' => 'required|numeric|max:11',
+        //     'directId' => 'required|numeric|max:11',
+        //     'name' => 'required|string|max:255',
+        //     'authorId' => 'required|numeric|max:11',
+        //     'cityPublication' => 'sometimes|string|max:255',
+        //     'publisher' => 'sometimes|string|max:255',
+        //     'isbn' => 'sometimes|string|max:255',
+        //     'udk' => 'sometimes|string|max:255',
+        //     'annontation' => 'sometimes|max:1000',
+        //     'datePublication' => 'required',
+        //     'numPage' => 'required|max:11',
+        //     'price' => 'required|max:11',
+        //     'isActive' => 'sometimes',
+        //     'comeFrom' => 'required|numeric|max:11',
+        //     'forWhom' => 'required|numeric|max:11',
+        // ]);
 
         if (request()->hasFile('coverMedia')):
             $coverMedia = Storage::disk('upload')->put('upload/covers', request()->file('coverMedia'));

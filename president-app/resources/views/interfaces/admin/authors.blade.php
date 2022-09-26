@@ -21,7 +21,7 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th>id</th>
+                                <th>№</th>
                                 <th>nomi</th>
                                 <th class="text-center">holati</th>
                                 <th>yaratuvchi</th>
@@ -30,9 +30,9 @@
                             </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">
-                            @foreach ($authors as $a)
+                            @foreach ($authors as $i => $a)
                                 <tr>
-                                    <td><strong>{{ $a->id }}</strong></td>
+                                    <td><strong>{{ $i+1 }}</strong></td>
                                     <td>{{ $a->name }}</td>
                                     <td class="text-center">
                                         @if ($a->isActive)
@@ -86,17 +86,17 @@
                         <div class="modal-body">
                             <div class="col-12 fv-plugins-icon-container">
                                 <div class="input-group input-group-merge has-validation mb-2">
-                                    <input type="text" class="form-control" name="name" placeholder="To'liq ism familiyasi" required
-                                        data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"
-                                        data-bs-placement="top" title="majburiy bo'lim">
+                                    <input type="text" class="form-control" name="name"
+                                        placeholder="To'liq ism familiyasi" required data-bs-toggle="tooltip"
+                                        data-bs-custom-class="custom-tooltip" data-bs-placement="top"
+                                        title="majburiy bo'lim">
                                 </div>
                                 <div class="form-check">
                                     <label class="form-check-label custom-option-content" for="isActive">
                                         <span class="custom-option-body">
                                             <span class="custom-option-title"> Faolmi ? </span>
                                         </span>
-                                        <input class="form-check-input" type="checkbox" name="isActiveCheck"
-                                            id="isActive">
+                                        <input class="form-check-input" type="checkbox" name="isActiveCheck" id="isActive">
                                     </label>
                                 </div>
                             </div>

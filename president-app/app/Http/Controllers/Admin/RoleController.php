@@ -45,7 +45,7 @@ class RoleController extends Controller
     {
         request()->isActiveCheck ? request()->request->add(['isActive' => true]) : request()->request->add(['isActive' => false]);
         $role = Role::find(request()->id);
-        Role::where('id', request()->id)->update(request()->except(['menu', 'id', '_token']));
+        Role::where('id', request()->id)->whereNotIn('id', [1, 2, 3])->update(request()->except(['menu', 'id', '_token']));
         foreach (request()->menu as $key => $val):
             $permission = [];
             foreach ($val as $k => $v):
@@ -58,8 +58,8 @@ class RoleController extends Controller
 
     public function delete($id)
     {
-        Role::where('id', $id)->update(['isDeleted' => true]);
-        
+        Role::where('id', $id)->whereNotIn('id', [1, 2, 3])->update(['isDeleted' => true]);
+
         return redirect()->back()->with('msg', __('lang.delete.success'));
     }
 }

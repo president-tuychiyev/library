@@ -80,11 +80,12 @@ Route::prefix(Config::get('language', 'uz'))->group(function () {
                 Route::get('delete/{id}', 'Admin\\UserController@workmansDelete')->name('admin.workmans.delete');
             });
 
-            Route::prefix('teachers')->group(function () {
-                Route::get('/', 'Admin\\UserController@teachersIndex')->name('admin.teachers');
-                Route::post('add', 'Admin\\UserController@teachersAdd')->name('admin.teachers.add');
-                Route::post('update', 'Admin\\UserController@teachersUpdate')->name('admin.teachers.update');
-                Route::get('delete/{id}', 'Admin\\UserController@teachersDelete')->name('admin.teachers.delete');
+            Route::prefix('users')->group(function () {
+                Route::get('teachers', 'Admin\\UserController@teachers')->name('admin.users.teachers');
+                Route::get('students', 'Admin\\UserController@students')->name('admin.users.students');
+                Route::post('add', 'Admin\\UserController@usersAdd')->name('admin.users.add');
+                Route::post('update', 'Admin\\UserController@usersUpdate')->name('admin.users.update');
+                Route::get('delete/{id}', 'Admin\\UserController@usersDelete')->name('admin.users.delete');
             });
 
             Route::prefix('roles')->group(function () {
