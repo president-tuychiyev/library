@@ -146,7 +146,6 @@ window.updateUser = function (e) {
   document.querySelector('[name="email"]').value = e.getAttribute('data-email');
   document.querySelector('[name="email"]').disabled = true;
   document.querySelector('[name="pass"]').required = false;
-  new QRCode(document.getElementById("qrcode"), e.getAttribute('data-id'));
   if (document.querySelector('[value="' + e.getAttribute('data-system') + '"]'))
   {
     document.querySelector('[value="' + e.getAttribute('data-system') + '"]').selected = true;

@@ -97,6 +97,25 @@
                     </div>
                 </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <div class="card mt-5">
                     <form action="{{ route('admin.books.give') }}" method="post">
                         @csrf
@@ -156,6 +175,47 @@
                 </div>
             </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
             <div class="col-xl-6">
                 <div class="card">
                     <h5 class="card-header font-semibold">Kitob haqida ma'lumot</h5>
