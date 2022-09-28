@@ -161,4 +161,10 @@ class UserController extends Controller
         User::where('id', $id)->where('id', '!=', 1)->update(['isDeleted' => true, 'email' => User::find($id)->email . "-{$id}"]);
         return redirect()->back()->with('msg', __('lang.delete.success'));
     }
+
+    public function check()
+    {
+        $user = User::where([ 'isDeleted' => false, 'isActive' => true, 'id' => request()->id])->select('users.name', 'users.email', 'users.phone', 'system')->with('system')->first();
+        return response()->json($user, 200);
+    }
 }

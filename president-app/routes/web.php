@@ -86,6 +86,7 @@ Route::prefix(Config::get('language', 'uz'))->group(function () {
                 Route::post('add', 'Admin\\UserController@usersAdd')->name('admin.users.add');
                 Route::post('update', 'Admin\\UserController@usersUpdate')->name('admin.users.update');
                 Route::get('delete/{id}', 'Admin\\UserController@usersDelete')->name('admin.users.delete');
+                Route::post('check', 'Admin\\UserController@check')->name('admin.users.check');
             });
 
             Route::prefix('roles')->group(function () {

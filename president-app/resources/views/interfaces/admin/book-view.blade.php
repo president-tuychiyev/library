@@ -3,7 +3,7 @@
 @section('title', 'Kitob')
 
 @section('content')
-    @php( $name = 'name' . app()->getLocale())
+    @php($name = 'name' . app()->getLocale())
 
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">
@@ -117,61 +117,34 @@
 
 
                 <div class="card mt-5">
-                    <form action="{{ route('admin.books.give') }}" method="post">
-                        @csrf
-                        <input type="number" name="bookId" value="{{ $book->id }}" hidden>
-                        <div class="card-header">
-                            <h5 class="card-title">Kitob berish</h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="mb-3">
-                                <label class="form-label" for="group">Guruh</label>
-                                <select id="group" name="group" class="form-select" required data-bs-toggle="tooltip" data-bs-placement="top"
-                                title="majburiy boʻlim">
-                                @foreach ($groups as $g)
-                                    <option value="{{ $g->id }}">{{ $g->group }}</option>
-                                @endforeach
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="full-name">To'liq ism familiya</label>
-                                <input type="text" id="full-name" name="name" class="form-control" required data-bs-toggle="tooltip" data-bs-placement="top"
-                                title="majburiy boʻlim">
-                            </div>
+                    <div class="card-header">
+                        <h5 class="card-title">Kitob berish</h5>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ route('admin.books.give') }}" method="post">
+                            @csrf
+                            <input type="number" name="bookId" value="{{ $book->id }}" hidden>
                             <div class="mb-3">
                                 <label class="form-label" for="card-number">Kutbhona karta raqami</label>
-                                <input type="text" id="card-number" name="libCardNum" class="form-control" data-bs-toggle="tooltip" data-bs-placement="top"
-                                title="majburiy emas">
+                                <input type="text" id="card-number" name="libCardNum" class="form-control" onchange="checkUser(this)"
+                                    data-bs-toggle="tooltip" data-bs-placement="top" title="majburiy boʻlim" required>
                             </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="phone-number">Telefon raqam</label>
-                                <div class="input-group">
-                                    <span class="input-group-text">UZ (+998)</span>
-                                    <input type="number" id="phone-number-mask" name="phone" class="form-control phone-number-mask"
-                                        placeholder="9* *** ****" required data-bs-toggle="tooltip" data-bs-placement="top"
-                                        title="majburiy boʻlim">
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="issued">Berilgan sana</label>
-                                <input type="date" id="issued" name="issued" class="form-control"
-                                    value="{{ date('Y-m-d', strtotime(now())) }}" required data-bs-toggle="tooltip" data-bs-placement="top"
-                                    title="majburiy boʻlim">
+                            <div class="mb-3 row-flex" id="userData">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="phone-number">Necha kunga</label>
                                 <div class="input-group">
-                                    <input type="number" id="get-back" name="day" class="form-control" required data-bs-toggle="tooltip" data-bs-placement="top"
-                                    title="majburiy boʻlim">
+                                    <input type="number" id="get-back" name="day" class="form-control" required
+                                        data-bs-toggle="tooltip" data-bs-placement="top" title="majburiy boʻlim">
                                     <span class="input-group-text">kun</span>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary bg-indigo-600">
+                            <button type="submit" class="btn btn-primary bg-indigo-600" id="btnOrderForm">
                                 <i class="bx bx-plus"></i>
                                 <span class="align-middle">Kitobni berish</span>
                             </button>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
 
@@ -215,7 +188,7 @@
 
 
 
-            
+
             <div class="col-xl-6">
                 <div class="card">
                     <h5 class="card-header font-semibold">Kitob haqida ma'lumot</h5>
