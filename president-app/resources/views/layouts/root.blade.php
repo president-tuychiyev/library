@@ -9,10 +9,10 @@
 
     <title>@yield('title')</title>
 
-    {{-- <link rel="stylesheet" href="{{ asset('build/assets/app.5e3b6068.css') }}">
-    <script src="{{ asset('build/assets/app.512b88be.js') }}" type="module"></script> --}}
+    <link rel="stylesheet" href="{{ asset('build/assets/app.df12c049.css') }}">
+    <script src="{{ asset('build/assets/app.340cda48.js') }}" type="module"></script>
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css" />
