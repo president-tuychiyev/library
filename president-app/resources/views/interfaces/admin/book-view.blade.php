@@ -126,10 +126,11 @@
                             <input type="number" name="bookId" value="{{ $book->id }}" hidden>
                             <div class="mb-3">
                                 <label class="form-label" for="card-number">Kutbhona karta raqami</label>
-                                <input type="text" id="card-number" name="libCardNum" class="form-control" onchange="checkUser(this)"
-                                    data-bs-toggle="tooltip" data-bs-placement="top" title="majburiy boʻlim" required>
+                                <input type="text" id="card-number" name="recUserId" class="form-control"
+                                    onkeypress="checkUser(this, event)" data-bs-toggle="tooltip" data-bs-placement="top"
+                                    title="majburiy boʻlim" required>
                             </div>
-                            <div class="mb-3 row-flex" id="userData">
+                            <div class="mb-3 row-flex rounded bg-indigo-500 p-2 text-white" hidden id="userData">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="phone-number">Necha kunga</label>

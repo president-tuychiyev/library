@@ -25,7 +25,7 @@ class User extends Authenticatable
         'email',
         'password',
         'roleId',
-        'isActive'
+        'isActive',
     ];
 
     /**
@@ -54,7 +54,7 @@ class User extends Authenticatable
 
     public function role()
     {
-        return $this->belongsTo(Role::class, 'roleId','id');
+        return $this->belongsTo(Role::class, 'roleId', 'id');
     }
 
     public function media()

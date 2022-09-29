@@ -13,7 +13,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class BooksController extends Controller
+class BookController extends Controller
 {
 
     public function __construct()
@@ -192,8 +192,7 @@ class BooksController extends Controller
 
     public function give()
     {
-        request()->request->add(['systemId' => request()->group, 'getBack' => Carbon::parse(request()->issued)->addDays(request()->day), 'userId' => session()->get('user')->id]);
-        request()->request->remove('group');
+        request()->request->add(['getBack' => Carbon::parse(request()->issued)->addDays(request()->day), 'userId' => session()->get('user')->id]);
         Order::create(request()->all());
         return redirect()->back()->with('msg', __('lang.update.success'));
     }

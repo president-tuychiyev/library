@@ -92,7 +92,7 @@ class UserController extends Controller
 
     public function students()
     {
-        $users = User::where('id', '!=', session()->get('user')->id)->where('isDeleted', false)->where('roleId', 3)->with('media')->with('user')->with('system')->paginate(30);
+        $users = User::where('id', '!=', session()->get('user')->id)->where('isDeleted', false)->where('roleId', 3)->with('media')->with('user')->paginate(30);
         $groups = System::where('isDeleted', false)->where('isActive', true)->get();
         $role = 3;
         return view('interfaces.admin.users-others', compact('users', 'role', 'groups'));
@@ -164,7 +164,8 @@ class UserController extends Controller
 
     public function check()
     {
-        $user = User::where([ 'isDeleted' => false, 'isActive' => true, 'id' => request()->id])->select('users.name', 'users.email', 'users.phone', 'system')->with('system')->first();
+        $user = User::where([ 'isDeleted' => false, 'isActive' => true, 'id' => request()->id])->with(['system', 'role'])->first();
+        if (!$user) return response()->json("Bunday foydalanuvchi topilmadi!", 210);
         return response()->json($user, 200);
     }
 }

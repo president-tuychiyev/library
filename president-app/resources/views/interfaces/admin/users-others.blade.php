@@ -64,8 +64,7 @@
                                             data-title="Yangilash" data-id="{{ $u->id }}" data-bs-toggle="modal"
                                             data-bs-target="#userModal" data-name="{{ $u->name }}"
                                             data-phone="{{ $u->phone }}" data-email="{{ $u->email }}"
-                                            data-active="{{ $u->isActive }}"
-                                            data-system="{{ optional($u->system)->group }}">
+                                            data-active="{{ $u->isActive }}" data-system="{{ $u->systemId }}">
                                             <i class="bx bx-edit" data-bs-toggle="tooltip" data-bs-placement="top"
                                                 data-bs-original-title="Yangilash"></i></button>
                                         <button type="button" data-href="{{ route('admin.users.delete', $u->id) }}"

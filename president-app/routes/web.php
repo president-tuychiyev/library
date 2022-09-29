@@ -44,15 +44,15 @@ Route::prefix(Config::get('language', 'uz'))->group(function () {
             });
 
             Route::prefix('books')->group(function () {
-                Route::get('/', 'Admin\\BooksController@index')->name('admin.books');
-                Route::get('add', 'Admin\\BooksController@add')->name('admin.books.add');
-                Route::post('insert', 'Admin\\BooksController@insert')->name('admin.books.insert');
-                Route::get('select/{id}', 'Admin\\BooksController@select')->name('admin.books.select');
-                Route::post('update', 'Admin\\BooksController@update')->name('admin.books.update');
-                Route::get('delete/{id}', 'Admin\\BooksController@delete')->name('admin.books.delete');
-                Route::get('qrcode', 'Admin\\BooksController@qrcode')->name('admin.books.qrcode');
-                Route::get('view/{id}', 'Admin\\BooksController@view')->name('admin.books.view');
-                Route::post('give', 'Admin\\BooksController@give')->name('admin.books.give');
+                Route::get('/', 'Admin\\BookController@index')->name('admin.books');
+                Route::get('add', 'Admin\\BookController@add')->name('admin.books.add');
+                Route::post('insert', 'Admin\\BookController@insert')->name('admin.books.insert');
+                Route::get('select/{id}', 'Admin\\BookController@select')->name('admin.books.select');
+                Route::post('update', 'Admin\\BookController@update')->name('admin.books.update');
+                Route::get('delete/{id}', 'Admin\\BookController@delete')->name('admin.books.delete');
+                Route::get('qrcode', 'Admin\\BookController@qrcode')->name('admin.books.qrcode');
+                Route::get('view/{id}', 'Admin\\BookController@view')->name('admin.books.view');
+                Route::post('give', 'Admin\\BookController@give')->name('admin.books.give');
             });
 
             Route::prefix('systems')->group(function () {

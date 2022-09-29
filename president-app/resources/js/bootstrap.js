@@ -1,4 +1,4 @@
-import _, { isNull } from 'lodash';
+import _, { isEmpty, isNull } from 'lodash';
 window._ = _;
 
 import axios from 'axios';
@@ -159,24 +159,56 @@ window.updateUser = function (e) {
   }
 }
 
-window.checkUser = function (e) {
-  axios.post('http://library.test/uz/admin/users/check', { id: e.value })
-    .then((response) => {
-      console.log(response.data.name);
+window.checkUser = function (t, e) {
+  if (e.keyCode === 13)
+  {
+    axios.post('http://library.test/uz/admin/users/check', { id: t.value })
+      .then((response) => {
+        let userData = document.getElementById("userData");
+        userData.hidden = false;
 
-      for (const key in response.data)
-      {
-        let e = document.createElement("strong");
-        let br = document.createElement("br");
-        e.className = 'text-muted';
-        e.innerText = response.data[ key ];
-        document.getElementById("userData").appendChild(e);
-        document.getElementById("userData").appendChild(br);
-      }
+        while (userData.hasChildNodes())
+        {
+          userData.removeChild(userData.firstChild);
+        }
 
-      let e = document.createElement("strong");
-      e.className = 'text-muted';
-      e.innerText = response.data.system.group;
-      document.getElementById("userData").appendChild(e);
-    })
+        if (response.status != 210)
+        {
+          for (const key in response.data)
+          {
+            if (key == 'name' || key == 'email' || key == 'phone')
+            {
+              let e = document.createElement("strong");
+              let br = document.createElement("br");
+              e.innerText = response.data[ key ];
+              userData.appendChild(e);
+              userData.appendChild(br);
+            }
+          }
+
+          if (!isNull(response.data.system) && !isEmpty(response.data.system))
+          {
+            console.log(response.data.system);
+            let e = document.createElement("strong");
+            e.innerText = response.data.system.group;
+            userData.appendChild(e);
+          }
+
+          if (!isNull(response.data.role) && !isEmpty(response.data.role))
+          {
+            console.log(response.data.role);
+            let br = document.createElement("br");
+            userData.appendChild(br);
+            let e = document.createElement("strong");
+            e.innerText = response.data.role.nameuz;
+            userData.appendChild(e);
+          }
+        } else
+        {
+          let e = document.createElement("strong");
+          e.innerText = response.data;
+          userData.appendChild(e);
+        }
+      })
+  }
 }
