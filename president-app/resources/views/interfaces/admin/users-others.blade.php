@@ -31,6 +31,7 @@
                                 <th>№</th>
                                 <th>F.I.O</th>
                                 <th>avatar</th>
+                                <th>qr</th>
                                 <th>holati</th>
                                 <th>yaratuvchi</th>
                                 <th>yaratilgan sana</th>
@@ -43,7 +44,13 @@
                                     <td><strong>{{ $i + 1 }}</strong></td>
                                     <td>{{ $u->name }}</td>
                                     <td><img class="rounded-circle" style="width: 8ex"
-                                            src="{{ asset($u->media->fullPath) }}" alt="{{ $u->name }}"></td>
+                                            src="{{ asset($u->media->fullPath) }}" alt="{{ $u->name }}">
+                                    </td>
+                                    <td>
+                                        <div id="user-qrcode">
+                                            {!! DNS2D::getBarcodeSVG((string) $u->id, 'QRCODE') !!}
+                                        </div>
+                                    </td>
                                     <td>
                                         @if ($u->isActive)
                                             <small class="badge bg-label-primary me-1"> <i class="bx bx-check-shield"
@@ -58,8 +65,10 @@
                                     <td>{{ $u->user->name }}</td>
                                     <td>{{ $u->created_at->format('d.m.Y') }}</td>
                                     <td>
-                                        <button type="button" data-bs-toggle="tooltip" data-bs-placement="top"
-                                            data-bs-original-title="Ko'rish"><i class='bx bx-show'></i></button>
+                                        <button type="button" data-bs-toggle="modal" data-bs-target="#infoModal"
+                                            onclick="infoUser({{ $u->id }})"><i class='bx bx-show'
+                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                data-bs-original-title="Ko'rish"></i></button>
                                         <button type="button" class="px-2" onclick="updateUser(this)"
                                             data-title="Yangilash" data-id="{{ $u->id }}" data-bs-toggle="modal"
                                             data-bs-target="#userModal" data-name="{{ $u->name }}"
@@ -168,5 +177,60 @@
             </div>
         </div>
         <!--/ Modal for add data -->
+
+        <!-- Info Modal -->
+        <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="infoModalLabel">Umumiy ma'lumot</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="d-flex align-items-center row">
+                            <div class="col-sm-5">
+                                <div class="card-body">
+                                    <img class="rounded" src="/" id="avatar-info-modal" height="140">
+                                </div>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="card-body">
+                                    <h2 class="card-title font-bold mb-1" id="user-name-info-modal"></h2>
+                                    <p class="mb-1"><span class="font-bold">Guruhi:</span> <span
+                                            id="group-info-modal"></span></p>
+                                    <p class="mb-1"><span class="font-bold">Email:</span> <span
+                                            id="email-info-modal"></span></p>
+                                    <p class="mb-1"><span class="font-bold">Telefon:</span> <span
+                                            id="phone-info-modal">+998 94 4337566</span></p>
+                                    <span class="badge bg-label-primary">Jami o'qilgan kitoblar soni: <span
+                                            id="books-info-modal">125</span> dona</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger bg-red-600" data-bs-dismiss="modal">Orqaga</button>
+                        <button type="button" class="btn btn-primary bg-blue-700"
+                            onclick="printDocument()">Guvohnoma</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-lg-4 mb-4 order-lg-1 order-2 max-w-xs3" id="printDiv" hidden>
+        <div class="card">
+            <div class="d-flex align-items-end row">
+                <div class="col-8">
+                    <div class="card-body">
+                        <h6 class="card-title mb-1 text-nowrap font-bold" id="user-name-doc"></h6>
+                        <h5 class="card-title text-primary mb-1" id="email-doc"></h5>
+                        <h5 class="card-title text-primary mb-1" id="phone-doc"></h5>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div id="qr-code" class="inline-block relative bottom-5"></div>
+                </div>
+            </div>
+        </div>
     </div>
 @stop

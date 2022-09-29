@@ -9,6 +9,7 @@ use App\Models\Detail;
 use App\Models\Media;
 use App\Models\Order;
 use App\Models\System;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -148,7 +149,7 @@ class BookController extends Controller
             $pathInfo = pathinfo($coverMedia);
             if ($book->dicMediaId != 1):
                 Storage::disk('upload')->delete($book->doc->fullPath);
-                Media::where('id',$book->docMediaId)->update([
+                Media::where('id', $book->docMediaId)->update([
                     'baseName' => $pathInfo['basename'],
                     'fullPath' => $coverMedia,
                     'type' => $pathInfo['extension'],
@@ -192,7 +193,8 @@ class BookController extends Controller
 
     public function give()
     {
-        request()->request->add(['getBack' => Carbon::parse(request()->issued)->addDays(request()->day), 'userId' => session()->get('user')->id]);
+        if (!User::find(request()->recUserId)): return redirect()->back()->with('msg', __('lang.update.error'));endif;
+        request()->request->add(['getBack' => Carbon::now()->addDays((int) request()->day), 'userId' => session()->get('user')->id]);
         Order::create(request()->all());
         return redirect()->back()->with('msg', __('lang.update.success'));
     }

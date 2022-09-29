@@ -196,7 +196,6 @@ window.checkUser = function (t, e) {
 
           if (!isNull(response.data.role) && !isEmpty(response.data.role))
           {
-            console.log(response.data.role);
             let br = document.createElement("br");
             userData.appendChild(br);
             let e = document.createElement("strong");
@@ -211,4 +210,35 @@ window.checkUser = function (t, e) {
         }
       })
   }
+}
+
+window.infoUser = function (t) {
+  axios.post('http://library.test/uz/admin/users/check', { id: t })
+      .then((response) => {
+        document.getElementById("avatar-info-modal").src = "/" + response.data.media.fullPath;
+        document.getElementById("user-name-info-modal").innerHTML = response.data.user.name;
+        document.getElementById("user-name-doc").innerHTML = response.data.user.name;
+        if (!isNull(response.data.system) && !isEmpty(response.data.system))
+          {
+            console.log(response.data.system);
+            let e = document.createElement("strong");
+            e.innerText = response.data.system.group;
+            userData.appendChild(e);
+          }
+        document.getElementById("email-info-modal").innerHTML = response.data.user.email;
+        document.getElementById("email-doc").innerHTML = response.data.user.email;
+        document.getElementById("phone-info-modal").innerHTML = response.data.user.phone; 
+        document.getElementById("phone-doc").innerHTML = response.data.user.phone; 
+        document.getElementById("books-info-modal").innerHTML = (response.data.order).length;
+        if(document.getElementById("user-qrcode")){
+          document.getElementById('qr-code').innerHTML = document.getElementById("user-qrcode").innerHTML;
+        }
+      })
+}
+
+window.printDocument = function (){
+  let div = document.getElementById('printDiv').innerHTML;
+  document.body.innerHTML = div;
+  window.print();
+  window.location.reload();
 }

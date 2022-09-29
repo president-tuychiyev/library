@@ -1,6 +1,6 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme" data-bg-class="bg-menu-theme">
-    <div class="app-brand demo border-b-1 border-b-slate-50 shadow-sm mb-1">
-        <a href="#" class="app-brand-link">
+    <div class="app-brand demo border-b-1 mb-1">
+        <a href="{{ route('admin.home') }}" class="app-brand-link">
             <span class="app-brand-logo demo">
                 <img class="w-10" src="{{ asset('img/icons/logo-black.png') }}">
             </span>
@@ -13,8 +13,8 @@
     </div>
 
     <ul class="menu-inner py-1 ps">
-        
-        <!-- Main menus -->
+        <!-- Open menus -->
+        <li class="menu-header small text-uppercase"><span class="menu-header-text">Asosiy menu</span></li>
         @foreach ($menus as $m)
             <li class="menu-item"
                 data-select="menu-item-{{ $m->id }}">
@@ -50,14 +50,14 @@
         <!-- Misc -->
         <li class="menu-header small text-uppercase"><span class="menu-header-text">Vidjetlar</span></li>
         <li class="menu-item">
-            <a href="" target="_blank"
+            <a href="https://t.me/KUlibrarybot" target="_blank"
                 class="menu-link">
                 <i class="menu-icon tf-icons bx bx-support"></i>
                 <div data-i18n="Support">Qo'llab quvatlash</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="#" target="_blank"
+            <a href="https://t.me/LIBRARY_KU" target="_blank"
                 class="menu-link">
                 <i class="menu-icon tf-icons bx bx-file"></i>
                 <div data-i18n="Documentation">Elektron kitoblar</div>

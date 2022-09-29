@@ -27,20 +27,20 @@
                         <div class="table-responsive text-nowrap">
                             <table class="table">
                                 <thead>
-                                    <tr class="uppercase">
+                                    <tr class="uppercase text-center">
                                         <th>id</th>
                                         <th>nomi</th>
-                                        <th class="text-center">holati</th>
+                                        <th>holati</th>
                                         <th>yaratuvchi</th>
-                                        <th class="text-center">harakatlar</th>
+                                        <th>harakatlar</th>
                                     </tr>
                                 </thead>
                                 <tbody class="table-border-bottom-0">
                                     @foreach ($docTypes as $dt)
-                                        <tr>
+                                        <tr class="text-center">
                                             <td class="font-medium">{{ $dt->id }}</td>
                                             <td>{{ $dt->$name }}</td>
-                                            <td class="text-center">
+                                            <td>
                                                 @if ($dt->isActive)
                                                     <small class="badge bg-label-primary me-1" data-bs-toggle="tooltip"
                                                         data-bs-placement="top" data-bs-original-title="Aktiv"> <i
@@ -52,7 +52,7 @@
                                                 @endif
                                             </td>
                                             <td>{{ $dt->user->name }}</td>
-                                            <td class="text-center">
+                                            <td>
                                                 <button type="button" class="px-2" onclick="updateDetail(this)"
                                                     data-type="1" data-title="Kitob turini yangilash"
                                                     data-id="{{ $dt->id }}" data-bs-toggle="modal"
@@ -101,12 +101,12 @@
                         <div class="table-responsive text-nowrap">
                             <table class="table">
                                 <thead>
-                                    <tr class="uppercase">
+                                    <tr class="uppercase text-center">
                                         <th>id</th>
                                         <th>nomi</th>
-                                        <th class="text-center">holati</th>
+                                        <th>holati</th>
                                         <th>yaratuvchi</th>
-                                        <th class="text-center">harakatlar</th>
+                                        <th>harakatlar</th>
                                     </tr>
                                 </thead>
                                 <tbody class="table-border-bottom-0">
@@ -114,7 +114,7 @@
                                         <tr>
                                             <td class="font-medium">{{ $dl->id }}</td>
                                             <td>{{ $dl->$name }}</td>
-                                            <td class="text-center">
+                                            <td>
                                                 @if ($dl->isActive)
                                                     <small class="badge bg-label-primary me-1" data-bs-toggle="tooltip"
                                                         data-bs-placement="top" data-bs-original-title="Aktiv"> <i
@@ -126,7 +126,7 @@
                                                 @endif
                                             </td>
                                             <td>{{ $dl->user->name }}</td>
-                                            <td class="text-center">
+                                            <td>
                                                 <button type="button" class="px-2" onclick="updateDetail(this)"
                                                     data-type="1" data-title="Kitob tilini yangilash"
                                                     data-id="{{ $dl->id }}" data-bs-toggle="modal"
@@ -177,20 +177,20 @@
                         <div class="table-responsive text-nowrap">
                             <table class="table">
                                 <thead>
-                                    <tr class="uppercase">
+                                    <tr class="uppercase text-center">
                                         <th>id</th>
                                         <th>nomi</th>
-                                        <th class="text-center">holati</th>
+                                        <th>holati</th>
                                         <th>yaratuvchi</th>
-                                        <th class="text-center">harakatlar</th>
+                                        <th>harakatlar</th>
                                     </tr>
                                 </thead>
                                 <tbody class="table-border-bottom-0">
                                     @foreach ($textTypes as $tt)
-                                        <tr>
+                                        <tr class="text-center">
                                             <td class="font-medium">{{ $tt->id }}</td>
                                             <td>{{ $tt->$name }}</td>
-                                            <td class="text-center">
+                                            <td>
                                                 @if ($tt->isActive)
                                                     <small class="badge bg-label-primary me-1" data-bs-toggle="tooltip"
                                                         data-bs-placement="top" data-bs-original-title="Aktiv"> <i
@@ -202,7 +202,7 @@
                                                 @endif
                                             </td>
                                             <td>{{ $tt->user->name }}</td>
-                                            <td class="text-center">
+                                            <td>
                                                 <button type="button" class="px-2" onclick="updateDetail(this)"
                                                     data-type="1" data-title="Kitob yozuvini yangilash"
                                                     data-id="{{ $tt->id }}" data-bs-toggle="modal"
@@ -253,20 +253,20 @@
                         <div class="table-responsive text-nowrap">
                             <table class="table">
                                 <thead>
-                                    <tr class="uppercase">
+                                    <tr class="uppercase text-center">
                                         <th>id</th>
                                         <th>nomi</th>
-                                        <th class="text-center">holati</th>
+                                        <th>holati</th>
                                         <th>yaratuvchi</th>
-                                        <th class="text-center">harakatlar</th>
+                                        <th>harakatlar</th>
                                     </tr>
                                 </thead>
                                 <tbody class="table-border-bottom-0">
                                     @foreach ($docFormats as $df)
-                                        <tr>
+                                        <tr class="text-center">
                                             <td class="font-medium">{{ $df->id }}</td>
                                             <td>{{ $df->$name }}</td>
-                                            <td class="text-center">
+                                            <td>
                                                 @if ($df->isActive)
                                                     <small class="badge bg-label-primary me-1" data-bs-toggle="tooltip"
                                                         data-bs-placement="top" data-bs-original-title="Aktiv"> <i
@@ -278,7 +278,7 @@
                                                 @endif
                                             </td>
                                             <td>{{ $df->user->name }}</td>
-                                            <td class="text-center">
+                                            <td>
                                                 <button type="button" class="px-2" onclick="updateDetail(this)"
                                                     data-type="1" data-title="Matn turini yangilash"
                                                     data-id="{{ $df->id }}" data-bs-toggle="modal"
@@ -327,20 +327,20 @@
                         <div class="table-responsive text-nowrap">
                             <table class="table">
                                 <thead>
-                                    <tr class="uppercase">
+                                    <tr class="uppercase text-center">
                                         <th>id</th>
                                         <th>nomi</th>
-                                        <th class="text-center">holati</th>
+                                        <th>holati</th>
                                         <th>yaratuvchi</th>
-                                        <th class="text-center">harakatlar</th>
+                                        <th>harakatlar</th>
                                     </tr>
                                 </thead>
                                 <tbody class="table-border-bottom-0">
                                     @foreach ($fileTypes as $ft)
-                                        <tr>
+                                        <tr class="text-center">
                                             <td class="font-medium">{{ $ft->id }}</td>
                                             <td>{{ $ft->$name }}</td>
-                                            <td class="text-center">
+                                            <td>
                                                 @if ($ft->isActive)
                                                     <small class="badge bg-label-primary me-1" data-bs-toggle="tooltip"
                                                         data-bs-placement="top" data-bs-original-title="Aktiv"> <i
@@ -352,7 +352,7 @@
                                                 @endif
                                             </td>
                                             <td>{{ $ft->user->name }}</td>
-                                            <td class="text-center">
+                                            <td>
                                                 <button type="button" class="px-2" onclick="updateDetail(this)"
                                                     data-type="1" data-title="Fayl turini yangilash"
                                                     data-id="{{ $ft->id }}" data-bs-toggle="modal"
@@ -403,20 +403,20 @@
                         <div class="table-responsive text-nowrap">
                             <table class="table">
                                 <thead>
-                                    <tr class="uppercase">
+                                    <tr class="uppercase text-center">
                                         <th>№</th>
                                         <th>nomi</th>
-                                        <th class="text-center">holati</th>
+                                        <th>holati</th>
                                         <th>yaratuvchi</th>
-                                        <th class="text-center">harakatlar</th>
+                                        <th>harakatlar</th>
                                     </tr>
                                 </thead>
                                 <tbody class="table-border-bottom-0">
                                     @foreach ($directs as $i => $d)
-                                        <tr>
+                                        <tr class="text-center">
                                             <td class="font-medium">{{ $i+1 }}</td>
                                             <td>{{ $d->$name }}</td>
-                                            <td class="text-center">
+                                            <td>
                                                 @if ($d->isActive)
                                                     <small class="badge bg-label-primary me-1" data-bs-toggle="tooltip"
                                                         data-bs-placement="top" data-bs-original-title="Aktiv"> <i
@@ -428,7 +428,7 @@
                                                 @endif
                                             </td>
                                             <td>{{ $d->user->name }}</td>
-                                            <td class="text-center">
+                                            <td>
                                                 <button type="button" class="px-2" onclick="updateDetail(this)"
                                                     data-type="1" data-title="Fan yoʻnalishini yangilash"
                                                     data-id="{{ $d->id }}" data-bs-toggle="modal"

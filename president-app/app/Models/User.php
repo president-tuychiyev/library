@@ -67,4 +67,9 @@ class User extends Authenticatable
         return $this->hasOne(System::class, 'id', 'systemId');
     }
 
+    public function order()
+    {
+        return $this->hasMany(Order::class, 'recUserId', 'id');
+    }
+
 }

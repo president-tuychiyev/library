@@ -55,6 +55,10 @@ Route::prefix(Config::get('language', 'uz'))->group(function () {
                 Route::post('give', 'Admin\\BookController@give')->name('admin.books.give');
             });
 
+            Route::prefix('journals')->group(function () {
+                Route::get('/', 'Admin\\JournalController@index')->name('admin.journals');
+            });
+
             Route::prefix('systems')->group(function () {
                 Route::get('/', 'Admin\\SystemController@index')->name('admin.system');
                 Route::post('add', 'Admin\\SystemController@add')->name('admin.system.add');
@@ -71,6 +75,7 @@ Route::prefix(Config::get('language', 'uz'))->group(function () {
 
             Route::prefix('orders')->group(function () {
                 Route::get('/', 'Admin\\OrderController@index')->name('admin.orders');
+                Route::get('update/{id}/{status}', 'Admin\\OrderController@update')->name('admin.orders.update');
             });
 
             Route::prefix('workmans')->group(function () {

@@ -164,7 +164,7 @@ class UserController extends Controller
 
     public function check()
     {
-        $user = User::where([ 'isDeleted' => false, 'isActive' => true, 'id' => request()->id])->with(['system', 'role'])->first();
+        $user = User::where([ 'isDeleted' => false, 'isActive' => true, 'id' => request()->id])->with(['user', 'role', 'media', 'system', 'order'])->first();
         if (!$user) return response()->json("Bunday foydalanuvchi topilmadi!", 210);
         return response()->json($user, 200);
     }

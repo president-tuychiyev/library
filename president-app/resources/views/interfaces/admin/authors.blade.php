@@ -20,21 +20,21 @@
                 <div class="table-responsive text-nowrap">
                     <table class="table table-hover">
                         <thead>
-                            <tr>
+                            <tr class="text-center">
                                 <th>№</th>
                                 <th>nomi</th>
-                                <th class="text-center">holati</th>
+                                <th>holati</th>
                                 <th>yaratuvchi</th>
                                 <th>yaratilgan sana</th>
-                                <th class="text-center">harakatlar</th>
+                                <th>harakatlar</th>
                             </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">
                             @foreach ($authors as $i => $a)
-                                <tr>
+                                <tr class="text-center">
                                     <td><strong>{{ $i+1 }}</strong></td>
                                     <td>{{ $a->name }}</td>
-                                    <td class="text-center">
+                                    <td>
                                         @if ($a->isActive)
                                             <small class="badge bg-label-primary me-1"> <i class="bx bx-check-shield"
                                                     data-bs-toggle="tooltip" data-bs-placement="top"
@@ -47,7 +47,7 @@
                                     </td>
                                     <td>{{ $a->user->name }}</td>
                                     <td>{{ $a->created_at->format('d.m.Y') }}</td>
-                                    <td class="text-center">
+                                    <td>
                                         <button type="button" class="px-2" onclick="updateAuthor(this)"
                                             data-title="Muallifni yangilash" data-id="{{ $a->id }}"
                                             data-bs-toggle="modal" data-bs-target="#authorModal"

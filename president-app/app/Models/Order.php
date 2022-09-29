@@ -14,4 +14,14 @@ class Order extends Model
     {
         return $this->belongsTo(User::class, 'userId','id');
     }
+
+    public function book()
+    {
+        return $this->belongsTo(Book::class, 'bookId', 'id');
+    }
+
+    public function recUser()
+    {
+        return $this->belongsTo(User::class, 'recUserId', 'id');
+    }
 }
