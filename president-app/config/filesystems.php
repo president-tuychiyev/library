@@ -38,7 +38,7 @@ return [
 
         'upload' => [
             'driver' => 'local',
-            'root' => getcwd() . '/../',
+            'root' => getcwd(),
             'throw' => false,
         ],
 

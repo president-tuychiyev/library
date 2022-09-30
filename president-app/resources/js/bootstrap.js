@@ -162,7 +162,7 @@ window.updateUser = function (e) {
 window.checkUser = function (t, e) {
   if (e.keyCode === 13)
   {
-    axios.post('http://library.test/uz/admin/users/check', { id: t.value })
+    axios.post('/admin/users/check', { id: t.value })
       .then((response) => {
         let userData = document.getElementById("userData");
         userData.hidden = false;
@@ -213,7 +213,7 @@ window.checkUser = function (t, e) {
 }
 
 window.infoUser = function (t) {
-  axios.post('http://library.test/uz/admin/users/check', { id: t })
+  axios.post('/uz/admin/users/check', { id: t })
       .then((response) => {
         document.getElementById("avatar-info-modal").src = "/" + response.data.media.fullPath;
         document.getElementById("user-name-info-modal").innerHTML = response.data.user.name;
