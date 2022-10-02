@@ -83,6 +83,18 @@ class UserController extends Controller
         return redirect()->back()->with('msg', __('lang.delete.success'));
     }
 
+    public function workmansSearch()
+    {
+        $workmans = User::where('id', '!=', session()->get('user')->id)
+            ->where('isDeleted', false)->whereNotIn('roleId', [1, 2, 3])
+            ->orWhere('id', 'like', request()->q)
+            ->orWhere('name', 'like', request()->q)
+            ->orWhere('email', 'like', request()->q)
+            ->with('media')->with('role')->with('user')->paginate(10);
+        $roles = Role::where('isDeleted', false)->whereNotIn('id', [1, 2, 3])->get();
+        return view('interfaces.admin.workmans', compact('workmans', 'roles'));
+    }
+
     public function teachers()
     {
         $users = User::where('id', '!=', session()->get('user')->id)->where('isDeleted', false)->where('roleId', 2)->with('media')->with('user')->paginate(30);
@@ -164,8 +176,22 @@ class UserController extends Controller
 
     public function check()
     {
-        $user = User::where([ 'isDeleted' => false, 'isActive' => true, 'id' => request()->id])->with(['user', 'role', 'media', 'system', 'order'])->first();
-        if (!$user) return response()->json("Bunday foydalanuvchi topilmadi!", 210);
+        $user = User::where(['isDeleted' => false, 'isActive' => true, 'id' => request()->id])->with(['user', 'role', 'media', 'system', 'order'])->first();
+        if (!$user) {
+            return response()->json("Bunday foydalanuvchi topilmadi!", 210);
+        }
+
         return response()->json($user, 200);
+    }
+
+    public function search($role)
+    {
+        $users = User::where('roleId', $role)->where('id', '!=', session()->get('user')->id)->where('isDeleted', false)
+            ->orWhere('id', 'like', request()->q)
+            ->orWhere('name', 'like', request()->q)
+            ->orWhere('email', 'like', request()->q)
+            ->with('media')->with('user')->paginate(30);
+        $role = $role;
+        return view('interfaces.admin.users-others', compact('users', 'role'));
     }
 }

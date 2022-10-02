@@ -62,6 +62,7 @@ Route::prefix(Config::get('language', 'uz'))->group(function () {
                 Route::get('qrcode', 'Admin\\BookController@qrcode')->name('admin.books.qrcode');
                 Route::get('view/{id}', 'Admin\\BookController@view')->name('admin.books.view');
                 Route::post('give', 'Admin\\BookController@give')->name('admin.books.give');
+                Route::get('search', 'Admin\\BookController@search')->name('admin.books.search');
             });
 
             Route::prefix('journals')->group(function () {
@@ -85,6 +86,7 @@ Route::prefix(Config::get('language', 'uz'))->group(function () {
             Route::prefix('orders')->group(function () {
                 Route::get('/', 'Admin\\OrderController@index')->name('admin.orders');
                 Route::get('update/{id}/{status}', 'Admin\\OrderController@update')->name('admin.orders.update');
+                Route::get('search', 'Admin\\OrderController@search')->name('admin.orders.search');
             });
 
             Route::prefix('workmans')->group(function () {
@@ -92,6 +94,7 @@ Route::prefix(Config::get('language', 'uz'))->group(function () {
                 Route::post('add', 'Admin\\UserController@workmansAdd')->name('admin.workmans.add');
                 Route::post('update', 'Admin\\UserController@workmansUpdate')->name('admin.workmans.update');
                 Route::get('delete/{id}', 'Admin\\UserController@workmansDelete')->name('admin.workmans.delete');
+                Route::get('search', 'Admin\\UserController@workmansSearch')->name('admin.workmans.search');
             });
 
             Route::prefix('users')->group(function () {
@@ -101,6 +104,7 @@ Route::prefix(Config::get('language', 'uz'))->group(function () {
                 Route::post('update', 'Admin\\UserController@usersUpdate')->name('admin.users.update');
                 Route::get('delete/{id}', 'Admin\\UserController@usersDelete')->name('admin.users.delete');
                 Route::post('check', 'Admin\\UserController@check')->name('admin.users.check');
+                Route::get('search/{role}', 'Admin\\UserController@search')->name('admin.users.search');
             });
 
             Route::prefix('roles')->group(function () {

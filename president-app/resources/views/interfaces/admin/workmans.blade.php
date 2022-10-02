@@ -2,6 +2,13 @@
 
 @section('title', 'Xodimlar')
 
+@section('search')
+    <form action="{{ route('admin.workmans.search') }}" method="get">
+        <input type="text" class="form-control border-0 shadow-none" name="q" placeholder="Xodimni qidirish..."
+            aria-label="Xodimni qidirish...">
+    </form>
+@stop
+
 @section('content')
     @php($name = 'name' . app()->getLocale())
     <div class="container-xxl flex-grow-1 container-p-y">
@@ -81,7 +88,6 @@
                 {{ $workmans->links('pagination::bootstrap-5') }}
             </div>
         </div>
-
 
         <!-- Modal -->
         <div class="modal fade" id="workmanModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -164,8 +170,5 @@
             </div>
         </div>
         <!--/ Modal for add data -->
-
-
-
     </div>
 @stop

@@ -198,4 +198,22 @@ class BookController extends Controller
         Order::create(request()->all());
         return redirect()->back()->with('msg', __('lang.update.success'));
     }
+
+    public function search()
+    {
+        $books = Book::where('isDeleted', false)
+            ->where('id', 'like', '%' . request()->q . '%')
+            ->orWhere('name', 'like', '%' . request()->q . '%')
+            ->orWhere('comeFrom', 'like', '%' . request()->q . '%')
+            ->orWhere('forWhom', 'like', '%' . request()->q . '%')
+            ->orWhere('cityPublication', 'like', '%' . request()->q . '%')
+            ->orWhere('publisher', 'like', '%' . request()->q . '%')
+            ->orWhere('isbn', 'like', '%' . request()->q . '%')
+            ->orWhere('udk', 'like', '%' . request()->q . '%')
+            ->orWhere('annontation', 'like', '%' . request()->q . '%')
+            ->orWhere('datePublication', 'like', '%' . request()->q . '%')
+            ->with('user')->paginate(20);
+
+        return view('interfaces.admin.books', compact('books'));
+    }
 }

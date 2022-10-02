@@ -220,7 +220,6 @@ window.infoUser = function (t) {
         document.getElementById("user-name-doc").innerHTML = response.data.user.name;
         if (!isNull(response.data.system) && !isEmpty(response.data.system))
           {
-            console.log(response.data.system);
             let e = document.createElement("strong");
             e.innerText = response.data.system.group;
             userData.appendChild(e);

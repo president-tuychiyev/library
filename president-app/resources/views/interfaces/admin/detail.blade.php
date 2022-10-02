@@ -1,6 +1,13 @@
 @extends('layouts.root')
 
-@section('title', 'Bosh sahifa')
+@section('title', 'Tafsilotlar')
+
+@section('search')
+    <form action="{{ route('admin.books.search') }}" method="get">
+        <input type="text" class="form-control border-0 shadow-none" name="q" placeholder="Kitob qidirish..."
+            aria-label="Kitob qidirish...">
+    </form>
+@stop
 
 @section('content')
 
@@ -414,7 +421,7 @@
                                 <tbody class="table-border-bottom-0">
                                     @foreach ($directs as $i => $d)
                                         <tr class="text-center">
-                                            <td class="font-medium">{{ $i+1 }}</td>
+                                            <td class="font-medium">{{ $i + 1 }}</td>
                                             <td>{{ $d->$name }}</td>
                                             <td>
                                                 @if ($d->isActive)

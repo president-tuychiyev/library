@@ -2,6 +2,15 @@
 
 @section('title', 'Foydalanuvchi')
 
+@section('search')
+    <form
+        action="{{ route('admin.users.search', $role) }}"
+        method="get">
+        <input type="text" class="form-control border-0 shadow-none" name="q" placeholder="Foydalanuvchini qidirish..."
+            aria-label="Foydalanuvchini qidirish...">
+    </form>
+@stop
+
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="card">
@@ -109,8 +118,8 @@
                         <div class="modal-body">
                             <div class="col-12 fv-plugins-icon-container">
                                 <div class="input-group input-group-merge mb-2">
-                                    <input type="text" class="form-control" name="name" placeholder="F.I.O" required
-                                        data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"
+                                    <input type="text" class="form-control" name="name" placeholder="F.I.O"
+                                        required data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"
                                         data-bs-placement="top" title="majburiy bo'lim">
                                 </div>
                                 <div class="input-group input-group-merge mb-2">
@@ -200,9 +209,9 @@
                                     <p class="mb-1"><span class="font-bold">Email:</span> <span
                                             id="email-info-modal"></span></p>
                                     <p class="mb-1"><span class="font-bold">Telefon:</span> <span
-                                            id="phone-info-modal">+998 94 4337566</span></p>
+                                            id="phone-info-modal"></span></p>
                                     <span class="badge bg-label-primary">Jami o'qilgan kitoblar soni: <span
-                                            id="books-info-modal">125</span> dona</span>
+                                            id="books-info-modal"></span> dona</span>
                                 </div>
                             </div>
                         </div>

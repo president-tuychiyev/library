@@ -2,6 +2,13 @@
 
 @section('title', 'Kitob')
 
+@section('search')
+    <form action="{{ route('admin.books.search') }}" method="get">
+        <input type="text" class="form-control border-0 shadow-none" name="q" placeholder="Kitob qidirish..."
+            aria-label="Kitob qidirish...">
+    </form>
+@stop
+
 @section('content')
     @php($name = 'name' . app()->getLocale())
 
@@ -97,25 +104,6 @@
                     </div>
                 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 <div class="card mt-5">
                     <div class="card-header">
                         <h5 class="card-title">Kitob berish</h5>
@@ -148,47 +136,6 @@
                     </div>
                 </div>
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             <div class="col-xl-6">
                 <div class="card">

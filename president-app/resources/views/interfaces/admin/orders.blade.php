@@ -2,6 +2,13 @@
 
 @section('title', 'Kitb olish & berish')
 
+@section('search')
+    <form action="{{ route('admin.orders.search') }}" method="get">
+        <input type="text" class="form-control border-0 shadow-none" name="q" placeholder="Foydalanuvchini qidirish..."
+            aria-label="Foydalanuvchini qidirish...">
+    </form>
+@stop
+
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="col-xl-12">

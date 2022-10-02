@@ -11,8 +11,7 @@
         <div class="navbar-nav align-items-center">
             <div class="nav-item d-flex align-items-center">
                 <i class="bx bx-search fs-4 lh-0"></i>
-                <input type="text" class="form-control border-0 shadow-none" placeholder="Kitob qidirish..."
-                    aria-label="Kitob qidirish...">
+                @yield('search')
             </div>
         </div>
         <!-- /Search -->
@@ -20,7 +19,7 @@
         <ul class="navbar-nav flex-row align-items-center ms-auto">
 
             <!-- Language -->
-            <li class="nav-item dropdown-language dropdown me-2 me-xl-0">
+            {{-- <li class="nav-item dropdown-language dropdown me-2 me-xl-0">
                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown"
                     aria-expanded="false">
                     <i class="fi fi-{{ app()->getLocale() }} fis rounded-circle me-1 fs-3"></i>
@@ -43,8 +42,7 @@
                         @endif
                     @endforeach
                 </ul>
-            </li>
-
+            </li> --}}
             <!--/ Language -->
 
             <!-- User -->

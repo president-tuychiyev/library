@@ -2,6 +2,13 @@
 
 @section('title', 'Bosh sahifa')
 
+@section('search')
+    <form action="{{ route('admin.books.search') }}" method="get">
+        <input type="text" class="form-control border-0 shadow-none" name="q" placeholder="Kitob qidirish..."
+            aria-label="Kitob qidirish...">
+    </form>
+@stop
+
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">
