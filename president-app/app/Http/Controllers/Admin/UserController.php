@@ -21,17 +21,19 @@ class UserController extends Controller
 
     public function workmansAdd()
     {
-        request()->validate([
-            'email' => 'required|unique:users|max:30',
-            'pass' => 'required',
-        ],
+        request()->validate(
+            [
+                'email' => 'required|unique:users|max:30',
+                'pass' => 'required',
+            ],
             [
                 'email.unique' => 'Bunday emailga ega foydalanuvchi mavjud!',
-            ]);
+            ]
+        );
 
         request()->isActiveCheck ? request()->request->add(['userId' => session()->get('user')->id, 'isActive' => true]) : request()->request->add(['userId' => session()->get('user')->id]);
         request()->request->add(['password' => Hash::make(request()->pass)]);
-        if (request()->hasFile('avatar')):
+        if (request()->hasFile('avatar')) :
             $avatar = Storage::disk('upload')->put('upload/avatars', request()->file('avatar'));
             $pathInfo = pathinfo($avatar);
             $media = Media::create([
@@ -44,25 +46,25 @@ class UserController extends Controller
 
         User::create(request()->except(['avatar', 'isActiveCheck', 'id', 'pass']));
 
-        return redirect()->back()->with('msg', __('lang.adding.success'));
+        return redirect()->back()->with('msg', __('locale.msg.insert.success'));
     }
 
     public function workmansUpdate()
     {
         $workman = User::where('users.id', request()->id)->with('media')->first();
-        request()->isActiveCheck ? request()->request->add(['isActive' => true]) : request()->request->add(['isActive' => false]);
+        request()->isActiveCheck ? request()->request->add(['isActive' => true]) : request()->request->add(['isActive' => $workman->isActive]);
         is_null(request()->pss) ? '' : request()->request->add(['password' => Hash::make(request()->pass)]);
-        if (request()->hasFile('avatar')):
+        if (request()->hasFile('avatar')) :
             $avatar = Storage::disk('upload')->put('upload/avatars', request()->file('avatar'));
             $pathInfo = pathinfo($avatar);
-            if ($workman->mediaId != 1):
+            if ($workman->mediaId != 1) :
                 Storage::disk('upload')->delete($workman->media->fullPath);
                 Media::where('id', $workman->mediaId)->update([
                     'baseName' => $pathInfo['basename'],
                     'fullPath' => $avatar,
                     'type' => $pathInfo['extension'],
                 ]);
-            else:
+            else :
                 $media = Media::create([
                     'baseName' => $pathInfo['basename'],
                     'fullPath' => $avatar,
@@ -74,13 +76,13 @@ class UserController extends Controller
 
         User::where('id', request()->id)->update(request()->except(['avatar', 'isActiveCheck', 'id', 'pass', '_token']));
 
-        return redirect()->back()->with('msg', __('lang.update.success'));
+        return redirect()->back()->with('msg', __('locale.msg.update.success'));
     }
 
     public function workmansDelete($id)
     {
         User::where('id', $id)->where('id', '!=', 1)->update(['isDeleted' => true, 'email' => User::find($id)->email . "-{$id}"]);
-        return redirect()->back()->with('msg', __('lang.delete.success'));
+        return redirect()->back()->with('msg', __('locale.msg.delete.success'));
     }
 
     public function workmansSearch()
@@ -112,17 +114,19 @@ class UserController extends Controller
 
     public function usersAdd()
     {
-        request()->validate([
-            'email' => 'required|unique:users|max:30',
-            'pass' => 'required',
-        ],
+        request()->validate(
+            [
+                'email' => 'required|unique:users|max:30',
+                'pass' => 'required',
+            ],
             [
                 'email.unique' => 'Bunday emailga ega foydalanuvchi mavjud!',
-            ]);
+            ]
+        );
 
         request()->isActiveCheck ? request()->request->add(['userId' => session()->get('user')->id, 'isActive' => true]) : request()->request->add(['userId' => session()->get('user')->id]);
         request()->request->add(['password' => Hash::make(request()->pass)]);
-        if (request()->hasFile('avatar')):
+        if (request()->hasFile('avatar')) :
             $avatar = Storage::disk('upload')->put('upload/avatars', request()->file('avatar'));
             $pathInfo = pathinfo($avatar);
             $media = Media::create([
@@ -135,25 +139,25 @@ class UserController extends Controller
 
         User::create(request()->except(['avatar', 'isActiveCheck', 'id', 'pass']));
 
-        return redirect()->back()->with('msg', __('lang.adding.success'));
+        return redirect()->back()->with('msg', __('locale.msg.insert.success'));
     }
 
     public function usersUpdate()
     {
         $user = User::where('users.id', request()->id)->with('media')->first();
-        request()->isActiveCheck ? request()->request->add(['isActive' => true]) : request()->request->add(['isActive' => false]);
+        request()->isActiveCheck ? request()->request->add(['isActive' => true]) : request()->request->add(['isActive' => $user->isActive]);
         is_null(request()->pss) ? '' : request()->request->add(['password' => Hash::make(request()->pass)]);
-        if (request()->hasFile('avatar')):
+        if (request()->hasFile('avatar')) :
             $avatar = Storage::disk('upload')->put('upload/avatars', request()->file('avatar'));
             $pathInfo = pathinfo($avatar);
-            if ($user->mediaId != 1):
+            if ($user->mediaId != 1) :
                 Storage::disk('upload')->delete($user->media->fullPath);
                 Media::where('id', $user->mediaId)->update([
                     'baseName' => $pathInfo['basename'],
                     'fullPath' => $avatar,
                     'type' => $pathInfo['extension'],
                 ]);
-            else:
+            else :
                 $media = Media::create([
                     'baseName' => $pathInfo['basename'],
                     'fullPath' => $avatar,
@@ -165,13 +169,13 @@ class UserController extends Controller
 
         User::where('id', request()->id)->update(request()->except(['avatar', 'isActiveCheck', 'id', 'pass', '_token']));
 
-        return redirect()->back()->with('msg', __('lang.update.success'));
+        return redirect()->back()->with('msg', __('locale.msg.update.success'));
     }
 
     public function usersDelete($id)
     {
         User::where('id', $id)->where('id', '!=', 1)->update(['isDeleted' => true, 'email' => User::find($id)->email . "-{$id}"]);
-        return redirect()->back()->with('msg', __('lang.delete.success'));
+        return redirect()->back()->with('msg', __('locale.msg.delete.success'));
     }
 
     public function check()

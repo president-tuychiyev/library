@@ -3,9 +3,7 @@
 @section('title', 'Foydalanuvchi')
 
 @section('search')
-    <form
-        action="{{ route('admin.users.search', $role) }}"
-        method="get">
+    <form action="{{ route('admin.users.search', $role) }}" method="get">
         <input type="text" class="form-control border-0 shadow-none" name="q" placeholder="Foydalanuvchini qidirish..."
             aria-label="Foydalanuvchini qidirish...">
     </form>
@@ -156,7 +154,7 @@
                                     </div>
                                 @endif
                                 <div class="input-group input-group-merge mb-3">
-                                    <input class="form-control" name="avatar" type="file" id="cover-media-book"
+                                    <input class="form-control" name="avatar" type="file"
                                         data-bs-toggle="tooltip" data-bs-placement="top"
                                         title="Foydalanuvchi rasmini tanlang | *majburiy emas" accept=".jpg,.jpeg,.png">
                                     <span class="input-group-text text-red-300 select-none">*jpg,
@@ -186,60 +184,5 @@
             </div>
         </div>
         <!--/ Modal for add data -->
-
-        <!-- Info Modal -->
-        <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="infoModalLabel">Umumiy ma'lumot</h5>
-                    </div>
-                    <div class="modal-body">
-                        <div class="d-flex align-items-center row">
-                            <div class="col-sm-5">
-                                <div class="card-body">
-                                    <img class="rounded" src="/" id="avatar-info-modal" height="140">
-                                </div>
-                            </div>
-                            <div class="col-sm-7">
-                                <div class="card-body">
-                                    <h2 class="card-title font-bold mb-1" id="user-name-info-modal"></h2>
-                                    <p class="mb-1"><span class="font-bold">Guruhi:</span> <span
-                                            id="group-info-modal"></span></p>
-                                    <p class="mb-1"><span class="font-bold">Email:</span> <span
-                                            id="email-info-modal"></span></p>
-                                    <p class="mb-1"><span class="font-bold">Telefon:</span> <span
-                                            id="phone-info-modal"></span></p>
-                                    <span class="badge bg-label-primary">Jami o'qilgan kitoblar soni: <span
-                                            id="books-info-modal"></span> dona</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger bg-red-600" data-bs-dismiss="modal">Orqaga</button>
-                        <button type="button" class="btn btn-primary bg-blue-700"
-                            onclick="printDocument()">Guvohnoma</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-6 col-lg-4 mb-4 order-lg-1 order-2 max-w-xs3" id="printDiv" hidden>
-        <div class="card">
-            <div class="d-flex align-items-end row">
-                <div class="col-8">
-                    <div class="card-body">
-                        <h6 class="card-title mb-1 text-nowrap font-bold" id="user-name-doc"></h6>
-                        <h5 class="card-title text-primary mb-1" id="email-doc"></h5>
-                        <h5 class="card-title text-primary mb-1" id="phone-doc"></h5>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div id="qr-code" class="inline-block relative bottom-5"></div>
-                </div>
-            </div>
-        </div>
     </div>
 @stop

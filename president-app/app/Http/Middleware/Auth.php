@@ -19,15 +19,13 @@ class Auth
     {
 
         if (!session()->has('user') && $request->path() != app()->getLocale() . '/auth/sign-in'):
-            return redirect()->route('auth.signIn')->with('msg', __('lang.adding.success'));
+            return redirect()->route('auth.signIn')->with('msg',__('locale.msg.auth.warning'));
         endif;
 
         if (session()->has('user') && $request->path() == app()->getLocale() . '/auth/sign-in'):
-            return back();
+            return redirect()->back();
         endif;
 
-        return $next($request)->header('Cache-Control', 'no-cache, no-store, max-age=0, must-revalidate')
-            ->header('Pragma', 'no-cache')
-            ->header('Expires', 'Sat 01 Jan 1990 00:00:00 GMT');
+        return $next($request);
     }
 }

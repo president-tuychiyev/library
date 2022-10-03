@@ -40,7 +40,7 @@ class DetailController extends Controller
 
         Detail::create(request()->all());
 
-        return redirect()->back()->with('msg', __('lang.adding.success'));
+        return redirect()->back()->with('msg', __('locale.msg.insert.success'));
     }
 
     public function detailBookUpdate()
@@ -61,13 +61,13 @@ class DetailController extends Controller
 
         Detail::where('id', $id)->update(request()->all());
 
-        return redirect()->back()->with('msg', __('lang.update.success'));
+        return redirect()->back()->with('msg', __('locale.msg.update.success'));
     }
 
     public function detailBookDelete($id)
     {
         Detail::where('id', $id)->update(['isDeleted' => true]);
 
-        return redirect()->back()->with('msg', __('lang.delete.success'));
+        return redirect()->back()->with('msg', __('locale.msg.delete.success'));
     }
 }

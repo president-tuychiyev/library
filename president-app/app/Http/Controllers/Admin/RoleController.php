@@ -38,7 +38,7 @@ class RoleController extends Controller
             endforeach;
             Permission::where('roleId', $role->id)->where('menuId', $key)->update($permission);
         endforeach;
-        return redirect()->back()->with('msg', __('lang.adding.success'));
+        return redirect()->back()->with('msg', __('locale.msg.insert.success'));
     }
 
     public function update()
@@ -53,13 +53,13 @@ class RoleController extends Controller
             endforeach;
             Permission::where('roleId', $role->id)->where('menuId', $key)->update($permission);
         endforeach;
-        return redirect()->back()->with('msg', __('lang.update.success'));
+        return redirect()->back()->with('msg', __('locale.msg.update.success'));
     }
 
     public function delete($id)
     {
         Role::where('id', $id)->whereNotIn('id', [1, 2, 3])->update(['isDeleted' => true]);
 
-        return redirect()->back()->with('msg', __('lang.delete.success'));
+        return redirect()->back()->with('msg', __('locale.msg.delete.success'));
     }
 }

@@ -87,7 +87,7 @@ class BookController extends Controller
 
         Book::create(request()->except(['docMedia', 'coverMedia']));
 
-        return redirect()->back()->with('msg', __('lang.adding.success'));
+        return redirect()->back()->with('msg', __('locale.msg.insert.success'));
     }
 
     public function select($id)
@@ -168,13 +168,13 @@ class BookController extends Controller
 
         Book::where('id', request()->id)->update(request()->except(['docMedia', 'coverMedia', '_token']));
 
-        return redirect()->route('admin.books')->with('msg', __('lang.update.success'));
+        return redirect()->route('admin.books')->with('msg', __('locale.msg.update.success'));
     }
 
     public function delete($id)
     {
         Book::where('id', $id)->update(['isDeleted' => true]);
-        return redirect()->back()->with('msg', __('lang.delete.success'));
+        return redirect()->back()->with('msg', __('locale.msg.delete.success'));
     }
 
     public function qrcode()
@@ -196,7 +196,7 @@ class BookController extends Controller
         if (!User::find(request()->recUserId)): return redirect()->back()->with('msg', __('lang.update.error'));endif;
         request()->request->add(['getBack' => Carbon::now()->addDays((int) request()->day), 'userId' => session()->get('user')->id]);
         Order::create(request()->all());
-        return redirect()->back()->with('msg', __('lang.update.success'));
+        return redirect()->back()->with('msg', __('locale.msg.update.success'));
     }
 
     public function search()

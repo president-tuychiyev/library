@@ -55,7 +55,7 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="javascript:void(0)">
                             <div class="d-flex">
                                 <div class="flex-grow-1">
                                     <span class="fw-semibold d-block">{{ session()->get('user')->name }}</span>
@@ -71,13 +71,18 @@
                         <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="javascript:void(0)"
+                            onclick="infoUser({{ session()->get('user')->id }})" data-bs-toggle="modal"
+                            data-bs-target="#infoModal">
                             <i class="bx bx-user me-2"></i>
                             <span class="align-middle">Profil</span>
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal"
+                            data-bs-target="#profilSettingModal" onclick="updateProfile(this)" data-title="Profil sozlamalarini yangilash"
+                            data-id="{{ session()->get('user')->id }}" data-name="{{ session()->get('user')->name }}"
+                            data-phone="{{ session()->get('user')->phone }}" data-email="{{ session()->get('user')->email }}">
                             <i class="bx bx-cog me-2"></i>
                             <span class="align-middle">Sozlamalar</span>
                         </a>

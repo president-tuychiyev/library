@@ -17,12 +17,12 @@
                     <div class="card-header">
                         <div class="demo-inline-spacing">
                             <button type="button" class="btn btn-icon btn-outline-primary" data-bs-toggle="tooltip"
-                                data-bs-placement="top" data-bs-original-title="QR kodlarni printerga yuborish" onclick="qr()">
+                                data-bs-placement="top" data-bs-original-title="QR kodlarni printerga yuborish" onclick="printDocument()">
                                 <span class="tf-icons bx bx-printer"></span>
                             </button>
                         </div>
                     </div>
-                    <div class="card-body text-center flex overflow-x-auto" id="qrdiv">
+                    <div class="card-body text-center flex overflow-x-auto" id="printDiv">
                         @foreach ($books as $b)
                             <div class="px-2" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"
                                 data-bs-placement="top" title="{{ Str::substr($b->name, 0, 20) }}...">

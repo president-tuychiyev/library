@@ -19,10 +19,8 @@ class AuthorController extends Controller
         request()->request->remove('id');
         request()->isActiveCheck ? request()->request->add(['userId' => session()->get('user')->id, 'isActive' => true]) : request()->request->add(['userId' => session()->get('user')->id]);
         request()->request->remove('isActiveCheck');
-
         Author::create(request()->all());
-
-        return redirect()->back()->with('msg', __('lang.adding.success'));
+        return redirect()->back()->with('msg', __('locale.msg.insert.success'));
     }
 
     public function update()
@@ -32,16 +30,13 @@ class AuthorController extends Controller
         request()->request->remove('id');
         request()->request->remove('_token');
         request()->request->remove('isActiveCheck');
-
         Author::where('id', $id)->update(request()->all());
-
-        return redirect()->back()->with('msg', __('lang.update.success'));
+        return redirect()->back()->with('msg', __('locale.msg.update.success'));
     }
 
     public function delete($id)
     {
         Author::where('id', $id)->update([ 'isDeleted' => true ]);
-
-        return redirect()->back()->with('msg', __('lang.delete.success'));
+        return redirect()->back()->with('msg', __('locale.msg.delete.success'));
     }
 }

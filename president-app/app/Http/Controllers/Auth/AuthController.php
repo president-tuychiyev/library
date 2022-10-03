@@ -29,17 +29,17 @@ class AuthController extends Controller
                 session()->put('user', $user);
                 return redirect()->route('admin.home');
             else:
-                return redirect()->back()->with('msg', __('lang.auth.msg.error.password'));
+                return redirect()->back()->with('msg', __('locale.msg.auth.error', ['text' => 'Parol']));
             endif;
         else:
-            return redirect()->back()->with('msg', __('lang.auth.msg.error.email'));
+            return redirect()->back()->with('msg', __('locale.msg.auth.error', ['text' => 'Email']));
         endif;
     }
 
     public function logout ()
     {
         session()->pull('user');
-        
+
         return redirect()->back();
     }
 }

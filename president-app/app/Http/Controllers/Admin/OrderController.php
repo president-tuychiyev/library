@@ -20,7 +20,7 @@ class OrderController extends Controller
     public function update($id, $status)
     {
         Order::where('id', $id)->update(['status' => $status, 'returned' => now()]);
-        return redirect()->back()->with('msg', __('lang.update.success'));
+        return redirect()->back()->with('msg', __('locale.msg.update.success'));
     }
 
     public function search()
