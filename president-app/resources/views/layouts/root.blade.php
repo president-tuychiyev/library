@@ -8,10 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>@yield('title') | @lang('locale.app.title')</title>
-    {{--
-    <link rel="stylesheet" href="{{ asset('build/assets/app.df12c049.css') }}">
-    <script src="{{ asset('build/assets/app.8ba65905.js') }}" type="module"></script> --}}
-
+    
+    {{-- <link rel="stylesheet" href="{{ asset('build/assets/app.f667c495.css') }}">
+    <script src="{{ asset('build/assets/app.f6489cf9.js') }}" type="module"></script> --}}
+    
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

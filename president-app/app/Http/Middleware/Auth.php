@@ -17,13 +17,12 @@ class Auth
      */
     public function handle(Request $request, Closure $next)
     {
-
         if (!session()->has('user') && $request->path() != app()->getLocale() . '/auth/sign-in'):
             return redirect()->route('auth.signIn')->with('msg',__('locale.msg.auth.warning'));
         endif;
 
         if (session()->has('user') && $request->path() == app()->getLocale() . '/auth/sign-in'):
-            return redirect()->back();
+            return redirect()->route('admin.home');
         endif;
 
         return $next($request);

@@ -38,7 +38,7 @@
                                 <tbody class="table-border-bottom-0">
                                     @foreach ($facultys as $i => $f)
                                         <tr>
-                                            <td class="font-medium">{{ $i+1 }}</td>
+                                            <td class="font-medium">{{ $i + 1 }}</td>
                                             <td>{{ $f->$name }}</td>
                                             <td class="text-center">
                                                 @if ($f->isActive)
@@ -54,9 +54,9 @@
                                             <td>{{ $f->user->name }}</td>
                                             <td class="text-center">
                                                 <button type="button" class="px-2" onclick="updateDetail(this)"
-                                                    data-type="1" data-title="Kitob turini yangilash"
-                                                    data-id="{{ $f->id }}" data-bs-toggle="modal"
-                                                    data-bs-target="#detailModal"
+                                                    data-active="{{ $f->isActive }}" data-type="1"
+                                                    data-title="Kitob turini yangilash" data-id="{{ $f->id }}"
+                                                    data-bs-toggle="modal" data-bs-target="#detailModal"
                                                     data-langs="{{ $f->nameuz . '@' . $f->nameru . '@' . $f->nameen }}"><i
                                                         class="bx bx-edit" data-bs-toggle="tooltip" data-bs-placement="top"
                                                         data-bs-original-title="Kitob turini yangilash"></i></button>
@@ -112,7 +112,7 @@
                                 <tbody class="table-border-bottom-0">
                                     @foreach ($departaments as $i => $d)
                                         <tr>
-                                            <td class="font-medium">{{ $i+1 }}</td>
+                                            <td class="font-medium">{{ $i + 1 }}</td>
                                             <td>{{ $d->$name }}</td>
                                             <td class="text-center">
                                                 @if ($d->isActive)
@@ -128,9 +128,9 @@
                                             <td>{{ $d->user->name }}</td>
                                             <td class="text-center">
                                                 <button type="button" class="px-2" onclick="updateDetail(this)"
-                                                    data-type="1" data-title="Kitob tilini yangilash"
-                                                    data-id="{{ $d->id }}" data-bs-toggle="modal"
-                                                    data-bs-target="#detailModal"
+                                                    data-active="{{ $d->isActive }}" data-type="1"
+                                                    data-title="Kitob tilini yangilash" data-id="{{ $d->id }}"
+                                                    data-bs-toggle="modal" data-bs-target="#detailModal"
                                                     data-langs="{{ $d->nameuz . '@' . $d->nameru . '@' . $d->nameen }}"><i
                                                         class="bx bx-edit" data-bs-toggle="tooltip"
                                                         data-bs-placement="top"
@@ -187,7 +187,7 @@
                                 <tbody class="table-border-bottom-0">
                                     @foreach ($groups as $i => $g)
                                         <tr>
-                                            <td class="font-medium">{{ $i+1 }}</td>
+                                            <td class="font-medium">{{ $i + 1 }}</td>
                                             <td>{{ $g->group }}</td>
                                             <td class="text-center">
                                                 @if ($g->isActive)
@@ -203,10 +203,11 @@
                                             <td>{{ $g->user->name }}</td>
                                             <td class="text-center">
                                                 <button type="button" class="px-2" onclick="updateGroup(this)"
-                                                    data-title="Gruruhni yangilash" data-id="{{ $g->id }}"
-                                                    data-bs-toggle="modal" data-bs-target="#groupModal"
-                                                    data-name="{{ $g->group }}"><i class="bx bx-edit"
-                                                        data-bs-toggle="tooltip" data-bs-placement="top"
+                                                    data-active="{{ $g->isActive }}" data-title="Gruruhni yangilash"
+                                                    data-id="{{ $g->id }}" data-bs-toggle="modal"
+                                                    data-bs-target="#groupModal" data-name="{{ $g->group }}"><i
+                                                        class="bx bx-edit" data-bs-toggle="tooltip"
+                                                        data-bs-placement="top"
                                                         data-bs-original-title="Gruruhni yangilash"></i></button>
                                                 <button type="button"
                                                     data-href="{{ route('admin.system.delete', $g->id) }}"
@@ -261,15 +262,18 @@
                                         required data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"
                                         data-bs-placement="top" title="majburiy bo'lim">
                                 </div>
-                                <div class="form-check">
-                                    <label class="form-check-label custom-option-content" for="isActive">
-                                        <span class="custom-option-body">
-                                            <span class="custom-option-title"> Faolmi ? </span>
+                                <label class="switch">
+                                    <input type="checkbox" name="isActiveCheck" id="isActive" class="switch-input">
+                                    <span class="switch-toggle-slider">
+                                        <span class="switch-on">
+                                            <i class="bx bx-check"></i>
                                         </span>
-                                        <input class="form-check-input" type="checkbox" name="isActiveCheck"
-                                            id="isActive">
-                                    </label>
-                                </div>
+                                        <span class="switch-off">
+                                            <i class="bx bx-x"></i>
+                                        </span>
+                                    </span>
+                                    <span class="switch-label">Aktivmi ?</span>
+                                </label>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -316,15 +320,18 @@
                                         required data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"
                                         data-bs-placement="top" title="majburiy bo'lim">
                                 </div>
-                                <div class="form-check">
-                                    <label class="form-check-label custom-option-content" for="isActive">
-                                        <span class="custom-option-body">
-                                            <span class="custom-option-title"> Faolmi ? </span>
+                                <label class="switch">
+                                    <input type="checkbox" name="isActiveCheck" id="isActiveGroup" class="switch-input">
+                                    <span class="switch-toggle-slider">
+                                        <span class="switch-on">
+                                            <i class="bx bx-check"></i>
                                         </span>
-                                        <input class="form-check-input" type="checkbox" name="isActiveCheck"
-                                            id="isActive">
-                                    </label>
-                                </div>
+                                        <span class="switch-off">
+                                            <i class="bx bx-x"></i>
+                                        </span>
+                                    </span>
+                                    <span class="switch-label">Aktivmi ?</span>
+                                </label>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -336,7 +343,6 @@
                 </div>
             </div>
         </div>
-        <!--/ Modal for add data -->
     </div>
 
 @stop

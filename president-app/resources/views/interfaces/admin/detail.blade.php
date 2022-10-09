@@ -61,9 +61,9 @@
                                             <td>{{ $dt->user->name }}</td>
                                             <td>
                                                 <button type="button" class="px-2" onclick="updateDetail(this)"
-                                                    data-type="1" data-title="Kitob turini yangilash"
-                                                    data-id="{{ $dt->id }}" data-bs-toggle="modal"
-                                                    data-bs-target="#detailModal"
+                                                    data-active="{{ $dt->isActive }}" data-type="1"
+                                                    data-title="Kitob turini yangilash" data-id="{{ $dt->id }}"
+                                                    data-bs-toggle="modal" data-bs-target="#detailModal"
                                                     data-langs="{{ $dt->nameuz . '@' . $dt->nameru . '@' . $dt->nameen }}"><i
                                                         class="bx bx-edit" data-bs-toggle="tooltip" data-bs-placement="top"
                                                         data-bs-original-title="Kitob turini yangilash"></i></button>
@@ -135,9 +135,9 @@
                                             <td>{{ $dl->user->name }}</td>
                                             <td>
                                                 <button type="button" class="px-2" onclick="updateDetail(this)"
-                                                    data-type="1" data-title="Kitob tilini yangilash"
-                                                    data-id="{{ $dl->id }}" data-bs-toggle="modal"
-                                                    data-bs-target="#detailModal"
+                                                    data-active="{{ $dl->isActive }}" data-type="1"
+                                                    data-title="Kitob tilini yangilash" data-id="{{ $dl->id }}"
+                                                    data-bs-toggle="modal" data-bs-target="#detailModal"
                                                     data-langs="{{ $dl->nameuz . '@' . $dl->nameru . '@' . $dl->nameen }}"><i
                                                         class="bx bx-edit" data-bs-toggle="tooltip"
                                                         data-bs-placement="top"
@@ -211,9 +211,9 @@
                                             <td>{{ $tt->user->name }}</td>
                                             <td>
                                                 <button type="button" class="px-2" onclick="updateDetail(this)"
-                                                    data-type="1" data-title="Kitob yozuvini yangilash"
-                                                    data-id="{{ $tt->id }}" data-bs-toggle="modal"
-                                                    data-bs-target="#detailModal"
+                                                    data-active="{{ $tt->isActive }}" data-type="1"
+                                                    data-title="Kitob yozuvini yangilash" data-id="{{ $tt->id }}"
+                                                    data-bs-toggle="modal" data-bs-target="#detailModal"
                                                     data-langs="{{ $tt->nameuz . '@' . $tt->nameru . '@' . $tt->nameen }}"><i
                                                         class="bx bx-edit" data-bs-toggle="tooltip"
                                                         data-bs-placement="top"
@@ -287,9 +287,9 @@
                                             <td>{{ $df->user->name }}</td>
                                             <td>
                                                 <button type="button" class="px-2" onclick="updateDetail(this)"
-                                                    data-type="1" data-title="Matn turini yangilash"
-                                                    data-id="{{ $df->id }}" data-bs-toggle="modal"
-                                                    data-bs-target="#detailModal"
+                                                    data-active="{{ $df->isActive }}" data-type="1"
+                                                    data-title="Matn turini yangilash" data-id="{{ $df->id }}"
+                                                    data-bs-toggle="modal" data-bs-target="#detailModal"
                                                     data-langs="{{ $df->nameuz . '@' . $df->nameru . '@' . $df->nameen }}"><i
                                                         class="bx bx-edit" data-bs-toggle="tooltip"
                                                         data-bs-placement="top"
@@ -361,9 +361,9 @@
                                             <td>{{ $ft->user->name }}</td>
                                             <td>
                                                 <button type="button" class="px-2" onclick="updateDetail(this)"
-                                                    data-type="1" data-title="Fayl turini yangilash"
-                                                    data-id="{{ $ft->id }}" data-bs-toggle="modal"
-                                                    data-bs-target="#detailModal"
+                                                    data-active="{{ $ft->isActive }}" data-type="1"
+                                                    data-title="Fayl turini yangilash" data-id="{{ $ft->id }}"
+                                                    data-bs-toggle="modal" data-bs-target="#detailModal"
                                                     data-langs="{{ $ft->nameuz . '@' . $ft->nameru . '@' . $ft->nameen }}"><i
                                                         class="bx bx-edit" data-bs-toggle="tooltip"
                                                         data-bs-placement="top"
@@ -437,9 +437,9 @@
                                             <td>{{ $d->user->name }}</td>
                                             <td>
                                                 <button type="button" class="px-2" onclick="updateDetail(this)"
-                                                    data-type="1" data-title="Fan yoʻnalishini yangilash"
-                                                    data-id="{{ $d->id }}" data-bs-toggle="modal"
-                                                    data-bs-target="#detailModal"
+                                                    data-active="{{ $d->isActive }}" data-type="1"
+                                                    data-title="Fan yoʻnalishini yangilash" data-id="{{ $d->id }}"
+                                                    data-bs-toggle="modal" data-bs-target="#detailModal"
                                                     data-langs="{{ $d->nameuz . '@' . $d->nameru . '@' . $d->nameen }}"><i
                                                         class="bx bx-edit" data-bs-toggle="tooltip"
                                                         data-bs-placement="top"
@@ -496,15 +496,18 @@
                                         required data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"
                                         data-bs-placement="top" title="majburiy bo'lim">
                                 </div>
-                                <div class="form-check">
-                                    <label class="form-check-label custom-option-content" for="isActive">
-                                        <span class="custom-option-body">
-                                            <span class="custom-option-title"> Faolmi ? </span>
+                                <label class="switch">
+                                    <input type="checkbox" name="isActiveCheck" id="isActive" class="switch-input">
+                                    <span class="switch-toggle-slider">
+                                        <span class="switch-on">
+                                            <i class="bx bx-check"></i>
                                         </span>
-                                        <input class="form-check-input" type="checkbox" name="isActiveCheck"
-                                            id="isActive">
-                                    </label>
-                                </div>
+                                        <span class="switch-off">
+                                            <i class="bx bx-x"></i>
+                                        </span>
+                                    </span>
+                                    <span class="switch-label">Aktivmi ?</span>
+                                </label>
                             </div>
                         </div>
                         <div class="modal-footer">

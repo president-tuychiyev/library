@@ -24,20 +24,22 @@
                         <div class="mb-3">
                             <label class="form-label" for="doc-type">Kitob nomi</label>
                             <div class="input-group input-group-merge">
-                                <input name="name" id="title-book" value="@isset($book){{ $book->name }}@else{{ old('name') }}@endisset" 
-                                            class="form-control" required data-bs-toggle="tooltip"
-                                            data-bs-placement="top" 
-                                            title="majburiy boʻlim">
+                                <input name="name" id="title-book"
+                                    value="@isset($book){{ $book->name }}@else{{ old('name') }}@endisset"
+                                    class="form-control" required data-bs-toggle="tooltip" data-bs-placement="top"
+                                    title="majburiy boʻlim">
                             </div>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label" for="annontation-type">Anotatsiya</label>
                             <div class="input-group input-group-merge">
-                                <textarea name="annontation" id="annontation-book" rows="3" 
-                                            class="form-control" required data-bs-toggle="tooltip"
-                                            data-bs-placement="top" 
-                                            title="majburiy boʻlim">@isset($book){{ $book->annontation }}@else{{ old('annontation') }}@endisset</textarea>
+                                <textarea name="annontation" id="annontation-book" rows="3" class="form-control" required data-bs-toggle="tooltip"
+                                    data-bs-placement="top" title="majburiy boʻlim">
+@isset($book)
+{{ $book->annontation }}@else{{ old('annontation') }}
+@endisset
+</textarea>
                             </div>
                         </div>
 
@@ -294,16 +296,19 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label" for="is-active-book">Aktivligi</label>
-                            <div class="input-group input-group-merge">
-                                <select class="form-select" name="isActive" id="is-active-book"
-                                    data-bs-toggle="tooltip" data-bs-placement="top" title="majburiy emas">
-                                    <option @if (isset($book) && 1 == $book->isActive) selected="true" @endif value="1">
-                                        Faol</option>
-                                    <option @if (isset($book) && 0 == $book->isActive) selected="true" @endif value="0">
-                                        Faol emas</option>
-                                </select>
-                            </div>
+                            <label class="switch">
+                                <input type="checkbox" name="isActiveCheck" id="isActive"
+                                    @if (isset($book) && 1 == $book->isActive) checked="true" @endif class="switch-input">
+                                <span class="switch-toggle-slider">
+                                    <span class="switch-on">
+                                        <i class="bx bx-check"></i>
+                                    </span>
+                                    <span class="switch-off">
+                                        <i class="bx bx-x"></i>
+                                    </span>
+                                </span>
+                                <span class="switch-label">Aktivmi ?</span>
+                            </label>
                         </div>
 
                         <div class="mb-1">

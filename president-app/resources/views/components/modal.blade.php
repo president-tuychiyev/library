@@ -21,7 +21,7 @@
                                         id="email-info-modal"></span></p>
                                 <p class="mb-1"><span class="font-bold">@lang('locale.modal.user-info.phone')</span> <span
                                         id="phone-info-modal"></span></p>
-                                <span class="badge bg-label-primary">@lang('locale.modal.user-info.ready-book') <span
+                                <span class="badge bg-label-primary">@lang('locale.modal.user-info.read-book') <span
                                         id="books-info-modal"></span></span>
                             </div>
                         </div>

@@ -60,6 +60,7 @@ class BookController extends Controller
         //     'comeFrom' => 'required|numeric|max:11',
         //     'forWhom' => 'required|numeric|max:11',
         // ]);
+        request()->isActiveCheck ? request()->request->add(['isActive' => true]) : request()->request->add(['isActive' => false]);
 
         if (request()->hasFile('coverMedia')):
             $coverMedia = Storage::disk('upload')->put('upload/covers', request()->file('coverMedia'));
@@ -85,7 +86,7 @@ class BookController extends Controller
 
         request()->request->add(['userId' => session()->get('user')->id]);
 
-        Book::create(request()->except(['docMedia', 'coverMedia']));
+        Book::create(request()->except(['docMedia', 'coverMedia', 'isActiveCheck']));
 
         return redirect()->back()->with('msg', __('locale.msg.insert.success'));
     }
@@ -163,10 +164,10 @@ class BookController extends Controller
                 request()->request->add(['docMediaId' => $media->id]);
             endif;
         endif;
-
+        request()->isActiveCheck ? request()->request->add(['isActive' => true]) : request()->request->add(['isActive' => false]);
         request()->request->add(['userId' => session()->get('user')->id]);
 
-        Book::where('id', request()->id)->update(request()->except(['docMedia', 'coverMedia', '_token']));
+        Book::where('id', request()->id)->update(request()->except(['docMedia', 'coverMedia', '_token', 'isActiveCheck']));
 
         return redirect()->route('admin.books')->with('msg', __('locale.msg.update.success'));
     }

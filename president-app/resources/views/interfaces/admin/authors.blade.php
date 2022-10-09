@@ -32,7 +32,7 @@
                         <tbody class="table-border-bottom-0">
                             @foreach ($authors as $i => $a)
                                 <tr class="text-center">
-                                    <td><strong>{{ $i+1 }}</strong></td>
+                                    <td><strong>{{ $i + 1 }}</strong></td>
                                     <td>{{ $a->name }}</td>
                                     <td>
                                         @if ($a->isActive)
@@ -91,14 +91,18 @@
                                         data-bs-custom-class="custom-tooltip" data-bs-placement="top"
                                         title="majburiy bo'lim">
                                 </div>
-                                <div class="form-check">
-                                    <label class="form-check-label custom-option-content" for="isActive">
-                                        <span class="custom-option-body">
-                                            <span class="custom-option-title"> Faolmi ? </span>
+                                <label class="switch">
+                                    <input type="checkbox" name="isActiveCheck" id="isActive" class="switch-input">
+                                    <span class="switch-toggle-slider">
+                                        <span class="switch-on">
+                                            <i class="bx bx-check"></i>
                                         </span>
-                                        <input class="form-check-input" type="checkbox" name="isActiveCheck" id="isActive">
-                                    </label>
-                                </div>
+                                        <span class="switch-off">
+                                            <i class="bx bx-x"></i>
+                                        </span>
+                                    </span>
+                                    <span class="switch-label">Aktivmi ?</span>
+                                </label>
                             </div>
                         </div>
                         <div class="modal-footer">
