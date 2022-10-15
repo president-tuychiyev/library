@@ -33,6 +33,11 @@ Route::prefix(Config::get('language', 'uz'))->group(function () {
 
     Route::prefix('auth')->group(function () {
         Route::post('check', 'Auth\\AuthController@check')->name('auth.check');
+        Route::get('sign-up', function () {
+            return view('auth.sign-up');
+        })->name('auth.signUp');
+        Route::post('send-code-email', 'Auth\\AuthController@sendCodeEmail')->name('auth.send.code.email');
+        Route::get('registration/{id}', 'Auth\\AuthController@registration')->name('auth.registration');
     });
 
     Route::middleware(['auth', 'permission'])->group(function () {

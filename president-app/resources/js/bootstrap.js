@@ -6,13 +6,13 @@ window.axios = axios;
 
 window.axios.defaults.headers.common[ 'X-Requested-With' ] = 'XMLHttpRequest';
 
-window.addDetail = function (e) {
+window.addDetail = (e) => {
     document.getElementById("modalForm").action = document.getElementById("modalForm").getAttribute("data-add");
     document.getElementById("titleDetail").innerHTML = e.getAttribute('data-title');
     document.querySelector('[name="type"]').value = e.getAttribute('data-type');
 }
 
-window.updateDetail = function (e) {
+window.updateDetail = (e) => {
     document.getElementById("modalForm").action = document.getElementById("modalForm").getAttribute("data-update");
     document.getElementById("titleDetail").innerHTML = e.getAttribute('data-title');
     document.querySelector('[name="type"]').value = e.getAttribute('data-type');
@@ -30,11 +30,11 @@ window.updateDetail = function (e) {
     }
 }
 
-window.deleteConfirmModal = function (e) {
+window.deleteConfirmModal = (e) => {
     document.getElementById('deleteBookBtn').setAttribute('href', e.getAttribute('data-href'));
 }
 
-window.selectMenu = function (id) {
+window.selectMenu = (id) => {
     if (localStorage.getItem('menuIsActive') == id)
     {
         localStorage.removeItem('menuIsActive');
@@ -44,20 +44,20 @@ window.selectMenu = function (id) {
     }
 }
 
-window.onload = function () {
+window.onload = () => {
     if (localStorage.getItem('menuIsActive') && document.querySelector('[data-select="menu-item-' + localStorage.getItem('menuIsActive') + '"]'))
     {
         document.querySelector('[data-select="menu-item-' + localStorage.getItem('menuIsActive') + '"]').setAttribute('class', 'menu-item open active');
     }
 }
 
-window.addGroup = function (e) {
+window.addGroup = (e) => {
     document.getElementById("modalForm").action = document.getElementById("modalForm").getAttribute("data-add");
     document.getElementById("titleGroup").innerHTML = e.getAttribute('data-title');
     document.querySelector('[name="type"]').value = e.getAttribute('data-type');
 }
 
-window.updateGroup = function (e) {
+window.updateGroup = (e) => {
     document.getElementById("modalFormGroup").action = document.getElementById("modalFormGroup").getAttribute("data-update");
     document.getElementById("titleGroup").innerHTML = e.getAttribute('data-title');
     document.querySelector('[name="groupId"]').value = e.getAttribute('data-id');
@@ -71,26 +71,26 @@ window.updateGroup = function (e) {
     }
 }
 
-window.addAuthor = function (e) {
+window.addAuthor = (e) => {
     document.getElementById("modalForm").action = document.getElementById("modalForm").getAttribute("data-add");
     document.getElementById("titleAuthor").innerHTML = e.getAttribute('data-title');
 }
 
-window.updateAuthor = function (e) {
+window.updateAuthor = (e) => {
     document.getElementById("modalForm").action = document.getElementById("modalForm").getAttribute("data-update");
     document.getElementById("titleAuthor").innerHTML = e.getAttribute('data-title');
     document.querySelector('[name="id"]').value = e.getAttribute('data-id');
     document.querySelector('[name="name"]').value = e.getAttribute('data-name');
 }
 
-window.addWorkman = function (e) {
+window.addWorkman = (e) => {
     document.getElementById("modalForm").action = document.getElementById("modalForm").getAttribute("data-add");
     document.getElementById("titleWorkman").innerHTML = e.getAttribute('data-title');
     document.querySelector('[name="email"]').disabled = false;
     document.querySelector('[name="pass"]').required = true;
 }
 
-window.updateWorkman = function (e) {
+window.updateWorkman = (e) => {
     document.getElementById("modalForm").action = document.getElementById("modalForm").getAttribute("data-update");
     document.getElementById("titleWorkman").innerHTML = e.getAttribute('data-title');
     document.querySelector('[name="id"]').value = e.getAttribute('data-id');
@@ -109,12 +109,12 @@ window.updateWorkman = function (e) {
     }
 }
 
-window.addRole = function (e) {
+window.addRole = (e) => {
     document.getElementById("modalForm").action = document.getElementById("modalForm").getAttribute("data-add");
     document.getElementById("titleRole").innerHTML = e.getAttribute('data-title');
 }
 
-window.updateRole = function (e) {
+window.updateRole = (e) => {
     document.getElementById("modalForm").action = document.getElementById("modalForm").getAttribute("data-update");
     document.getElementById("titleRole").innerHTML = e.getAttribute('data-title');
     document.querySelector('[name="id"]').value = e.getAttribute('data-id');
@@ -129,14 +129,14 @@ window.updateRole = function (e) {
     });
 }
 
-window.addUser = function (e) {
+window.addUser = (e) => {
     document.getElementById("modalForm").action = document.getElementById("modalForm").getAttribute("data-add");
     document.getElementById("titleUsers").innerHTML = e.getAttribute('data-title');
     document.querySelector('[name="email"]').disabled = false;
     document.querySelector('[name="pass"]').required = true;
 }
 
-window.updateUser = function (e) {
+window.updateUser = (e) => {
     document.getElementById("modalForm").action = document.getElementById("modalForm").getAttribute("data-update");
     document.getElementById("titleUsers").innerHTML = e.getAttribute('data-title');
     document.querySelector('[name="id"]').value = e.getAttribute('data-id');
@@ -158,7 +158,7 @@ window.updateUser = function (e) {
     }
 }
 
-window.checkUser = function (t, e) {
+window.checkUser = (t, e) => {
     if (e.keyCode === 13)
     {
         axios.post('/uz/admin/users/check', { id: t.value })
@@ -211,7 +211,7 @@ window.checkUser = function (t, e) {
     }
 }
 
-window.infoUser = function (t) {
+window.infoUser = (t) => {
     axios.post('/uz/admin/users/check', { id: t })
         .then((response) => {
             document.getElementById("user-name-info-modal").innerHTML = response.data.name;
@@ -233,14 +233,14 @@ window.infoUser = function (t) {
         })
 }
 
-window.printDocument = function () {
+window.printDocument = () => {
     let div = document.getElementById('printDiv').innerHTML;
     document.body.innerHTML = div;
     window.print();
     window.location.reload();
 }
 
-window.updateProfile = function (e) {
+window.updateProfile = (e) => {
     document.getElementById("titleProfile").innerHTML = e.getAttribute('data-title');
     document.getElementById('profile-id').value = e.getAttribute('data-id');
     document.getElementById('profile-name').value = e.getAttribute('data-name');

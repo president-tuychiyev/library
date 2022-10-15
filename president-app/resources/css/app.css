@@ -4,8 +4,7 @@
 @import url(../assets/css/demo.css);
 @import url(../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css);
 @import url(../assets/vendor/css/pages/page-auth.css);
-/* @import url(https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/css/rtl/core-dark.css);
-@import url(https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/css/rtl/theme-default-dark.css); */
+@import url(../assets/vendor/css/pages/page-account-settings.css);
 
 @tailwind base;
 @tailwind components;
