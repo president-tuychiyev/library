@@ -20,7 +20,8 @@ Route::get('/dev', function () {
     Artisan::call('view:clear');
     Artisan::call('route:clear');
     Artisan::call('config:clear');
-    return redirect()->back();
+    Artisan::call('config:cache');
+    return redirect('/');
 });
 
 Route::redirect('/', '/uz');
@@ -28,29 +29,27 @@ Route::redirect('/', '/uz');
 Route::prefix(Config::get('language', 'uz'))->group(function () {
 
     Route::get('/', function () {
-        return view('auth.sign-in');
+        return redirect()->route('auth.signIn');
     });
 
     Route::prefix('auth')->group(function () {
+        Route::get('sign-in', 'Auth\\AuthController@index')->name('auth.signIn');
+        Route::get('logout', 'Auth\\AuthController@logout')->name('auth.logout');
         Route::post('check', 'Auth\\AuthController@check')->name('auth.check');
-        Route::get('sign-up', function () {
-            return view('auth.sign-up');
-        })->name('auth.signUp');
+        Route::get('sign-up', function () {return view('auth.sign-up');})->name('auth.signUp');
         Route::post('send-code-email', 'Auth\\AuthController@sendCodeEmail')->name('auth.send.code.email');
         Route::get('registration/{id}', 'Auth\\AuthController@registration')->name('auth.registration');
         Route::post('create-profile', 'Auth\\AuthController@createProfile')->name('auth.create.profile');
+
+        Route::prefix('google')->group(function () {
+            Route::get('redirect', 'Auth\\AuthController@googleRedirect')->name('auth.google.redirect');
+            Route::get('callback', 'Auth\\AuthController@googleCallback')->name('auth.google.callback');
+        });
     });
 
-    Route::middleware(['auth', 'permission'])->group(function () {
-
-        Route::prefix('auth')->group(function () {
-            Route::get('sign-in', 'Auth\\AuthController@index')->name('auth.signIn');
-            Route::get('logout', 'Auth\\AuthController@logout')->name('auth.logout');
-        });
-
+    Route::middleware(['auth.admin', 'permission'])->group(function () {
         Route::prefix('admin')->group(function () {
             Route::get('home', 'Admin\\HomeController@index')->name('admin.home');
-
             Route::prefix('details')->group(function () {
                 Route::get('book', 'Admin\\DetailController@detailBook')->name('admin.datail.book');
                 Route::post('book/add', 'Admin\\DetailController@detailBookAdd')->name('admin.datail.book.add');
@@ -122,6 +121,12 @@ Route::prefix(Config::get('language', 'uz'))->group(function () {
 
         });
 
+    });
+
+    Route::middleware(['auth.client'])->group(function () {
+        Route::prefix('client')->group(function () {
+            Route::get('home', 'Client\\HomeController@index')->name('client.home');
+        });
     });
 
 });

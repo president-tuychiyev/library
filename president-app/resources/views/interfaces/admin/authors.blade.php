@@ -50,9 +50,9 @@
                                     <td>
                                         <button type="button" class="px-2" onclick="updateAuthor(this)"
                                             data-title="Muallifni yangilash" data-id="{{ $a->id }}"
-                                            data-bs-toggle="modal" data-bs-target="#authorModal"
-                                            data-name="{{ $a->name }}"><i class="bx bx-edit" data-bs-toggle="tooltip"
-                                                data-bs-placement="top"
+                                            data-active="{{ $a->isActive }}" data-bs-toggle="modal"
+                                            data-bs-target="#authorModal" data-name="{{ $a->name }}"><i
+                                                class="bx bx-edit" data-bs-toggle="tooltip" data-bs-placement="top"
                                                 data-bs-original-title="Muallifni yangilash"></i></button>
                                         <button type="button" data-href="{{ route('admin.authors.delete', $a->id) }}"
                                             data-bs-toggle="modal" data-bs-target="#confirmModal"

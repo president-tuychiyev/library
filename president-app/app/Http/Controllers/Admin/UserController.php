@@ -14,7 +14,7 @@ class UserController extends Controller
 {
     public function workmansIndex()
     {
-        $workmans = User::where('id', '!=', session()->get('user')->id)->where('isDeleted', false)->whereNotIn('roleId', [1, 2, 3])->with('media')->with('role')->with('user')->paginate(10);
+        $workmans = User::where('id', '!=', session()->get('admin')->id)->where('isDeleted', false)->whereNotIn('roleId', [1, 2, 3])->with('media')->with('role')->with('user')->paginate(10);
         $roles = Role::where('isDeleted', false)->whereNotIn('id', [1, 2, 3])->get();
         return view('interfaces.admin.workmans', compact('workmans', 'roles'));
     }
@@ -31,7 +31,7 @@ class UserController extends Controller
             ]
         );
 
-        request()->isActiveCheck ? request()->request->add(['userId' => session()->get('user')->id, 'isActive' => true]) : request()->request->add(['userId' => session()->get('user')->id]);
+        request()->isActiveCheck ? request()->request->add(['userId' => session()->get('admin')->id, 'isActive' => true]) : request()->request->add(['userId' => session()->get('admin')->id]);
         request()->request->add(['password' => Hash::make(request()->pass)]);
         if (request()->hasFile('avatar')):
             $avatar = Storage::disk('upload')->put('upload/avatars', request()->file('avatar'));
@@ -87,7 +87,7 @@ class UserController extends Controller
 
     public function workmansSearch()
     {
-        $workmans = User::where('id', '!=', session()->get('user')->id)
+        $workmans = User::where('id', '!=', session()->get('admin')->id)
             ->where('isDeleted', false)->whereNotIn('roleId', [1, 2, 3])
             ->orWhere('id', 'like', request()->q)
             ->orWhere('name', 'like', request()->q)
@@ -99,14 +99,14 @@ class UserController extends Controller
 
     public function teachers()
     {
-        $users = User::where('id', '!=', session()->get('user')->id)->where('isDeleted', false)->where('roleId', 2)->with('media')->with('user')->paginate(30);
+        $users = User::where('id', '!=', session()->get('admin')->id)->where('isDeleted', false)->where('roleId', 2)->with('media')->with('user')->paginate(30);
         $role = 2;
         return view('interfaces.admin.users-others', compact('users', 'role'));
     }
 
     public function students()
     {
-        $users = User::where('id', '!=', session()->get('user')->id)->where('isDeleted', false)->where('roleId', 3)->with('media')->with('user')->paginate(30);
+        $users = User::where('id', '!=', session()->get('admin')->id)->where('isDeleted', false)->where('roleId', 3)->with('media')->with('user')->paginate(30);
         $groups = System::where('isDeleted', false)->where('isActive', true)->get();
         $role = 3;
         return view('interfaces.admin.users-others', compact('users', 'role', 'groups'));
@@ -124,7 +124,7 @@ class UserController extends Controller
             ]
         );
 
-        request()->isActiveCheck ? request()->request->add(['userId' => session()->get('user')->id, 'isActive' => true]) : request()->request->add(['userId' => session()->get('user')->id]);
+        request()->isActiveCheck ? request()->request->add(['userId' => session()->get('admin')->id, 'isActive' => true]) : request()->request->add(['userId' => session()->get('admin')->id]);
         request()->request->add(['password' => Hash::make(request()->pass)]);
         if (request()->hasFile('avatar')):
             $avatar = Storage::disk('upload')->put('upload/avatars', request()->file('avatar'));
@@ -190,11 +190,11 @@ class UserController extends Controller
 
     public function search($role)
     {
-        $users = User::where('roleId', $role)->where('id', '!=', session()->get('user')->id)->where('isDeleted', false)
+        $users = User::where('roleId', $role)->where('id', '!=', session()->get('admin')->id)->where('isDeleted', false)
             ->orWhere('id', 'like', request()->q)
             ->orWhere('name', 'like', request()->q)
             ->orWhere('email', 'like', request()->q)
-            ->with('media')->with('user')->paginate(30);
+            ->with('media')->with('user')->paginate(30)->withQueryString();
         $role = $role;
         return view('interfaces.admin.users-others', compact('users', 'role'));
     }

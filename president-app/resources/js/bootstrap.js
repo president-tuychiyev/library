@@ -81,6 +81,13 @@ window.updateAuthor = (e) => {
     document.getElementById("titleAuthor").innerHTML = e.getAttribute('data-title');
     document.querySelector('[name="id"]').value = e.getAttribute('data-id');
     document.querySelector('[name="name"]').value = e.getAttribute('data-name');
+    if (e.getAttribute('data-active') == 1)
+    {
+        document.querySelector('[name="isActiveCheck"]').checked = true;
+    } else
+    {
+        document.querySelector('[name="isActiveCheck"]').checked = false;
+    }
 }
 
 window.addWorkman = (e) => {
@@ -262,28 +269,4 @@ window.selectPosition = (e) => {
         document.getElementById('select-group').required = false
         document.getElementById('select-group').value = null
     }
-}
-
-window.checkCode = () => {
-    axios.post('/uz/auth/check-code', { code: document.getElementById('verify-code').value, verifyId: document.getElementById('verify-id').value }).then(function (response) {
-        if (response.data.message.status != 'success')
-        {
-            Swal.fire({
-                toast: true,
-                position: 'bottom-end',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                },
-                title: response.data.message.text,
-                icon: "error",
-            })
-        } else
-        {
-            document.getElementById('registration-form').submit()
-        }
-    })
 }

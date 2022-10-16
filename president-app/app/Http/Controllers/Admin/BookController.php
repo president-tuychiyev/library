@@ -84,7 +84,7 @@ class BookController extends Controller
             request()->request->add(['docMediaId' => $media->id]);
         endif;
 
-        request()->request->add(['userId' => session()->get('user')->id]);
+        request()->request->add(['userId' => session()->get('admin')->id]);
 
         Book::create(request()->except(['docMedia', 'coverMedia', 'isActiveCheck']));
 
@@ -165,7 +165,7 @@ class BookController extends Controller
             endif;
         endif;
         request()->isActiveCheck ? request()->request->add(['isActive' => true]) : request()->request->add(['isActive' => false]);
-        request()->request->add(['userId' => session()->get('user')->id]);
+        request()->request->add(['userId' => session()->get('admin')->id]);
 
         Book::where('id', request()->id)->update(request()->except(['docMedia', 'coverMedia', '_token', 'isActiveCheck']));
 
@@ -195,7 +195,7 @@ class BookController extends Controller
     public function give()
     {
         if (!User::find(request()->recUserId)): return redirect()->back()->with('msg', __('lang.update.error'));endif;
-        request()->request->add(['getBack' => Carbon::now()->addDays((int) request()->day), 'userId' => session()->get('user')->id]);
+        request()->request->add(['getBack' => Carbon::now()->addDays((int) request()->day), 'userId' => session()->get('admin')->id]);
         Order::create(request()->all());
         return redirect()->back()->with('msg', __('locale.msg.update.success'));
     }

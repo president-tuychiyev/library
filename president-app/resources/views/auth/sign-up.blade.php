@@ -29,7 +29,7 @@
                                 <label for="email" class="form-label">Email</label>
                                 <input type="email" class="form-control" id="email" name="email"
                                     placeholder="Email kiriting" required data-bs-toggle="tooltip" data-bs-placement="top"
-                                    data-bs-original-title="majburiy boʻlim" value="{{ old('email') }}" />
+                                    data-bs-original-title="majburiy boʻlim" required />
                             </div>
                             <div class="mb-3">
                                 <button class="btn btn-primary d-grid w-100 bg-blue-500" type="submit">Ro'yhatdan
@@ -38,7 +38,7 @@
                         </form>
                         <p class="text-center">
                             <span>Hisobingiz bormi?</span>
-                            <a href="#" class="text-violet-500">
+                            <a href="{{ route('auth.signIn') }}" class="text-violet-500">
                                 <span>Hisobga kirish</span>
                             </a>
                         </p>

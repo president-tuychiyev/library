@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-class Auth
+class AuthenticateClient
 {
     /**
      * Handle an incoming request.
@@ -17,12 +17,12 @@ class Auth
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!session()->has('user') && $request->path() != app()->getLocale() . '/auth/sign-in'):
+        if (!session()->has('client') && $request->path() != app()->getLocale() . '/auth/sign-in'):
             return redirect()->route('auth.signIn')->with('msg', __('locale.msg.auth.warning'));
         endif;
 
-        if (session()->has('user') && $request->path() == app()->getLocale() . '/auth/sign-in'):
-            return redirect()->route('admin.home');
+        if (session()->has('client') && $request->path() == app()->getLocale() . '/auth/sign-in'):
+            return redirect()->route('client.home');
         endif;
 
         return $next($request);

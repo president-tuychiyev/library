@@ -7,13 +7,13 @@
     "file": "assets/uz.17f6b71e.svg",
     "src": "resources/assets/img/icons/uz.svg"
   },
-  "resources/assets/img/icons/en.svg": {
-    "file": "assets/en.e0c69d25.svg",
-    "src": "resources/assets/img/icons/en.svg"
-  },
   "resources/assets/vendor/fonts/boxicons/boxicons.eot": {
     "file": "assets/boxicons.071d2215.eot",
     "src": "resources/assets/vendor/fonts/boxicons/boxicons.eot"
+  },
+  "resources/assets/img/icons/en.svg": {
+    "file": "assets/en.e0c69d25.svg",
+    "src": "resources/assets/img/icons/en.svg"
   },
   "resources/assets/vendor/fonts/boxicons/boxicons.woff2": {
     "file": "assets/boxicons.df845826.woff2",
@@ -32,12 +32,12 @@
     "src": "resources/assets/vendor/fonts/boxicons/boxicons.svg"
   },
   "resources/js/app.js": {
-    "file": "assets/app.f6489cf9.js",
+    "file": "assets/app.c20ff6ef.js",
     "src": "resources/js/app.js",
     "isEntry": true
   },
   "resources/css/app.css": {
-    "file": "assets/app.f667c495.css",
+    "file": "assets/app.e9ff78f0.css",
     "src": "resources/css/app.css",
     "isEntry": true
   }

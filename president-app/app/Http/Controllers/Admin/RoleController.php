@@ -20,7 +20,7 @@ class RoleController extends Controller
 
     public function add()
     {
-        request()->isActiveCheck ? request()->request->add(['userId' => session()->get('user')->id, 'isActive' => true]) : request()->request->add(['userId' => session()->get('user')->id]);
+        request()->isActiveCheck ? request()->request->add(['userId' => session()->get('admin')->id, 'isActive' => true]) : request()->request->add(['userId' => session()->get('admin')->id]);
         $role = Role::create(request()->except(['menu', 'id', '_token']));
         $menus = Menu::where('admin', true)->whereNotNull('route')->get();
         foreach ($menus as $m):

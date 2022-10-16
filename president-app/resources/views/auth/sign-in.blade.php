@@ -16,7 +16,7 @@
                                 </span>
                             </a>
                         </div>
-                        <h2 class="text-center font-bold mb-5">Elektron kutbhonaga hush kelibsiz! 👋</h2>
+                        <h2 class="text-center font-bold mb-3">Elektron kutbhonaga hush kelibsiz! 👋</h2>
                         <form id="formAuthentication" action="{{ route('auth.check') }}" class="mb-3" action="#"
                             method="POST">
                             @csrf
@@ -54,6 +54,17 @@
                                 <span>Hisob yaratish</span>
                             </a>
                         </p>
+                        <div class="divider my-4">
+                            <div class="divider-text">yoki</div>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <a href="{{ route('auth.google.redirect') }}" class="btn btn-icon btn-label-google-plus me-3">
+                                <i class="tf-icons bx bxl-google"></i>
+                            </a>
+                            <a href="{{ route('auth.google.redirect') }}" class="btn btn-icon btn-label-twitter me-3">
+                                <i class="tf-icons bx bxl-twitter"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

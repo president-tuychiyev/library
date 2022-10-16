@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Admin;
 
 use App\Models\Menu;
 use App\Models\Permission;
@@ -27,13 +27,13 @@ class Sidebar extends Component
     public function render()
     {
         $lang = app()->getLocale();
-        $permission = Role::where('id', session()->get('user')->role->id)->with('permission')->first()->permission->where('read', 1);
+        $permission = Role::where('id', session()->get('admin')->role->id)->with('permission')->first()->permission->where('read', 1);
         foreach ($permission as $p):
             $perWhere[] = $p->menuId;
         endforeach;
         $menus = Menu::where('isActive', true)->where('admin', true)->where('parentId', null)->where('route', null)->select('menus.id', 'menus.parentId', "menus.name{$lang} as name", 'menus.icon', 'menus.route')->orderBy('turn', 'asc')->get();
         $submenus = Menu::where('isActive', true)->where('admin', true)->whereNotNull('parentId')->whereIn('id', $perWhere)->select('menus.id', 'menus.parentId', "menus.name{$lang} as name", 'menus.icon', 'menus.route')->orderBy('turn', 'asc')->get();
         $openmenus = Menu::where('isActive', true)->where('admin', true)->where('parentId', null)->whereNotNull('route')->whereIn('id', $perWhere)->select('menus.id', 'menus.parentId', "menus.name{$lang} as name", 'menus.icon', 'menus.route')->orderBy('turn', 'asc')->get();
-        return view('components.sidebar', compact('menus', 'submenus', 'openmenus'));
+        return view('components.admin.sidebar', compact('menus', 'submenus', 'openmenus'));
     }
 }

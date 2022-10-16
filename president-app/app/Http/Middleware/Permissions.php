@@ -23,7 +23,7 @@ class Permissions
         $menu = Menu::where('route', str_replace(['.add', '.update', '.delete'], ['', '', ''], $route->getName()))->first();
 
         if ($menu):
-            $permission = Role::where('id', session()->get('user')->role->id)->with('permission')->first()->permission->where('menuId', $menu->id)->first();
+            $permission = Role::where('id', session()->get('admin')->role->id)->with('permission')->first()->permission->where('menuId', $menu->id)->first();
             if (in_array('add', $request->segments())):
                 // this is add permission
                 if (!$permission->create): return redirect()->back()->with('msg', __('lang.adding.error'));endif;

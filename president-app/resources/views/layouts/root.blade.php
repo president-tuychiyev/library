@@ -8,10 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>@yield('title') | @lang('locale.app.title')</title>
-    
-    {{-- <link rel="stylesheet" href="{{ asset('build/assets/app.f667c495.css') }}">
-    <script src="{{ asset('build/assets/app.f6489cf9.js') }}" type="module"></script> --}}
-    
+
+    <link rel="icon" href="{{ asset('img/icons/logo-black.png') }}">
+
+    {{-- <link rel="stylesheet" href="{{ asset('build/assets/app.e9ff78f0.css') }}">
+    <script src="{{ asset('build/assets/app.c20ff6ef.js') }}" type="module"></script> --}}
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -20,21 +22,29 @@
 
 <body>
 
-    @empty(session()->has('user'))
+    @if (!session()->has('admin') && !session()->has('client'))
         @yield('content')
     @else
         <div class="layout-wrapper layout-content-navbar">
             <div class="layout-container">
                 <div class="layout-overlay layout-menu-toggle"></div>
-                <x-sidebar />
-
-                <div class="layout-page">
-                    <x-navbar-admin />
-
-                    <div class="content-wrapper">
-                        @yield('content')
+                @if (session()->has('admin'))
+                    <x-admin.sidebar />
+                    <div class="layout-page">
+                        <x-admin.navbar />
+                        <div class="content-wrapper">
+                            @yield('content')
+                        </div>
                     </div>
-                </div>
+                @elseif (session()->has('client'))
+                    <x-client.sidebar />
+                    <div class="layout-page">
+                        <x-client.navbar />
+                        <div class="content-wrapper">
+                            @yield('content')
+                        </div>
+                    </div>
+                @endif
 
             </div>
         </div>

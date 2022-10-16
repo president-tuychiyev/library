@@ -58,10 +58,10 @@
                         <a class="dropdown-item" href="javascript:void(0)">
                             <div class="d-flex">
                                 <div class="flex-grow-1">
-                                    <span class="fw-semibold d-block">{{ session()->get('user')->name }}</span>
+                                    <span class="fw-semibold d-block">{{session()->get('client')->name }}</span>
                                     <div class="d-flex align-items-center lh-1 me-3 mb-3 mb-sm-0 text-muted">
                                         <span class="badge badge-dot bg-info me-1"></span>
-                                        {{ session()->get('user')->role->nameuz }}
+                                        {{session()->get('client')->role->nameuz }}
                                     </div>
                                 </div>
                             </div>
@@ -72,7 +72,7 @@
                     </li>
                     <li>
                         <a class="dropdown-item" href="javascript:void(0)"
-                            onclick="infoUser({{ session()->get('user')->id }})" data-bs-toggle="modal"
+                            onclick="infoUser({{session()->get('client')->id }})" data-bs-toggle="modal"
                             data-bs-target="#infoModal">
                             <i class="bx bx-user me-2"></i>
                             <span class="align-middle">Profil</span>
@@ -80,9 +80,11 @@
                     </li>
                     <li>
                         <a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal"
-                            data-bs-target="#profilSettingModal" onclick="updateProfile(this)" data-title="Profil sozlamalarini yangilash"
-                            data-id="{{ session()->get('user')->id }}" data-name="{{ session()->get('user')->name }}"
-                            data-phone="{{ session()->get('user')->phone }}" data-email="{{ session()->get('user')->email }}">
+                            data-bs-target="#profilSettingModal" onclick="updateProfile(this)"
+                            data-title="Profil sozlamalarini yangilash" data-id="{{session()->get('client')->id }}"
+                            data-name="{{session()->get('client')->name }}"
+                            data-phone="{{session()->get('client')->phone }}"
+                            data-email="{{session()->get('client')->email }}">
                             <i class="bx bx-cog me-2"></i>
                             <span class="align-middle">Sozlamalar</span>
                         </a>

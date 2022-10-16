@@ -53,7 +53,6 @@
                                         <option @if (isset($book) && $a->id == $book->authorId) selected="true" @endif
                                             value="{{ $a->id }}">{{ $a->name }}</option>
                                     @endforeach
-                                    <option value="0">Boshqa</option>
                                 </select>
                             </div>
                         </div>

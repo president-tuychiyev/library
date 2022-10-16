@@ -20,7 +20,7 @@ class SystemController extends Controller
     public function add()
     {
         request()->request->remove('id');
-        request()->isActiveCheck ? request()->request->add(['userId' => session()->get('user')->id, 'isActive' => true]) : request()->request->add(['userId' => session()->get('user')->id]);
+        request()->isActiveCheck ? request()->request->add(['userId' => session()->get('admin')->id, 'isActive' => true]) : request()->request->add(['userId' => session()->get('admin')->id]);
         request()->request->remove('isActiveCheck');
         System::create(request()->all());
         return redirect()->back()->with('msg', __('locale.msg.insert.success'));
