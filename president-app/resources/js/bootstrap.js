@@ -248,3 +248,42 @@ window.updateProfile = (e) => {
     document.getElementById('profile-email').value = e.getAttribute('data-email');
     document.getElementById('profile-email').disabled = true;
 }
+
+window.selectPosition = (e) => {
+    if (e.getAttribute('data-position') == 'student')
+    {
+        document.getElementById('position-id').value = 3
+        document.getElementById('systems').hidden = false
+        document.getElementById('select-group').required = true
+    } else
+    {
+        document.getElementById('position-id').value = 2
+        document.getElementById('systems').hidden = true
+        document.getElementById('select-group').required = false
+        document.getElementById('select-group').value = null
+    }
+}
+
+window.checkCode = () => {
+    axios.post('/uz/auth/check-code', { code: document.getElementById('verify-code').value, verifyId: document.getElementById('verify-id').value }).then(function (response) {
+        if (response.data.message.status != 'success')
+        {
+            Swal.fire({
+                toast: true,
+                position: 'bottom-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                },
+                title: response.data.message.text,
+                icon: "error",
+            })
+        } else
+        {
+            document.getElementById('registration-form').submit()
+        }
+    })
+}

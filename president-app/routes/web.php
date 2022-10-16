@@ -38,6 +38,7 @@ Route::prefix(Config::get('language', 'uz'))->group(function () {
         })->name('auth.signUp');
         Route::post('send-code-email', 'Auth\\AuthController@sendCodeEmail')->name('auth.send.code.email');
         Route::get('registration/{id}', 'Auth\\AuthController@registration')->name('auth.registration');
+        Route::post('create-profile', 'Auth\\AuthController@createProfile')->name('auth.create.profile');
     });
 
     Route::middleware(['auth', 'permission'])->group(function () {

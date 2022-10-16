@@ -33,7 +33,7 @@ class UserController extends Controller
 
         request()->isActiveCheck ? request()->request->add(['userId' => session()->get('user')->id, 'isActive' => true]) : request()->request->add(['userId' => session()->get('user')->id]);
         request()->request->add(['password' => Hash::make(request()->pass)]);
-        if (request()->hasFile('avatar')) :
+        if (request()->hasFile('avatar')):
             $avatar = Storage::disk('upload')->put('upload/avatars', request()->file('avatar'));
             $pathInfo = pathinfo($avatar);
             $media = Media::create([
@@ -54,17 +54,17 @@ class UserController extends Controller
         $workman = User::where('users.id', request()->id)->with('media')->first();
         request()->isActiveCheck ? request()->request->add(['isActive' => true]) : request()->request->add(['isActive' => $workman->isActive]);
         is_null(request()->pss) ? '' : request()->request->add(['password' => Hash::make(request()->pass)]);
-        if (request()->hasFile('avatar')) :
+        if (request()->hasFile('avatar')):
             $avatar = Storage::disk('upload')->put('upload/avatars', request()->file('avatar'));
             $pathInfo = pathinfo($avatar);
-            if ($workman->mediaId != 1) :
+            if ($workman->mediaId != 1):
                 Storage::disk('upload')->delete($workman->media->fullPath);
                 Media::where('id', $workman->mediaId)->update([
                     'baseName' => $pathInfo['basename'],
                     'fullPath' => $avatar,
                     'type' => $pathInfo['extension'],
                 ]);
-            else :
+            else:
                 $media = Media::create([
                     'baseName' => $pathInfo['basename'],
                     'fullPath' => $avatar,
@@ -126,7 +126,7 @@ class UserController extends Controller
 
         request()->isActiveCheck ? request()->request->add(['userId' => session()->get('user')->id, 'isActive' => true]) : request()->request->add(['userId' => session()->get('user')->id]);
         request()->request->add(['password' => Hash::make(request()->pass)]);
-        if (request()->hasFile('avatar')) :
+        if (request()->hasFile('avatar')):
             $avatar = Storage::disk('upload')->put('upload/avatars', request()->file('avatar'));
             $pathInfo = pathinfo($avatar);
             $media = Media::create([
@@ -147,17 +147,17 @@ class UserController extends Controller
         $user = User::where('users.id', request()->id)->with('media')->first();
         request()->isActiveCheck ? request()->request->add(['isActive' => true]) : request()->request->add(['isActive' => $user->isActive]);
         is_null(request()->pss) ? '' : request()->request->add(['password' => Hash::make(request()->pass)]);
-        if (request()->hasFile('avatar')) :
+        if (request()->hasFile('avatar')):
             $avatar = Storage::disk('upload')->put('upload/avatars', request()->file('avatar'));
             $pathInfo = pathinfo($avatar);
-            if ($user->mediaId != 1) :
+            if ($user->mediaId != 1):
                 Storage::disk('upload')->delete($user->media->fullPath);
                 Media::where('id', $user->mediaId)->update([
                     'baseName' => $pathInfo['basename'],
                     'fullPath' => $avatar,
                     'type' => $pathInfo['extension'],
                 ]);
-            else :
+            else:
                 $media = Media::create([
                     'baseName' => $pathInfo['basename'],
                     'fullPath' => $avatar,

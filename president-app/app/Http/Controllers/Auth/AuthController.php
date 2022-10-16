@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\System;
 use App\Models\User;
 use App\Models\Verification;
 use Illuminate\Http\Request;
@@ -47,7 +48,12 @@ class AuthController extends Controller
     {
         $user = User::where('email', request()->email)->first();
         if (!$user):
+            Verification::where('email', request()->email)->delete();
             $verify = Verification::create(['email' => request()->email, 'code' => substr(str_shuffle("0123456789abcdefghijklmnopqrstvwxyzABCDEFGHIJKLMNOPQRSTVWXYZ"), 0, 6)]);
+            
+            
+            
+            
             return redirect()->route('auth.registration', $verify->id);
         else:
             return redirect()->back()->with('msg', __('locale.msg.auth.error', ['text' => 'Email']));
@@ -56,6 +62,21 @@ class AuthController extends Controller
 
     public function registration()
     {
-        return view('auth.registration');
+        $groups = System::where('isDeleted', false)->where('isActive', true)->get();
+        $userId = request()->id;
+        return view('auth.registration', compact('groups', 'userId'));
+    }
+
+    public function createProfile()
+    {
+        $verify = Verification::where('id', request()->verifyId)->where('code', request()->verifyCode)->first();
+        if ($verify):
+            request()->request->add(['email' => $verify->email, 'isActive' => true, 'userId' => 0, 'roleId' => request()->position, 'password' => Hash::make(request()->pass)]);
+            User::create(request()->except(['_token', 'verifyId', 'position', 'switches-square-stacked-radio', 'pass', 'verifyCode']));
+            $verify->delete();
+            return redirect()->route('auth.signIn')->with('msg', __('locale.msg.auth.warning'));
+        else:
+            return redirect()->back();
+        endif;
     }
 }

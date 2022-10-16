@@ -114,7 +114,6 @@
         </div>
     </div>
     <!-- end::print user document -->
-    <!-- end::user info modals -->
 
 
     <!-- begin::confirm model -->
